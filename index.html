@@ -20,7 +20,6 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: var(--bg-body); color: var(--text-dark); line-height: 1.6; }
 
-        /* Navbar Top */
         .top-navbar {
             background-color: var(--primary);
             color: white;
@@ -40,10 +39,8 @@
         }
         .nav-links button:hover, .nav-links button.active { color: white; border-bottom: 2px solid white; }
 
-        /* Main Layout */
         .layout { display: flex; min-height: calc(100vh - 60px); }
 
-        /* Sidebar */
         .sidebar {
             width: 260px; background: var(--bg-sidebar); border-right: 1px solid var(--border-color);
             padding: 20px 0; display: flex; flex-direction: column; flex-shrink: 0;
@@ -56,45 +53,26 @@
         .sidebar button:hover { background: #f7fafc; color: var(--secondary); }
         .sidebar button.active { background: #ebf4ff; color: var(--secondary); border-left: 4px solid var(--secondary); font-weight: 600; }
 
-        /* Content Area */
         .content { flex: 1; padding: 40px; overflow-y: auto; background: white; margin: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); min-width: 0; }
         
-        /* Tab Switching */
         .page, .tab-content { display: none; animation: fadeIn 0.4s ease; }
         .page.active, .tab-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Typography */
         .page-header h2 { font-size: 2.2rem; color: var(--primary); margin-bottom: 5px; }
         .page-header p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 30px; padding-bottom: 15px; border-bottom: 2px solid var(--border-color); }
         h3 { font-size: 1.5rem; color: var(--secondary); margin: 40px 0 15px; display: flex; align-items: center; }
         h3::before { content: "■"; color: var(--secondary); margin-right: 10px; font-size: 1.2rem; }
-        h4 { margin: 20px 0 10px; color: var(--primary); font-size: 1.2rem; }
 
-        /* Stats Grid */
         .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; margin-bottom: 30px; }
         .stat-card { background: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; text-align: center; }
         .stat-card h4 { font-size: 1.8rem; color: var(--primary); margin: 0 0 5px 0; }
         .stat-card p { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; margin: 0; }
 
-        /* Key Insights Box */
-        .insights-box { background: var(--insight-bg); border-left: 5px solid var(--insight-border); padding: 25px; border-radius: 0 8px 8px 0; margin: 20px 0 40px; }
-        .insights-box h4 { color: var(--secondary); margin: 0 0 15px 0; font-size: 1.2rem; }
-        .insights-box ul { margin-left: 20px; }
-        .insights-box li { margin-bottom: 10px; }
-
-        /* Image Containers */
         .img-container { width: 100%; text-align: center; margin: 30px 0; }
         .img-container img { max-width: 100%; height: auto; border-radius: 6px; box-shadow: 0 3px 10px rgba(0,0,0,0.08); display: block; margin: 0 auto; }
         .img-label { font-size: 0.9rem; color: var(--text-muted); font-style: italic; margin-top: 10px; }
         
-        /* Tables */
-        .table-wrapper { overflow-x: auto; margin-bottom: 25px; border-radius: 8px; border: 1px solid var(--border-color); }
-        table { width: 100%; border-collapse: collapse; background: white; text-align: left; font-size: 0.9rem; white-space: nowrap; }
-        th, td { padding: 12px 15px; border-bottom: 1px solid var(--border-color); }
-        th { background-color: var(--primary); color: white; font-weight: 600; }
-        tr:nth-child(even) { background-color: #f8fafc; }
-
         footer { text-align: center; padding: 20px; color: var(--text-muted); font-size: 0.9rem; margin-top: 20px; border-top: 1px solid var(--border-color); }
     </style>
 </head>
@@ -110,10 +88,9 @@
 
     <div id="home" class="page">
         <div class="content" style="max-width: 800px; margin: 60px auto; text-align: center;">
-            <h2 style="font-size: 2.5rem; color: var(--primary); margin-bottom: 10px;">Exploratory Data Analysis</h2>
-            <p style="font-size: 1.2rem; color: var(--text-muted); margin-bottom: 40px;">Programming for AI & Data Science (CO3135)<br>Instructor: Dr. Thanh-Sach LE</p>
-            <h3>Team Members</h3>
-            <div class="stats-grid" style="margin-top: 20px;">
+            <h2>Exploratory Data Analysis</h2>
+            <p>Programming for AI & Data Science (CO3135)<br>Instructor: Dr. Thanh-Sach LE</p>
+            <div class="stats-grid">
                 <div class="stat-card"><h4>Trần Phan Đăng Khôi</h4><p>ID: 2352626</p></div>
                 <div class="stat-card"><h4>Trương Anh Phan</h4><p>ID: 2352881</p></div>
             </div>
@@ -135,112 +112,96 @@
                 <div id="tab-tabular" class="tab-content active">
                     <div class="page-header">
                         <h2>Tabular Data Exploration</h2>
-                        <p>Titanic Dataset: Missing data handling and survival correlation analysis.</p>
-                    </div>
-                    <div class="stats-grid">
-                        <div class="stat-card"><h4>891</h4><p>Samples</p></div>
-                        <div class="stat-card"><h4>12</h4><p>Features</p></div>
+                        <p>Titanic Dataset: Missing data and survival correlation.</p>
                     </div>
                     <div class="img-container">
                         <img src="images/target_dist.png" alt="Target Distribution">
-                        <div class="img-label">Fig 1: Target Distribution (Survived vs Dead)</div>
+                        <div class="img-label">Fig 1: Survival Rate Distribution</div>
                     </div>
                     <div class="img-container">
-                        <img src="images/age_fare_dist.png" alt="Numerical Dist">
-                        <div class="img-label">Fig 2: Age and Fare Distributions</div>
+                        <img src="images/age_fare_dist.png" alt="Age Fare">
+                        <div class="img-label">Fig 2: Distribution of Age and Fare</div>
                     </div>
                     <div class="img-container">
-                        <img src="images/heatmap.png" alt="Correlation">
-                        <div class="img-label">Fig 3: Pearson Correlation Heatmap</div>
-                    </div>
-                    <div class="img-container">
-                        <img src="images/outliers_boxplots.png" alt="Outliers">
-                        <div class="img-label">Fig 4: Outlier Detection via Boxplots</div>
+                        <img src="images/heatmap.png" alt="Heatmap">
+                        <div class="img-label">Fig 3: Correlation Heatmap</div>
                     </div>
                 </div>
 
                 <div id="tab-text" class="tab-content">
                     <div class="page-header">
                         <h2>Textual Data Exploration</h2>
-                        <p>SMS Spam Analysis: Preprocessing, Length and TF-IDF analysis.</p>
-                    </div>
-                    <div class="stats-grid">
-                        <div class="stat-card"><h4>5,572</h4><p>Messages</p></div>
-                        <div class="stat-card"><h4>~15.6</h4><p>Avg Words</p></div>
+                        <p>SMS Spam Collection: NLP and Vocabulary analysis.</p>
                     </div>
                     <div class="img-container">
                         <img src="images/text_distribution.png" alt="Text Label Dist">
-                        <div class="img-label">Fig 5: Spam vs Ham Proportion</div>
+                        <div class="img-label">Fig 4: Frequency of Spam vs Ham Labels</div>
                     </div>
                     <div class="img-container">
-                        <img src="images/text_length_dist.png" alt="Length Dist">
-                        <div class="img-label">Fig 6: Word Count Distribution per Class</div>
+                        <img src="images/text_length_dist.png" alt="Text Length">
+                        <div class="img-label">Fig 5: Message Length Distribution</div>
                     </div>
                     <div class="img-container">
                         <img src="images/text_top_stopwords.png" alt="Stopwords">
-                        <div class="img-label">Fig 7: Top 10 Most Frequent Stopwords</div>
-                    </div>
-                    <div style="display:flex; gap:10px;">
-                        <div class="img-container"><img src="images/text_tfidf_uni_spam.png"><div class="img-label">TF-IDF Unigrams (Spam)</div></div>
-                        <div class="img-container"><img src="images/text_tfidf_bi_spam.png"><div class="img-label">TF-IDF Bigrams (Spam)</div></div>
+                        <div class="img-label">Fig 6: Top 10 Stopwords Analysis</div>
                     </div>
                     <div class="img-container">
-                        <img src="images/text_cosine_sim.png" alt="Cosine">
-                        <div class="img-label">Fig 8: Cosine Similarity Heatmap between Labels</div>
+                        <img src="images/text_tfidf_uni_spam.png" alt="TFIDF Uni Spam">
+                        <div class="img-label">Fig 7: Top TF-IDF Unigrams (Spam)</div>
+                    </div>
+                    <div class="img-container">
+                        <img src="images/text_cosine_sim.png" alt="Cosine Sim">
+                        <div class="img-label">Fig 8: Average Cosine Similarity Heatmap</div>
                     </div>
                 </div>
 
                 <div id="tab-image" class="tab-content">
                     <div class="page-header">
                         <h2>Image Data Exploration</h2>
-                        <p>CIFAR-10 Dataset: RGB distributions and quality metrics.</p>
-                    </div>
-                    <div class="stats-grid">
-                        <div class="stat-card"><h4>50,000</h4><p>Images</p></div>
-                        <div class="stat-card"><h4>10</h4><p>Classes</p></div>
+                        <p>CIFAR-10: RGB Analysis and Image Quality.</p>
                     </div>
                     <div class="img-container">
-                        <img src="images/image_samples.png" alt="CIFAR Samples">
-                        <div class="img-label">Fig 9: Grid of Random Image Samples</div>
+                        <img src="images/image_samples.png" alt="Samples">
+                        <div class="img-label">Fig 9: CIFAR-10 Random Image Samples</div>
                     </div>
                     <div class="img-container">
-                        <img src="images/image_quality.png" alt="Quality Boxplots">
-                        <div class="img-label">Fig 10: Sharpness (Blur) and Brightness Diversity across Classes</div>
+                        <img src="images/image_class_dist.png" alt="Class Dist">
+                        <div class="img-label">Fig 10: Class Distribution Across Dataset</div>
+                    </div>
+                    <div class="img-container">
+                        <img src="images/image_quality.png" alt="Quality">
+                        <div class="img-label">Fig 11: Sharpness (Blur) and Brightness Variance</div>
                     </div>
                     <div class="img-container">
                         <img src="images/image_rgb_dist.png" alt="RGB Dist">
-                        <div class="img-label">Fig 11: RGB Channel Intensity Distribution</div>
+                        <div class="img-label">Fig 12: RGB Channel Intensity Profile</div>
                     </div>
                     <div class="img-container">
-                        <img src="images/image_corr_matrix.png" alt="Feature Corr">
-                        <div class="img-label">Fig 12: Image Feature Correlation Matrix</div>
+                        <img src="images/image_corr_matrix.png" alt="Correlation">
+                        <div class="img-label">Fig 13: Feature Correlation Matrix</div>
                     </div>
                 </div>
 
                 <div id="tab-multimodal" class="tab-content">
                     <div class="page-header">
                         <h2>Multimodal Data Exploration</h2>
-                        <p>Flickr8k: Relationship between images and descriptive captions.</p>
-                    </div>
-                    <div class="stats-grid">
-                        <div class="stat-card"><h4>8,092</h4><p>Unique Images</p></div>
-                        <div class="stat-card"><h4>5.0</h4><p>Captions / Image</p></div>
+                        <p>Flickr8k: Real-world images and captioning.</p>
                     </div>
                     <div class="img-container">
                         <img src="images/multi_caption_len.png" alt="Caption Len">
-                        <div class="img-label">Fig 13: Caption Word Count Distribution</div>
+                        <div class="img-label">Fig 14: Caption Word Count Distribution</div>
                     </div>
                     <div class="img-container">
-                        <img src="images/multi_top_words.png" alt="Multi Top Words">
-                        <div class="img-label">Fig 14: Top 15 Common Words in Captions</div>
+                        <img src="images/multi_top_words.png" alt="Top Words">
+                        <div class="img-label">Fig 15: Most Common Words in Captions</div>
                     </div>
                     <div class="img-container">
                         <img src="images/multi_dimensions.png" alt="Dimensions">
-                        <div class="img-label">Fig 15: Image Resolution (Width vs Height) Distribution</div>
+                        <div class="img-label">Fig 16: Image Width and Height Analysis</div>
                     </div>
                     <div class="img-container">
-                        <img src="images/multi_rgb_dist.png" alt="Multi RGB">
-                        <div class="img-label">Fig 16: RGB Intensity Distribution in Flickr Dataset</div>
+                        <img src="images/multi_rgb_dist.png" alt="RGB Multi">
+                        <div class="img-label">Fig 17: RGB Distribution Profile</div>
                     </div>
                 </div>
 
