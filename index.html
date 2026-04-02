@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ben 10 - EDA Assignment</title>
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #f4f4f9;
+            --text-color: #333;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
+        header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        header p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+        nav {
+            background: #333;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        nav a:hover {
+            background: var(--primary-color);
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        .section-card {
+            background: var(--secondary-color);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+        }
+        .team-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .team-table th, .team-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        .team-table th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        .btn:hover {
+            background: #004494;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            color: #fff;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Exploratory Data Analysis (EDA)</h1>
+        <p>Assignment 1 | Programming for AI and Data Science (CO3135)</p>
+    </header>
+
+    <nav>
+        <a href="#about">About</a>
+        <a href="#tabular">Tabular Data</a>
+        <a href="#text">Text Data</a>
+        <a href="#image">Image Data</a>
+    </nav>
+
+    <div class="container">
+        
+        <section id="about" class="section-card">
+            <h2>👥 Team: Ben 10</h2>
+            <p><strong>Instructor:</strong> Dr. Thanh-Sach LE | <strong>Semester:</strong> I (2025-2026)</p>
+            <table class="team-table">
+                <tr>
+                    <th>Name</th>
+                    <th>Student ID</th>
+                    <th>Class</th>
+                    <th>Contribution</th>
+                </tr>
+                <tr>
+                    <td>Trần Phan Đăng Khôi</td>
+                    <td>2352626</td>
+                    <td>CC03</td>
+                    <td>50%</td>
+                </tr>
+                <tr>
+                    <td>Trương Anh Phan</td>
+                    <td>2352881</td>
+                    <td>CC03</td>
+                    <td>50%</td>
+                </tr>
+            </table>
+            <br>
+            <a href="https://github.com/dangkhoi-dev/P4AI-DS/blob/main/Beng10.ipynb" class="btn" target="_blank">View Source Code (Jupyter Notebook)</a>
+        </section>
+
+        <section id="tabular" class="section-card">
+            <h2>📊 1. Tabular Data (Titanic Dataset)</h2>
+            <p><strong>Goal:</strong> Predict passenger survival based on tabular features.</p>
+            <ul>
+                <li><strong>Missing Data:</strong> Found significant missing values in the <code>Age</code> (~20%) and <code>Cabin</code> (>70%) columns.</li>
+                <li><strong>Bivariate Analysis:</strong> 
+                    <ul>
+                        <li>Females had a drastically higher survival rate compared to males.</li>
+                        <li>Passengers in 1st class (Pclass = 1) had the highest chance of survival.</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <section id="text" class="section-card">
+            <h2>📝 2. Text Data (SMS Spam Collection)</h2>
+            <p><strong>Goal:</strong> Classify text messages as Spam or Ham.</p>
+            <ul>
+                <li><strong>Class Imbalance:</strong> The dataset is heavily imbalanced, with ~87% 'Ham' (normal) messages.</li>
+                <li><strong>Length Distribution:</strong> Spam messages are significantly longer on average and cluster at a higher character count compared to normal messages.</li>
+                <li><strong>Vocabulary:</strong> Spam messages frequently use promotional keywords (e.g., "FREE", "WIN", "Call").</li>
+            </ul>
+        </section>
+
+        <section id="image" class="section-card">
+            <h2>🖼️ 3. Image Data (CIFAR-10 Dataset)</h2>
+            <p><strong>Goal:</strong> Object classification across 10 categories.</p>
+            <ul>
+                <li><strong>Dataset Specs:</strong> 50,000 training images, 32x32 pixels, RGB channels. Perfectly balanced (5,000 images per class).</li>
+                <li><strong>Pixel Statistics:</strong> The Mean value of the Blue channel (~113.8) is lower than Red and Green, indicating an overall warmer tone in the dataset.</li>
+                <li><strong>Variance:</strong> High standard deviation (~62-66) across channels reflects a high diversity in image contrast.</li>
+            </ul>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>Made with ☕ by Team Ben 10 | Ho Chi Minh City University of Technology (HCMUT)</p>
+    </footer>
+
+</body>
+</html>
