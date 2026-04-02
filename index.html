@@ -226,269 +226,323 @@
                 </div>
 
                 <div id="tab-text" class="tab-content">
-                    <div class="page-header">
-                        <h2>Textual Data Exploration</h2>
-                        <p>In-depth NLP analysis of the SMS Spam Collection dataset. Focuses on text preprocessing, length distribution, and N-Grams feature extraction.</p>
-                    </div>
+    <div class="page-header">
+        <h2>Textual Data Exploration</h2>
+        <p>In-depth NLP analysis of the SMS Spam Collection dataset. This report focuses on text preprocessing, vocabulary distribution, and feature extraction (TF-IDF/N-Grams) for Text Classification.</p>
+    </div>
 
-                    <h3>1. Dataset Overview & Samples</h3>
-                    <div class="stats-grid">
-                        <div class="stat-card"><h4>5,572</h4><p>Total Messages</p></div>
-                        <div class="stat-card"><h4>100%</h4><p>English Language</p></div>
-                        <div class="stat-card"><h4>0</h4><p>Missing Data</p></div>
-                        <div class="stat-card"><h4>~15</h4><p>Avg Words/Msg</p></div>
-                    </div>
+    <h3>1. Dataset Overview & Samples</h3>
+    <div class="stats-grid">
+        <div class="stat-card"><h4>5,572</h4><p>Samples</p></div>
+        <div class="stat-card"><h4>15.6</h4><p>Avg Words</p></div>
+        <div class="stat-card"><h4>0</h4><p>Missing Data</p></div>
+        <div class="stat-card"><h4>~9,000</h4><p>Unique Words</p></div>
+    </div>
 
-                    <div class="sample-grid">
-                        <div class="sample-box">
-                            <h5>✉️ Sample: Spam (Phishing/Promo)</h5>
-                            <p>"URGENT! You have won a 1 week FREE membership in our £100,000 Prize Jackpot! Txt the word: CLAIM to No: 81010 T&C www.dbuk.net LCCLTD POBOX 4403LDNW1A7RW18"</p>
-                        </div>
-                        <div class="sample-box">
-                            <h5>💬 Sample: Ham (Normal)</h5>
-                            <p>"I'm gonna be home soon and i don't want to talk about this stuff anymore tonight, k? I've cried enough today."</p>
-                        </div>
-                    </div>
-
-                    <div class="insights-box">
-                        <h4>Key Insights: Dataset Overview</h4>
-                        <ul>
-                            <li>The dataset size is optimal for training lightweight NLP models like Naive Bayes or Logistic Regression.</li>
-                            <li><strong>No missing data</strong> is found in the main text column, ensuring a clean pipeline.</li>
-                        </ul>
-                    </div>
-
-                    <h3>2. Distribution & Length Analysis</h3>
-                    <div class="img-container">
-                        <img src="images/text_target_dist.png" alt="Target Distribution Spam vs Ham">
-                        <div class="img-label">Fig 2.1: High class imbalance is observed, with ~86.6% of messages labeled as 'Ham'.</div>
-                    </div>
-                    <div class="img-container">
-                        <img src="images/msg_length_dist.png" alt="Message Length Distribution">
-                        <div class="img-label">Fig 2.2: Spam messages are significantly longer on average and cluster sharply around 150-160 characters.</div>
-                    </div>
-                    <div class="img-container">
-                        <img src="images/word_vs_char.png" alt="Word vs Character Count">
-                        <div class="img-label">Fig 2.3: Scatter plot mapping character count against word count, partitioned by label.</div>
-                    </div>
-                    
-                    <div class="insights-box">
-                        <h4>Key Insights: Structure & Labels</h4>
-                        <ul>
-                            <li><strong>Class Imbalance:</strong> The target distribution is highly imbalanced (~86.6% Ham). Evaluation should use F1-Score instead of Accuracy.</li>
-                            <li><strong>Message Length:</strong> Spam messages are significantly longer on average. Length itself acts as a strong predictive feature.</li>
-                        </ul>
-                    </div>
-
-                    <h3>3. Vocabulary & Bigram Analysis</h3>
-                    <div class="img-container">
-                        <img src="images/top_overall.png" alt="Top 20 Words Overall">
-                        <div class="img-label">Fig 3.1: Most frequent words in the dataset before any filtering.</div>
-                    </div>
-                    <div class="img-container">
-                        <img src="images/top_stopwords.png" alt="Top 20 Stopwords">
-                        <div class="img-label">Fig 3.2: High frequency of non-informative stopwords that require removal.</div>
-                    </div>
-                    <div class="img-container">
-                        <img src="images/top_important.png" alt="Top 20 Important Words">
-                        <div class="img-label">Fig 3.3: Most frequent words after English stopwords are removed.</div>
-                    </div>
-                    <div class="img-container">
-                        <img src="images/top_bigrams.png" alt="Top Bigrams in Spam">
-                        <div class="img-label">Fig 3.4: Bigrams effectively capture Spam-specific phrases like 'customer service' or 'free entry'.</div>
-                    </div>
-                    <div class="img-container">
-                        <img src="images/wordclouds.png" alt="Word Clouds">
-                        <div class="img-label">Fig 3.5: Visual representation of vocabulary dominance in Ham (Green) vs Spam (Red).</div>
-                    </div>
-
-                    <div class="insights-box">
-                        <h4>Key Insights: N-Gram Context</h4>
-                        <ul>
-                            <li><strong>Spam Signatures:</strong> Promotional phrases like "free entry", "claim your", and "txt" dominate the spam vocabulary.</li>
-                            <li><strong>Ham Signatures:</strong> Normal messages are dominated by conversational fragments like "are you", "i am", "let me".</li>
-                            <li><strong>Action Taken:</strong> Using TF-IDF with Bigrams will provide excellent discriminative features for classification.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div id="tab-image" class="tab-content">
-                    <div class="page-header">
-                        <h2>Image Data Exploration</h2>
-                        <p>Exploratory Data Analysis for the CIFAR-10 Dataset. Focuses on image structure, RGB distributions, and class balancing for Computer Vision.</p>
-                    </div>
-
-                    <h3>1. Dataset Overview & Samples</h3>
-                    <div class="stats-grid">
-                        <div class="stat-card"><h4>50,000</h4><p>Total Images</p></div>
-                        <div class="stat-card"><h4>10</h4><p>Classes</p></div>
-                        <div class="stat-card"><h4>5,000</h4><p>Images / Class</p></div>
-                        <div class="stat-card"><h4>32x32</h4><p>Resolution (RGB)</p></div>
-                    </div>
-
-                    <div class="img-container">
-                        <img src="images/cifar_samples.png" alt="CIFAR-10 Samples">
-                        <div class="img-label">Fig 1.1: Grid of 15 random image samples accompanied by their respective ground-truth labels.</div>
-                    </div>
-
-                    <div class="insights-box">
-                        <h4>Key Insights: Image Overview</h4>
-                        <ul>
-                            <li><strong>Perfect Balance:</strong> The dataset is perfectly balanced with exactly 5,000 images per class. No oversampling techniques are required.</li>
-                            <li><strong>Resolution:</strong> The uniform 32x32 pixel size eliminates the need for complex resizing preprocessing.</li>
-                        </ul>
-                    </div>
-
-                    <h3>2. Image Statistics & RGB Distribution</h3>
-                    <div class="img-container">
-                        <img src="images/cifar_class_dist.png" alt="Class Distribution">
-                        <div class="img-label">Fig 2.1: Perfectly balanced dataset distribution across all 10 categories.</div>
-                    </div>
-                    <div class="img-container">
-                        <img src="images/cifar_rgb_dist.png" alt="RGB Distribution">
-                        <div class="img-label">Fig 2.2: Histogram visualizing the distribution of pixel intensities across the Red, Green, and Blue channels.</div>
-                    </div>
-
-                    <div class="insights-box">
-                        <h4>Key Insights: Color & Pixel Analysis</h4>
-                        <ul>
-                            <li><strong>Color Tone Bias:</strong> The Blue channel has the lowest mean intensity (~113.8), indicating an overall warmer tone across the dataset.</li>
-                            <li><strong>Variance:</strong> A high standard deviation (~62-66) across all channels reflects significant diversity in brightness and contrast.</li>
-                            <li><strong>Recommendation:</strong> Apply pixel normalization (scaling to [0,1]) to stabilize feature extraction during CNN training.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div id="tab-multimodal" class="tab-content">
-                    <div class="page-header">
-                        <h2>Multimodal Data Exploration</h2>
-                        <p>Exploratory Data Analysis for the Flickr30k dataset, examining the relationship between images and their corresponding natural language captions.</p>
-                    </div>
-
-                    <h3>1. Dataset Overview</h3>
-                    <div class="stats-grid">
-                        <div class="stat-card"><h4>31,783</h4><p>Unique Images</p></div>
-                        <div class="stat-card"><h4>158,915</h4><p>Total Captions</p></div>
-                        <div class="stat-card"><h4>5.0</h4><p>Captions / Image</p></div>
-                    </div>
-
-                    <h4>10 Random Pairs</h4>
-                    <div class="table-wrapper">
-                        <table>
-                            <tr><th>Image File</th><th>Caption Snippet</th></tr>
-                            <tr><td>4788161255.jpg</td><td>"A young man in a black shirt and jeans and ca..."</td></tr>
-                            <tr><td>3612485097.jpg</td><td>"A black man leans over as a white man jumps o..."</td></tr>
-                            <tr><td>3287963317.jpg</td><td>"Four people sitting in the snow at the base o..."</td></tr>
-                            <tr><td>3629615546.jpg</td><td>"Two women in matching black and green outfits..."</td></tr>
-                            <tr><td>4464793378.jpg</td><td>"A man sits down on a chair , checking his pho..."</td></tr>
-                        </table>
-                    </div>
-
-                    <h4>Image & Captions Example</h4>
-                    <div class="sample-grid">
-                        <div class="sample-box">
-                            <h5>Examples - Detailed Captions 1</h5>
-                            <p>1. "A young man in swim shorts is jumping over a wave in the ocean ."</p>
-                            <p>2. "A man in swimming trunks plays in the ocean 's waves ."</p>
-                            <p>3. "a surfer falling of his board into a wave"</p>
-                        </div>
-                        <div class="sample-box">
-                            <h5>Examples - Detailed Captions 2</h5>
-                            <p>1. "Two young guys with shaggy hair look at their hands while hanging out in the yard."</p>
-                            <p>2. "Two young white males are outside near many bushes ."</p>
-                            <p>3. "Two men in green shirts are standing in a yard."</p>
-                        </div>
-                    </div>
-
-                    <h3>2. Missing & Duplicate Values</h3>
-                    <h4>Missing Values Analysis</h4>
-                    <div class="table-wrapper">
-                        <table>
-                            <tr><th>Feature</th><th>Missing Count</th><th>Severity</th></tr>
-                            <tr><td>image</td><td>0</td><td>🟢 Low</td></tr>
-                            <tr><td>caption</td><td>1</td><td>🟢 Low</td></tr>
-                        </table>
-                    </div>
-
-                    <h4>Duplicate Values Check</h4>
-                    <div class="table-wrapper">
-                        <table>
-                            <tr><th>Total Rows</th><th>Unique Rows</th><th>Duplicate Rows</th><th>Duplicate %</th></tr>
-                            <tr><td>158,915</td><td>158,881</td><td>34</td><td>0.02%</td></tr>
-                        </table>
-                    </div>
-
-                    <h3>3. Caption Text Analysis</h3>
-                    <p><strong>Summary:</strong> Mean 13.39 words, Max 82 words, Min 1 word. Most captions range from 10 to 16 words.</p>
-
-                    <h4>Outlier Count: Short vs Long Captions</h4>
-                    <div class="stats-grid">
-                        <div class="stat-card"><h4>15</h4><p>Too Short (< 3 words)</p></div>
-                        <div class="stat-card"><h4>1978</h4><p>Too Long (> 30 words)</p></div>
-                    </div>
-
-                    <h4>Shortest Captions Samples</h4>
-                    <div class="table-wrapper">
-                        <table>
-                            <tr><th>Image</th><th>Caption</th><th>Length</th></tr>
-                            <tr><td>2199200615.jpg</td><td>"NaN"</td><td>1</td></tr>
-                            <tr><td>2165461920.jpg</td><td>"dogs racing"</td><td>2</td></tr>
-                            <tr><td>2244760301.jpg</td><td>"People walking"</td><td>2</td></tr>
-                        </table>
-                    </div>
-
-                    <h4>Longest Captions Samples</h4>
-                    <div class="table-wrapper">
-                        <table>
-                            <tr><th>Image</th><th>Caption Snippet</th><th>Length</th></tr>
-                            <tr><td>2073444485.jpg</td><td>"A man wearing a helmet , red pants with white..."</td><td>82</td></tr>
-                            <tr><td>19663663.jpg</td><td>"Four young adults sit outside on a wooden dec..."</td><td>79</td></tr>
-                            <tr><td>94864584935.jpg</td><td>"Two boys are looking upwards with their arms ..."</td><td>75</td></tr>
-                        </table>
-                    </div>
-
-                    <h3>4. Vocabulary & Word Analysis</h3>
-                    <div class="stats-grid">
-                        <div class="stat-card"><h4>1,957,129</h4><p>Total Words</p></div>
-                        <div class="stat-card"><h4>18,285</h4><p>Vocabulary Size</p></div>
-                    </div>
-
-                    <h4>Top 10 Most Common Words</h4>
-                    <div class="table-wrapper">
-                        <table>
-                            <tr><th>Word</th><th>Count</th></tr>
-                            <tr><td>a</td><td>271,739</td></tr>
-                            <tr><td>in</td><td>83,520</td></tr>
-                            <tr><td>the</td><td>62,984</td></tr>
-                            <tr><td>on</td><td>45,686</td></tr>
-                            <tr><td>and</td><td>44,299</td></tr>
-                        </table>
-                    </div>
-
-                    <h3>5. Image Quality Analysis</h3>
-                    <h4>Image Dimensions Overview</h4>
-                    <div class="table-wrapper">
-                        <table>
-                            <tr><th>Dimension</th><th>Min</th><th>Max</th><th>Mean</th><th>Std Dev</th></tr>
-                            <tr><td>Width</td><td>164</td><td>500</td><td>459.6</td><td>67.5</td></tr>
-                            <tr><td>Height</td><td>112</td><td>500</td><td>395.1</td><td>74.4</td></tr>
-                        </table>
-                    </div>
-
-                    <h4>RGB Color Statistics</h4>
-                    <div class="table-wrapper">
-                        <table>
-                            <tr><th>Channel</th><th>Mean</th><th>Standard Dev</th></tr>
-                            <tr><td>Red (R)</td><td>0.4443</td><td>0.2851</td></tr>
-                            <tr><td>Green (G)</td><td>0.4213</td><td>0.2773</td></tr>
-                            <tr><td>Blue (B)</td><td>0.3849</td><td>0.2858</td></tr>
-                        </table>
-                    </div>
-                </div>
-
-            </div>
+    <h4>📝 Message Samples by Class</h4>
+    <div class="sample-grid">
+        <div class="sample-box">
+            <h5>Class: HAM (Normal)</h5>
+            <p>"I'm gonna be home soon and i don't want to talk about this stuff anymore tonight, k? I've cried enough today."</p>
+        </div>
+        <div class="sample-box">
+            <h5>Class: SPAM</h5>
+            <p>"URGENT! You have won a 1 week FREE membership in our £100,000 Prize Jackpot! Txt the word: CLAIM to No: 81010 T&C www.dbuk.net LCCLTD POBOX 4403LDNW1A7RW18"</p>
         </div>
     </div>
+
+    <div class="insights-box">
+        <h4>Key Insights: Dataset Overview</h4>
+        <ul>
+            <li>The dataset size (5,572 samples) is optimal for training robust machine learning and NLP models.</li>
+            <li>Missing data is non-existent. The primary text column is 100% complete.</li>
+            <li>The average length of a message (~15 words) requires precise feature extraction since context window is narrow.</li>
+        </ul>
+    </div>
+
+    <h3>2. Distribution & Labeling</h3>
+    <div class="img-container">
+        <img src="images/text_distribution.png" alt="Frequency Distribution and Proportion">
+        <div class="img-label">Fig 2.1: Frequency Distribution (Left) and Class Proportion (Right).</div>
+    </div>
+    <div class="insights-box">
+        <h4>Key Insights: Target Distribution</h4>
+        <ul>
+            <li>The label distribution exhibits a strong <strong>class imbalance</strong> (~86.6% Ham), indicating models are highly likely to overfit towards the majority class.</li>
+            <li><strong>Strategy:</strong> Applying techniques like SMOTE or adjusting class weights is necessary to improve the decision boundaries for the minority class (Spam).</li>
+        </ul>
+    </div>
+
+    <h3>3. Stopword Analysis</h3>
+    <div class="stats-grid">
+        <div class="stat-card"><h4>86,961</h4><p>Total Words</p></div>
+        <div class="stat-card"><h4>35,420</h4><p>Total Stopwords</p></div>
+        <div class="stat-card"><h4>~40.7%</h4><p>Percentage</p></div>
+    </div>
+    
+    <div style="display: flex; gap: 20px;">
+        <div class="img-container" style="flex: 1;"><img src="images/text_top_stopwords.png" alt="Top 10 Stopwords"></div>
+        <div class="img-container" style="flex: 1;"><img src="images/text_stopwords_wc.png" alt="Stopwords Wordcloud"></div>
+    </div>
+
+    <div class="insights-box">
+        <h4>Key Insights: Stopwords</h4>
+        <ul>
+            <li>A massive <strong>~40.7%</strong> of the entire text corpus consists of non-informative stopwords (e.g., 'i', 'to', 'you', 'a').</li>
+            <li>While highly frequent, these words carry zero predictive weight and obscure meaningful patterns.</li>
+            <li><strong>Action Taken:</strong> Removing stopwords is a crucial preprocessing step. It effectively halves the Vector Space Dimensionality and reduces statistical noise.</li>
+        </ul>
+    </div>
+
+    <h3>4. Review Length & Language</h3>
+    <div class="img-container">
+        <img src="images/text_length_dist.png" alt="Word Count Distribution">
+        <div class="img-label">Fig 4.1: Word Count Distribution highlighting the difference between Spam and Ham.</div>
+    </div>
+    <div class="insights-box">
+        <h4>Key Insights: Text Structure</h4>
+        <ul>
+            <li>The Word Count Distribution for Spam is tightly clustered around higher word counts (25-30 words) compared to Ham, which is generally much shorter.</li>
+            <li>Language detection algorithms confirm the dataset is predominantly English, meaning standard NLP dictionaries (like NLTK or Scikit-Learn's default stops) will operate perfectly.</li>
+        </ul>
+    </div>
+
+    <h3>5. Vocabulary Statistics & Top Words</h3>
+    <div class="img-container">
+        <img src="images/text_overall_top.png" alt="Overall Top Words">
+        <div class="img-label">Fig 5.1: Top Words by Frequency (Before applying TF-IDF).</div>
+    </div>
+    <div class="insights-box">
+        <h4>Key Insights: Vocabulary Richness</h4>
+        <ul>
+            <li>Looking at the Overall Top Words grid, basic action verbs like "call", "get", and "go" appear frequently across all messages.</li>
+            <li>Because they appear everywhere, they offer poor distinguishing power for predictive models. We need TF-IDF to penalize them.</li>
+        </ul>
+    </div>
+
+    <h3>6. Unigram TF-IDF Analysis</h3>
+    <div style="display: flex; gap: 20px;">
+        <div class="img-container" style="flex: 1;"><img src="images/text_tfidf_uni_ham.png" alt="TF-IDF Unigrams Ham"></div>
+        <div class="img-container" style="flex: 1;"><img src="images/text_tfidf_uni_spam.png" alt="TF-IDF Unigrams Spam"></div>
+    </div>
+    <div class="insights-box">
+        <h4>Key Insights: TF-IDF Unigrams</h4>
+        <ul>
+            <li><strong>TF-IDF Magic:</strong> By applying Term Frequency-Inverse Document Frequency, generic words are penalized, allowing unique sentiment-bearing keywords to surface.</li>
+            <li><strong>Spam Signatures:</strong> Dominated by strong promotional nouns/verbs such as "free", "txt", "mobile", and "claim".</li>
+            <li><strong>Ham Signatures:</strong> Highlighted by personal affirmations and conversational tokens like "ok", "good", "come", and "love".</li>
+        </ul>
+    </div>
+
+    <h3>7. Bigram TF-IDF Analysis</h3>
+    <div style="display: flex; gap: 20px;">
+        <div class="img-container" style="flex: 1;"><img src="images/text_tfidf_bi_ham.png" alt="TF-IDF Bigrams Ham"></div>
+        <div class="img-container" style="flex: 1;"><img src="images/text_tfidf_bi_spam.png" alt="TF-IDF Bigrams Spam"></div>
+    </div>
+    <div class="insights-box">
+        <h4>Key Insights: N-Gram Context</h4>
+        <ul>
+            <li>Bigrams naturally capture <strong>context</strong> that single words lose.</li>
+            <li>Extracted phrases like "customer service", "free entry" (Spam) versus "let know", "good morning" (Ham) act as the most powerful discriminative features for classification models.</li>
+        </ul>
+    </div>
+
+    <h3>8. Semantic Similarity & Clouds</h3>
+    <div class="img-container">
+        <img src="images/text_cosine_sim.png" alt="Cosine Similarity Heatmap" style="max-width: 400px;">
+        <div class="img-label">Fig 8.1: Average Cosine Similarity Matrix between document vectors.</div>
+    </div>
+    <div class="img-container">
+        <img src="images/text_sentiment_wc.png" alt="Spam vs Ham WordClouds">
+        <div class="img-label">Fig 8.2: Vocabulary visualization separated by Class.</div>
+    </div>
+    <div class="insights-box">
+        <h4>Key Insights: Semantic Distance</h4>
+        <ul>
+            <li><strong>Cosine Similarity Heatmap:</strong> This measures the vector distance between classes. Noticeably, Spam and Ham vectors share an extremely low similarity score (~0.0075), proving their vocabularies are fundamentally disjointed.</li>
+            <li><strong>WordClouds:</strong> Visualizing by label visually proves that the dataset is partitioned into two highly distinct semantic profiles, priming it perfectly for binary classification.</li>
+        </ul>
+    </div>
+</div>
+
+                <div id="tab-image" class="tab-content">
+    <div class="page-header">
+        <h2>Image Data Exploration</h2>
+        <p>Exploratory Data Analysis for the CIFAR-10 Dataset. This section focuses on image structure, quality metrics (blur, brightness), and feature distributions to prepare for Computer Vision modeling.</p>
+    </div>
+
+    <h3>1. Dataset Overview & Sample</h3>
+    <div class="stats-grid">
+        <div class="stat-card"><h4>50,000</h4><p>Total Images</p></div>
+        <div class="stat-card"><h4>10</h4><p>Classes</p></div>
+        <div class="stat-card"><h4>5,000</h4><p>Avg Images / Class</p></div>
+    </div>
+
+    <div class="img-container">
+        <img src="images/image_samples.png" alt="CIFAR-10 Samples Grid">
+        <div class="img-label">Fig 1.1: Random samples of different object classes from the dataset.</div>
+    </div>
+    <div class="img-container">
+        <img src="images/image_class_dist.png" alt="Image Class Distribution">
+        <div class="img-label">Fig 1.2: Image distribution across all 10 categories.</div>
+    </div>
+
+    <div class="insights-box">
+        <h4>Key Insights: Dataset Overview</h4>
+        <ul>
+            <li>The dataset contains <strong>50,000 training images</strong> across 10 classes, providing a robust foundation for training deep Convolutional Neural Networks (CNNs).</li>
+            <li>The class distribution is <strong>perfectly balanced</strong> (exactly 5,000 images per class), which minimizes class imbalance issues during training. Oversampling or undersampling techniques are not required.</li>
+            <li>With 10 distinct classes containing diverse backgrounds, this is a relatively complex multi-class classification problem.</li>
+            <li>Applying <strong>data augmentation techniques</strong> (e.g., horizontal flipping, slight shifting) is highly recommended to improve model generalization and combat overfitting.</li>
+        </ul>
+    </div>
+
+    <h3>2. Data Quality</h3>
+    <div class="stats-grid">
+        <div class="stat-card"><h4>0</h4><p>Missing Images</p></div>
+        <div class="stat-card"><h4>0</h4><p>Corrupted Images</p></div>
+        <div class="stat-card"><h4>0</h4><p>Duplicate Images</p></div>
+    </div>
+
+    <div class="img-container">
+        <img src="images/image_quality.png" alt="Blur and Brightness Diversity">
+        <div class="img-label">Fig 2.1: Variance of Laplacian (Sharpness/Blur) and Average Brightness across different classes.</div>
+    </div>
+
+    <div class="insights-box">
+        <h4>Key Insights: Data Quality</h4>
+        <ul>
+            <li>The dataset contains no missing or corrupted images, indicating strong data integrity.</li>
+            <li><strong>Blur & Sharpness:</strong> Because the resolution is natively very low (32x32), the Laplacian variance (sharpness) is generally low across all classes. However, classes with distinct edges (like 'airplane' or 'ship') show slightly higher variance outliers compared to natural subjects like 'frog'.</li>
+            <li><strong>Brightness Diversity:</strong> There is a significant variation in image brightness. Classes like 'ship' and 'airplane' (often photographed against bright skies) exhibit much higher average brightness than 'cat' or 'dog' (often photographed indoors).</li>
+            <li><strong>Recommended actions:</strong> Apply global contrast normalization or Z-score normalization per channel to stabilize feature extraction regardless of lighting conditions.</li>
+        </ul>
+    </div>
+
+    <h3>3. Image Statistics</h3>
+    <div style="display: flex; gap: 20px;">
+        <div class="img-container" style="flex: 1;">
+            <img src="images/image_dimensions.png" alt="Width and Height Distribution">
+            <div class="img-label">Fig 3.1: Resolution uniformity mapping.</div>
+        </div>
+        <div class="img-container" style="flex: 1;">
+            <img src="images/image_rgb_dist.png" alt="RGB Channel Distribution">
+            <div class="img-label">Fig 3.2: Pixel intensity distributions across Red, Green, and Blue.</div>
+        </div>
+    </div>
+
+    <div class="insights-box">
+        <h4>Key Insights: Image Statistics</h4>
+        <ul>
+            <li>The width and height distributions show a single dot at <strong>32x32 pixels</strong>. This strict uniformity eliminates the need for computational-heavy resizing during preprocessing, ensuring stable input dimensions for CNNs.</li>
+            <li>The RGB channel distributions reveal that the <strong>Blue channel</strong> has a lower mean intensity, suggesting an overall warmer tone across the dataset (likely due to many indoor, animal, and ground-vehicle subjects).</li>
+            <li>The overlapping distributions of RGB channels indicate that while color helps, the dataset relies heavily on <strong>shape and spatial textures</strong> for classification.</li>
+        </ul>
+    </div>
+
+    <h3>4. Feature Analysis</h3>
+    <div class="img-container">
+        <img src="images/image_corr_matrix.png" alt="Image Feature Correlation Matrix" style="max-width: 600px;">
+        <div class="img-label">Fig 4.1: Correlation matrix between RGB channels, Brightness, Contrast, and Sharpness (Blur).</div>
+    </div>
+
+    <div class="insights-box">
+        <h4>Key Insights: Feature Engineering</h4>
+        <ul>
+            <li><strong>High RGB Correlation:</strong> Strong correlations exist between the Red, Green, and Blue channels (r > 0.85), indicating redundant color information. Brightness is perfectly correlated with the channels as it is derived from them.</li>
+            <li><strong>Independence of Contrast/Blur:</strong> Image Contrast and Sharpness (Blur) show very weak correlations with color intensity. This means structural properties (edges, textures) provide completely unique and valuable information to the model, distinct from color.</li>
+            <li><strong>Recommendation:</strong> CNN architectures naturally extract these structural features. However, if using traditional ML algorithms (like SVM or Random Forest), dimensionality reduction (PCA) on colors and explicitly feeding contrast/edge features would be highly beneficial.</li>
+        </ul>
+    </div>
+</div>
+
+                <div id="tab-multimodal" class="tab-content">
+    <div class="page-header">
+        <h2>Multimodal Data Exploration</h2>
+        <p>Exploratory Data Analysis for the Flickr8k dataset, examining the relationship between real-world images and their corresponding natural language captions.</p>
+    </div>
+
+    <h3>1. Dataset Overview</h3>
+    <div class="stats-grid">
+        <div class="stat-card"><h4>8,092</h4><p>Unique Images</p></div>
+        <div class="stat-card"><h4>40,460</h4><p>Total Captions</p></div>
+        <div class="stat-card"><h4>5.0</h4><p>Captions / Image</p></div>
+    </div>
+
+    <h4>Image & Captions Example</h4>
+    <div class="sample-grid">
+        <div class="sample-box">
+            <h5>Image: 1000268201_693b08cb0e.jpg</h5>
+            <p>1. "A child in a pink dress is climbing up a set of stairs in an entry way ."</p>
+            <p>2. "A little girl in a pink dress going into a wooden cabin ."</p>
+            <p>3. "A girl going into a wooden building ."</p>
+        </div>
+        <div class="sample-box">
+            <h5>Image: 2073444485_c0b4353f86.jpg</h5>
+            <p>1. "Two young guys with shaggy hair look at their hands while hanging out in the yard ."</p>
+            <p>2. "Two young white males are outside near many bushes ."</p>
+            <p>3. "Two men in green shirts are standing in a yard ."</p>
+        </div>
+    </div>
+
+    <h3>2. Caption Text Analysis</h3>
+    <div style="display: flex; gap: 20px;">
+        <div class="img-container" style="flex: 1;">
+            <img src="images/multi_caption_len.png" alt="Caption Length Distribution">
+            <div class="img-label">Fig 2.1: Caption Length Distribution.</div>
+        </div>
+        <div class="img-container" style="flex: 1;">
+            <img src="images/multi_caption_box.png" alt="Caption Length Boxplot">
+            <div class="img-label">Fig 2.2: Boxplot highlighting length outliers.</div>
+        </div>
+    </div>
+    <div class="img-container">
+        <img src="images/multi_word_char.png" alt="Word vs Char Count">
+        <div class="img-label">Fig 2.3: Scatter mapping word count against character count.</div>
+    </div>
+
+    <div class="insights-box">
+        <h4>Key Insights: Text Distribution</h4>
+        <ul>
+            <li><strong>Consistency:</strong> The vast majority of captions fall neatly between 8 and 14 words. The dataset is tightly controlled and highly descriptive.</li>
+            <li><strong>Outliers:</strong> There are very few captions under 4 words or over 30 words, making sequence padding in LSTM/Transformer models highly efficient without wasting memory on sparse matrices.</li>
+        </ul>
+    </div>
+
+    <h3>3. Vocabulary & Word Analysis</h3>
+    <div class="img-container">
+        <img src="images/multi_top_words.png" alt="Top Common Words">
+        <div class="img-label">Fig 3.1: Top 15 Most Common Words (Excluding basic stopwords like 'a', 'the', 'in').</div>
+    </div>
+
+    <div class="insights-box">
+        <h4>Key Insights: Vocabulary Focus</h4>
+        <ul>
+            <li>Nouns representing distinct entities (<strong>man, dog, boy, water, people</strong>) dominate the vocabulary.</li>
+            <li>This clearly reflects the nature of image captioning tasks: the text is heavily focused on describing physical subjects and their environments rather than abstract concepts.</li>
+        </ul>
+    </div>
+
+    <h3>4. Image Quality & Dimension Analysis</h3>
+    <div style="display: flex; gap: 20px;">
+        <div class="img-container" style="flex: 1;">
+            <img src="images/multi_dimensions.png" alt="Image Dimensions">
+            <div class="img-label">Fig 4.1: Width vs Height Distribution.</div>
+        </div>
+        <div class="img-container" style="flex: 1;">
+            <img src="images/multi_rgb_dist.png" alt="RGB Distribution">
+            <div class="img-label">Fig 4.2: RGB Intensity Distribution across dataset.</div>
+        </div>
+    </div>
+
+    <div class="insights-box">
+        <h4>Key Insights: Image Structure</h4>
+        <ul>
+            <li><strong>Dimension Diversity:</strong> Unlike CIFAR-10, Flickr images have varying aspect ratios. Most images are scaled to have their longest edge at exactly 500 pixels. Center-cropping or padding will be necessary before feeding them into a CNN like ResNet50 or VGG16.</li>
+            <li><strong>Color Distribution:</strong> The dataset has a relatively balanced RGB distribution, providing rich color contexts for feature extraction algorithms.</li>
+        </ul>
+    </div>
+</div>
 
     <footer>
         <p>Ho Chi Minh City University of Technology (HCMUT)<br>&copy; 2026 Group Ben 10. All rights reserved.</p>
