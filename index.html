@@ -84,9 +84,10 @@
         .insights-box li { margin-bottom: 10px; }
         .insights-box strong { color: var(--primary); }
 
-        /* Image Placeholders */
-        .img-container { width: 100%; text-align: center; margin: 20px 0; background: #f8fafc; border: 2px dashed #cbd5e0; border-radius: 8px; padding: 40px 20px; color: #a0aec0; font-style: italic; overflow: hidden; }
-        .img-container img { max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        /* Image Display */
+        .img-container { width: 100%; text-align: center; margin: 30px 0; }
+        .img-container img { max-width: 100%; height: auto; border-radius: 6px; box-shadow: 0 3px 10px rgba(0,0,0,0.08); display: block; margin: 0 auto; }
+        .img-label { font-size: 0.9rem; color: var(--text-muted); font-style: italic; margin-top: 10px; }
         
         /* Sample Text Boxes */
         .sample-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
@@ -160,59 +161,13 @@
                         <div class="stat-card"><h4>5</h4><p>Numerical</p></div>
                         <div class="stat-card"><h4>6</h4><p>Categorical</p></div>
                     </div>
-                    
-                    <div class="sample-grid">
-                        <div class="sample-box">
-                            <h5>Target Feature: Survived</h5>
-                            <p>Variable indicating the survival status.</p>
-                            <ul style="margin-top: 10px; margin-left: 20px; font-weight: bold;">
-                                <li style="color: #e53e3e;">Dead (0): 549</li>
-                                <li style="color: #38a169;">Alive (1): 342</li>
-                            </ul>
-                        </div>
-                    </div>
 
-                    <h4>Feature Dictionary</h4>
-                    <div class="table-wrapper">
-                        <table>
-                            <tr><th>Feature Name</th><th>Type</th><th>Meaning / Description</th></tr>
-                            <tr><td>PassengerId</td><td>Numerical</td><td>Unique identifier for each passenger</td></tr>
-                            <tr><td>Survived</td><td>Target</td><td>Survival status (0 = No, 1 = Yes)</td></tr>
-                            <tr><td>Pclass</td><td>Categorical</td><td>Ticket class (1 = 1st, 2 = 2nd, 3 = 3rd)</td></tr>
-                            <tr><td>Name</td><td>Categorical</td><td>Passenger full name and title</td></tr>
-                            <tr><td>Sex</td><td>Categorical</td><td>Passenger gender</td></tr>
-                            <tr><td>Age</td><td>Numerical</td><td>Passenger age in years</td></tr>
-                            <tr><td>SibSp</td><td>Numerical</td><td>Number of siblings / spouses aboard the Titanic</td></tr>
-                            <tr><td>Parch</td><td>Numerical</td><td>Number of parents / children aboard the Titanic</td></tr>
-                            <tr><td>Ticket</td><td>Categorical</td><td>Ticket number sequence</td></tr>
-                            <tr><td>Fare</td><td>Numerical</td><td>Passenger fare amount paid</td></tr>
-                            <tr><td>Cabin</td><td>Categorical</td><td>Cabin number assigned</td></tr>
-                            <tr><td>Embarked</td><td>Categorical</td><td>Port of Embarkation (C = Cherbourg, Q = Queenstown, S = Southampton)</td></tr>
-                        </table>
-                    </div>
-
-                    <h4>10 Random Samples (Survived = 0)</h4>
-                    <div class="table-wrapper">
-                        <table>
-                            <tr><th>Index</th><th>PassengerId</th><th>Survived</th><th>Pclass</th><th>Name</th><th>Sex</th><th>Age</th><th>SibSp</th><th>Parch</th><th>Ticket</th><th>Fare</th><th>Cabin</th><th>Embarked</th><th>Ticket_Prefix</th><th>Age_Group</th></tr>
-                            <tr><td>312</td><td>313</td><td>0</td><td>2</td><td>Lahtinen, Mrs. William...</td><td>female</td><td>26.0</td><td>1</td><td>1</td><td>250651</td><td>26.0000</td><td>NaN</td><td>S</td><td>NUMERIC</td><td>Adult (19-35)</td></tr>
-                            <tr><td>124</td><td>125</td><td>0</td><td>1</td><td>White, Mr. Percival Wayland</td><td>male</td><td>54.0</td><td>0</td><td>1</td><td>35281</td><td>77.2875</td><td>D26</td><td>S</td><td>NUMERIC</td><td>Middle-aged (36-60)</td></tr>
-                            <tr><td>783</td><td>784</td><td>0</td><td>3</td><td>Johnston, Mr. Andrew G</td><td>male</td><td>NaN</td><td>1</td><td>2</td><td>W./C. 6607</td><td>23.4500</td><td>NaN</td><td>S</td><td>W./C.</td><td>NaN</td></tr>
-                            </table>
-                    </div>
-
-                    <h4>10 Random Samples (Survived = 1)</h4>
-                    <div class="table-wrapper">
-                        <table>
-                            <tr><th>Index</th><th>PassengerId</th><th>Survived</th><th>Pclass</th><th>Name</th><th>Sex</th><th>Age</th><th>SibSp</th><th>Parch</th><th>Ticket</th><th>Fare</th><th>Cabin</th><th>Embarked</th><th>Ticket_Prefix</th><th>Age_Group</th></tr>
-                            <tr><td>604</td><td>605</td><td>1</td><td>1</td><td>Homer, Mr. Harry...</td><td>male</td><td>35.0</td><td>0</td><td>0</td><td>111426</td><td>26.5500</td><td>NaN</td><td>C</td><td>NUMERIC</td><td>Adult (19-35)</td></tr>
-                            <tr><td>311</td><td>312</td><td>1</td><td>1</td><td>Ryerson, Miss. Emily Borie</td><td>female</td><td>18.0</td><td>2</td><td>2</td><td>PC 17608</td><td>262.3750</td><td>B57 B59...</td><td>C</td><td>PC</td><td>Teen (13-18)</td></tr>
-                            </table>
+                    <div class="img-container">
+                        <img src="images/target_dist.png" alt="Target Distribution">
+                        <div class="img-label">Fig 1.1: Survival rate demonstrating class imbalance in target feature.</div>
                     </div>
 
                     <h3>2. Missing & Duplicate Values</h3>
-                    <h4>Missing Values Analysis</h4>
-                    <p>Overview of features containing null or missing data. A total of 866 missing cells scattered across 3 columns were identified.</p>
                     <div class="table-wrapper">
                         <table>
                             <tr><th>Feature</th><th>Missing Count</th><th>Missing %</th><th>Severity</th></tr>
@@ -222,105 +177,50 @@
                         </table>
                     </div>
 
-                    <h4>Duplicate Values Check</h4>
-                    <p>Validation for completely identical records within the dataset. No fully duplicated rows were found during the analysis.</p>
-                    <div class="table-wrapper">
-                        <table>
-                            <tr><th>Total Rows</th><th>Unique Rows</th><th>Duplicate Rows</th><th>Duplicate %</th></tr>
-                            <tr><td>891</td><td>891</td><td>0</td><td>0.0%</td></tr>
-                        </table>
-                    </div>
-
                     <h3>3. Numerical Features Distribution</h3>
-                    <h4>Numerical Features Statistics</h4>
-                    <div class="table-wrapper">
-                        <table>
-                            <tr><th>Column</th><th>Count</th><th>Mean</th><th>Median</th><th>Std</th><th>Min</th><th>Max</th></tr>
-                            <tr><td>Age</td><td>714</td><td>29.70</td><td>28.00</td><td>14.53</td><td>0.42</td><td>80.00</td></tr>
-                            <tr><td>SibSp</td><td>891</td><td>0.52</td><td>0.00</td><td>1.10</td><td>0.00</td><td>8.00</td></tr>
-                            <tr><td>Parch</td><td>891</td><td>0.38</td><td>0.00</td><td>0.81</td><td>0.00</td><td>6.00</td></tr>
-                            <tr><td>Fare</td><td>891</td><td>32.20</td><td>14.45</td><td>49.69</td><td>0.00</td><td>512.33</td></tr>
-                        </table>
+                    <div class="img-container">
+                        <img src="images/age_fare_dist.png" alt="Age and Fare Distribution">
+                        <div class="img-label">Fig 3.1: Distribution of continuous features (Age and Fare). Note the strong right-skew in Fare.</div>
                     </div>
-                    <div class="img-container">[Chèn ảnh Age Distribution]</div>
-                    <div class="img-container">[Chèn ảnh SibSp Distribution]</div>
-                    <div class="img-container">[Chèn ảnh Parch Distribution]</div>
-                    <div class="img-container">[Chèn ảnh Fare Distribution]</div>
+                    <div class="img-container">
+                        <img src="images/sibsp_parch_dist.png" alt="SibSp and Parch Distribution">
+                        <div class="img-label">Fig 3.2: Distribution of family-related discrete features (SibSp and Parch).</div>
+                    </div>
 
                     <h3>4. Categorical Features Distribution</h3>
-                    <h4>Categorical Features Statistics</h4>
-                    <div class="table-wrapper">
-                        <table>
-                            <tr><th>Column</th><th>Unique Values</th><th>Cardinality</th><th>Mode (Most Frequent)</th><th>Mode Frequency</th><th>Mode %</th><th>Missing %</th></tr>
-                            <tr><td>Name</td><td>891</td><td>🔴 High (ID-like)</td><td>"Abbing, Mr. Anthony"</td><td>1</td><td>0.11%</td><td>0.00%</td></tr>
-                            <tr><td>Sex</td><td>2</td><td>🟢 Binary</td><td>male</td><td>577</td><td>64.76%</td><td>0.00%</td></tr>
-                            <tr><td>Ticket</td><td>681</td><td>🔴 High (ID-like)</td><td>1601</td><td>7</td><td>0.79%</td><td>0.00%</td></tr>
-                            <tr><td>Cabin</td><td>147</td><td>🟠 Medium</td><td>B96 B98</td><td>4</td><td>1.96%</td><td>77.10%</td></tr>
-                            <tr><td>Embarked</td><td>3</td><td>🟡 Low</td><td>S</td><td>644</td><td>72.44%</td><td>0.22%</td></tr>
-                            <tr><td>Pclass</td><td>3</td><td>🟡 Low</td><td>3</td><td>491</td><td>55.11%</td><td>0.00%</td></tr>
-                        </table>
+                    <div class="img-container">
+                        <img src="images/categorical_dist.png" alt="Categorical Features Distribution">
+                        <div class="img-label">Fig 4.1: Breakdown of passengers by Class, Gender, Embarkation Port, and Cabin status.</div>
                     </div>
-                    
-                    <h4>Non-ID Categorical Distribution</h4>
-                    <p>Variables such as Name and Ticket have extremely high cardinality mapping closely to unique IDs. Therefore, they are excluded from frequency analysis in favor of true categorical classifications: Pclass, Sex, Cabin, and Embarked.</p>
-                    <div class="img-container">[Chèn ảnh Pclass Distribution]</div>
-                    <div class="img-container">[Chèn ảnh Sex Distribution]</div>
-                    <div class="img-container">[Chèn ảnh Cabin Distribution]</div>
-                    <div class="img-container">[Chèn ảnh Embarked Distribution]</div>
-                    <div class="img-container">[Chèn ảnh Ticket Prefix Analysis]</div>
+                    <div class="img-container">
+                        <img src="images/ticket_prefix.png" alt="Ticket Prefix Analysis">
+                        <div class="img-label">Fig 4.2: Extraction and frequency of alphanumeric ticket prefixes.</div>
+                    </div>
 
                     <h3>5. Correlation Analysis</h3>
-                    <h4>Pearson Correlation Matrix Top Pairs</h4>
-                    <div class="table-wrapper">
-                        <table>
-                            <tr><th>Feature A</th><th>Feature B</th><th>Pearson r</th><th>|r|</th><th>Strength</th></tr>
-                            <tr><td>Pclass</td><td>Fare</td><td>-0.5495</td><td>0.5495</td><td>🟡 Moderate</td></tr>
-                            <tr><td>SibSp</td><td>Parch</td><td>0.4148</td><td>0.4148</td><td>🟡 Moderate</td></tr>
-                            <tr><td>Pclass</td><td>Age</td><td>-0.3692</td><td>0.3692</td><td>🟢 Weak</td></tr>
-                            <tr><td>Age</td><td>SibSp</td><td>-0.3082</td><td>0.3082</td><td>🟢 Weak</td></tr>
-                            <tr><td>Parch</td><td>Fare</td><td>0.2162</td><td>0.2162</td><td>🟢 Weak</td></tr>
-                        </table>
+                    <div class="img-container">
+                        <img src="images/heatmap.png" alt="Correlation Heatmap">
+                        <div class="img-label">Fig 5.1: Pearson Correlation matrix of numerical variables. Pclass and Fare show moderate negative correlation.</div>
                     </div>
-                    <div class="img-container">[Chèn ảnh Correlation Heatmap]</div>
 
                     <h3>6. Target Analysis</h3>
-                    <div class="img-container">[Chèn ảnh Target Distribution]</div>
-                    <h4>Numerical Feature Correlation with Target</h4>
-                    <div class="table-wrapper">
-                        <table>
-                            <tr><th>Feature</th><th>Point-Biserial r</th><th>Spearman r</th><th>|r|</th><th>p-value</th><th>Significant</th></tr>
-                            <tr><td>Pclass</td><td>-0.3385</td><td>-0.3397</td><td>0.3385</td><td>0.0000</td><td>✅</td></tr>
-                            <tr><td>Fare</td><td>0.2573</td><td>0.3237</td><td>0.2573</td><td>0.0000</td><td>✅</td></tr>
-                            <tr><td>Parch</td><td>0.0816</td><td>0.1383</td><td>0.0816</td><td>0.0148</td><td>✅</td></tr>
-                            <tr><td>Age</td><td>-0.0772</td><td>-0.0526</td><td>0.0772</td><td>0.0391</td><td>✅</td></tr>
-                            <tr><td>SibSp</td><td>-0.0353</td><td>0.0889</td><td>0.0353</td><td>0.2922</td><td>❌</td></tr>
-                        </table>
+                    <div class="img-container">
+                        <img src="images/cat_vs_target.png" alt="Survival by Categorical Features">
+                        <div class="img-label">Fig 6.1: Survival rates broken down by Gender and Ticket Class.</div>
                     </div>
-                    <div class="img-container">[Chèn ảnh Categorical Features vs Target]</div>
-                    <div class="img-container">[Chèn ảnh Numerical Features vs Target]</div>
 
-                    <h3>7. Outlier Detection & Distribution Shape</h3>
-                    <h4>Outlier Detection & Skewness/Kurtosis Combined Metrics</h4>
-                    <div class="table-wrapper">
-                        <table>
-                            <tr><th>Feature</th><th>Lower Fence</th><th>Upper Fence</th><th>Q1</th><th>Q3</th><th>IQR</th><th>Skewness</th><th>Kurtosis</th><th>Outlier Count</th><th>Outlier %</th><th>Severity</th></tr>
-                            <tr><td>Age</td><td>-6.69</td><td>64.81</td><td>20.12</td><td>38.00</td><td>17.88</td><td>0.39</td><td>0.18</td><td>11</td><td>1.54%</td><td>🟡 Medium</td></tr>
-                            <tr><td>SibSp</td><td>-1.50</td><td>2.50</td><td>0.00</td><td>1.00</td><td>1.00</td><td>3.70</td><td>17.88</td><td>46</td><td>5.16%</td><td>🔴 High</td></tr>
-                            <tr><td>Parch</td><td>0.00</td><td>0.00</td><td>0.00</td><td>0.00</td><td>0.00</td><td>2.75</td><td>9.78</td><td>213</td><td>23.91%</td><td>🔴 High</td></tr>
-                            <tr><td>Fare</td><td>-26.72</td><td>65.63</td><td>7.91</td><td>31.00</td><td>23.09</td><td>4.79</td><td>33.40</td><td>116</td><td>13.02%</td><td>🔴 High</td></tr>
-                        </table>
+                    <h3>7. Outlier Detection</h3>
+                    <div class="img-container">
+                        <img src="images/outliers_boxplots.png" alt="Outlier Detection">
+                        <div class="img-label">Fig 7.1: Boxplots highlighting extreme values in Fare and Age columns.</div>
                     </div>
-                    <div class="img-container">[Chèn ảnh Numerical Feature Boxplots]</div>
-                    <div class="img-container">[Chèn ảnh Skewness Comparison]</div>
-                    <div class="img-container">[Chèn ảnh Kurtosis Comparison]</div>
 
                     <h3>8. Key Insights & Conclusion</h3>
                     <div class="insights-box">
                         <ul>
                             <li><strong>Demographic Disparity:</strong> Gender and Age were the strongest demographic predictors of survival. Females exhibited a drastically higher survival rate compared to males, reflecting the "women and children first" protocol.</li>
-                            <li><strong>Socio-Economic Impact:</strong> Pclass and Fare strongly correlated with survival length. First-class passengers had a significantly higher survival rate than those in third class, indicating socio-economic status determined rescue priority.</li>
-                            <li><strong>Distribution Shapes & Outliers:</strong> Features like Fare and SibSp are immensely right-skewed with heavy kurtosis. These massive outliers (e.g. Fare = 512.33) require logarithmic transformations or robust scaling before applying predictive models.</li>
-                            <li><strong>Missing Data Strategy:</strong> Cabin is critically sparse (~77% missing) and should either be dropped or engineered into a binary "Has Cabin" feature. Age (~20% missing) can be statistically imputed using grouping based on Pclass and Title.</li>
+                            <li><strong>Socio-Economic Impact:</strong> Pclass and Fare strongly correlated with survival length. First-class passengers had a significantly higher survival rate than those in third class.</li>
+                            <li><strong>Distribution Shapes & Outliers:</strong> Features like Fare and SibSp are immensely right-skewed with heavy kurtosis. These massive outliers require logarithmic transformations before modeling.</li>
                         </ul>
                     </div>
                 </div>
@@ -330,7 +230,86 @@
                         <h2>Textual Data Exploration</h2>
                         <p>In-depth NLP analysis of the SMS Spam Collection dataset. Focuses on text preprocessing, length distribution, and N-Grams feature extraction.</p>
                     </div>
-                    <div class="img-container">[Cấu trúc nội dung Text Data...]</div>
+
+                    <h3>1. Dataset Overview & Samples</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card"><h4>5,572</h4><p>Total Messages</p></div>
+                        <div class="stat-card"><h4>100%</h4><p>English Language</p></div>
+                        <div class="stat-card"><h4>0</h4><p>Missing Data</p></div>
+                        <div class="stat-card"><h4>~15</h4><p>Avg Words/Msg</p></div>
+                    </div>
+
+                    <div class="sample-grid">
+                        <div class="sample-box">
+                            <h5>✉️ Sample: Spam (Phishing/Promo)</h5>
+                            <p>"URGENT! You have won a 1 week FREE membership in our £100,000 Prize Jackpot! Txt the word: CLAIM to No: 81010 T&C www.dbuk.net LCCLTD POBOX 4403LDNW1A7RW18"</p>
+                        </div>
+                        <div class="sample-box">
+                            <h5>💬 Sample: Ham (Normal)</h5>
+                            <p>"I'm gonna be home soon and i don't want to talk about this stuff anymore tonight, k? I've cried enough today."</p>
+                        </div>
+                    </div>
+
+                    <div class="insights-box">
+                        <h4>Key Insights: Dataset Overview</h4>
+                        <ul>
+                            <li>The dataset size is optimal for training lightweight NLP models like Naive Bayes or Logistic Regression.</li>
+                            <li><strong>No missing data</strong> is found in the main text column, ensuring a clean pipeline.</li>
+                        </ul>
+                    </div>
+
+                    <h3>2. Distribution & Length Analysis</h3>
+                    <div class="img-container">
+                        <img src="images/text_target_dist.png" alt="Target Distribution Spam vs Ham">
+                        <div class="img-label">Fig 2.1: High class imbalance is observed, with ~86.6% of messages labeled as 'Ham'.</div>
+                    </div>
+                    <div class="img-container">
+                        <img src="images/msg_length_dist.png" alt="Message Length Distribution">
+                        <div class="img-label">Fig 2.2: Spam messages are significantly longer on average and cluster sharply around 150-160 characters.</div>
+                    </div>
+                    <div class="img-container">
+                        <img src="images/word_vs_char.png" alt="Word vs Character Count">
+                        <div class="img-label">Fig 2.3: Scatter plot mapping character count against word count, partitioned by label.</div>
+                    </div>
+                    
+                    <div class="insights-box">
+                        <h4>Key Insights: Structure & Labels</h4>
+                        <ul>
+                            <li><strong>Class Imbalance:</strong> The target distribution is highly imbalanced (~86.6% Ham). Evaluation should use F1-Score instead of Accuracy.</li>
+                            <li><strong>Message Length:</strong> Spam messages are significantly longer on average. Length itself acts as a strong predictive feature.</li>
+                        </ul>
+                    </div>
+
+                    <h3>3. Vocabulary & Bigram Analysis</h3>
+                    <div class="img-container">
+                        <img src="images/top_overall.png" alt="Top 20 Words Overall">
+                        <div class="img-label">Fig 3.1: Most frequent words in the dataset before any filtering.</div>
+                    </div>
+                    <div class="img-container">
+                        <img src="images/top_stopwords.png" alt="Top 20 Stopwords">
+                        <div class="img-label">Fig 3.2: High frequency of non-informative stopwords that require removal.</div>
+                    </div>
+                    <div class="img-container">
+                        <img src="images/top_important.png" alt="Top 20 Important Words">
+                        <div class="img-label">Fig 3.3: Most frequent words after English stopwords are removed.</div>
+                    </div>
+                    <div class="img-container">
+                        <img src="images/top_bigrams.png" alt="Top Bigrams in Spam">
+                        <div class="img-label">Fig 3.4: Bigrams effectively capture Spam-specific phrases like 'customer service' or 'free entry'.</div>
+                    </div>
+                    <div class="img-container">
+                        <img src="images/wordclouds.png" alt="Word Clouds">
+                        <div class="img-label">Fig 3.5: Visual representation of vocabulary dominance in Ham (Green) vs Spam (Red).</div>
+                    </div>
+
+                    <div class="insights-box">
+                        <h4>Key Insights: N-Gram Context</h4>
+                        <ul>
+                            <li><strong>Spam Signatures:</strong> Promotional phrases like "free entry", "claim your", and "txt" dominate the spam vocabulary.</li>
+                            <li><strong>Ham Signatures:</strong> Normal messages are dominated by conversational fragments like "are you", "i am", "let me".</li>
+                            <li><strong>Action Taken:</strong> Using TF-IDF with Bigrams will provide excellent discriminative features for classification.</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <div id="tab-image" class="tab-content">
@@ -338,7 +317,46 @@
                         <h2>Image Data Exploration</h2>
                         <p>Exploratory Data Analysis for the CIFAR-10 Dataset. Focuses on image structure, RGB distributions, and class balancing for Computer Vision.</p>
                     </div>
-                    <div class="img-container">[Cấu trúc nội dung Image Data...]</div>
+
+                    <h3>1. Dataset Overview & Samples</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card"><h4>50,000</h4><p>Total Images</p></div>
+                        <div class="stat-card"><h4>10</h4><p>Classes</p></div>
+                        <div class="stat-card"><h4>5,000</h4><p>Images / Class</p></div>
+                        <div class="stat-card"><h4>32x32</h4><p>Resolution (RGB)</p></div>
+                    </div>
+
+                    <div class="img-container">
+                        <img src="images/cifar_samples.png" alt="CIFAR-10 Samples">
+                        <div class="img-label">Fig 1.1: Grid of 15 random image samples accompanied by their respective ground-truth labels.</div>
+                    </div>
+
+                    <div class="insights-box">
+                        <h4>Key Insights: Image Overview</h4>
+                        <ul>
+                            <li><strong>Perfect Balance:</strong> The dataset is perfectly balanced with exactly 5,000 images per class. No oversampling techniques are required.</li>
+                            <li><strong>Resolution:</strong> The uniform 32x32 pixel size eliminates the need for complex resizing preprocessing.</li>
+                        </ul>
+                    </div>
+
+                    <h3>2. Image Statistics & RGB Distribution</h3>
+                    <div class="img-container">
+                        <img src="images/cifar_class_dist.png" alt="Class Distribution">
+                        <div class="img-label">Fig 2.1: Perfectly balanced dataset distribution across all 10 categories.</div>
+                    </div>
+                    <div class="img-container">
+                        <img src="images/cifar_rgb_dist.png" alt="RGB Distribution">
+                        <div class="img-label">Fig 2.2: Histogram visualizing the distribution of pixel intensities across the Red, Green, and Blue channels.</div>
+                    </div>
+
+                    <div class="insights-box">
+                        <h4>Key Insights: Color & Pixel Analysis</h4>
+                        <ul>
+                            <li><strong>Color Tone Bias:</strong> The Blue channel has the lowest mean intensity (~113.8), indicating an overall warmer tone across the dataset.</li>
+                            <li><strong>Variance:</strong> A high standard deviation (~62-66) across all channels reflects significant diversity in brightness and contrast.</li>
+                            <li><strong>Recommendation:</strong> Apply pixel normalization (scaling to [0,1]) to stabilize feature extraction during CNN training.</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <div id="tab-multimodal" class="tab-content">
@@ -384,7 +402,6 @@
 
                     <h3>2. Missing & Duplicate Values</h3>
                     <h4>Missing Values Analysis</h4>
-                    <p>Overview of features containing null or missing data. Only 1 missing value was identified within the captions.</p>
                     <div class="table-wrapper">
                         <table>
                             <tr><th>Feature</th><th>Missing Count</th><th>Severity</th></tr>
@@ -394,7 +411,6 @@
                     </div>
 
                     <h4>Duplicate Values Check</h4>
-                    <p>Validation for identical caption records within the dataset. A total of 34 duplicated rows were found.</p>
                     <div class="table-wrapper">
                         <table>
                             <tr><th>Total Rows</th><th>Unique Rows</th><th>Duplicate Rows</th><th>Duplicate %</th></tr>
@@ -404,12 +420,6 @@
 
                     <h3>3. Caption Text Analysis</h3>
                     <p><strong>Summary:</strong> Mean 13.39 words, Max 82 words, Min 1 word. Most captions range from 10 to 16 words.</p>
-                    <div class="img-container">[Chèn ảnh Caption Length Distribution]</div>
-                    <div class="img-container">[Chèn ảnh Caption Length Boxplot]</div>
-                    
-                    <h4>Word vs Character Count</h4>
-                    <p>Scatter mapping word count against character count per caption.</p>
-                    <div class="img-container">[Chèn ảnh Word vs Character Count Scatter Plot]</div>
 
                     <h4>Outlier Count: Short vs Long Captions</h4>
                     <div class="stats-grid">
@@ -437,9 +447,6 @@
                         </table>
                     </div>
 
-                    <div class="img-container">[Chèn ảnh Character Count Distribution]</div>
-                    <p><strong>Caption Diversity:</strong> Average diversity per image is roughly 5.0 (Standard Deviation 0.03).</p>
-
                     <h3>4. Vocabulary & Word Analysis</h3>
                     <div class="stats-grid">
                         <div class="stat-card"><h4>1,957,129</h4><p>Total Words</p></div>
@@ -457,14 +464,6 @@
                             <tr><td>and</td><td>44,299</td></tr>
                         </table>
                     </div>
-
-                    <div class="img-container">[Chèn ảnh Top 20 Words]</div>
-                    <div class="img-container">[Chèn ảnh Top 20 Stopwords]</div>
-                    <div class="img-container">[Chèn ảnh Top 20 Important Words (No Stopwords)]</div>
-                    <div class="img-container">[Chèn ảnh Top TF-IDF Words]</div>
-                    <div class="img-container">[Chèn ảnh Top 20 Bigrams]</div>
-                    <div class="img-container">[Chèn ảnh Top 20 Trigrams]</div>
-                    <div class="img-container">[Chèn ảnh Caption Word Cloud]</div>
 
                     <h3>5. Image Quality Analysis</h3>
                     <h4>Image Dimensions Overview</h4>
@@ -485,13 +484,6 @@
                             <tr><td>Blue (B)</td><td>0.3849</td><td>0.2858</td></tr>
                         </table>
                     </div>
-
-                    <h4>Width & Height Distribution</h4>
-                    <p>Mapping horizontal and vertical resolutions across all 31,783 images.</p>
-                    <div class="img-container">[Chèn ảnh Width & Height Distribution]</div>
-                    <div class="img-container">[Chèn ảnh Top Diverse Images]</div>
-                    <div class="img-container">[Chèn ảnh Images with Extreme Dimensions]</div>
-                    <div class="img-container">[Chèn ảnh Top 5 Blurry Images]</div>
                 </div>
 
             </div>
