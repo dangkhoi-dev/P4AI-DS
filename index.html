@@ -1,193 +1,282 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ben 10 - EDA Assignment</title>
+    <title>Ben 10 | P4AI Assignment 1</title>
     <style>
+        /* CSS Cơ bản & Variables */
         :root {
-            --primary-color: #0056b3;
-            --secondary-color: #f4f4f9;
-            --text-color: #333;
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg-color: #f8fafc;
+            --sidebar-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
         }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+
+        /* Navbar chính */
+        .navbar {
             background-color: #fff;
-        }
-        header {
-            background-color: var(--primary-color);
-            color: #fff;
-            padding: 2rem 0;
-            text-align: center;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-        }
-        header p {
-            font-size: 1.2rem;
-            margin-top: 10px;
-            opacity: 0.9;
-        }
-        nav {
-            background: #333;
-            color: #fff;
+            padding: 15px 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             display: flex;
-            justify-content: center;
-            padding: 10px 0;
+            justify-content: space-between;
+            align-items: center;
             position: sticky;
             top: 0;
             z-index: 1000;
         }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            padding: 10px 20px;
-            margin: 0 5px;
-            border-radius: 5px;
-            transition: background 0.3s;
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary); }
+        .nav-links button {
+            background: none; border: none; font-size: 1rem; margin-left: 20px;
+            cursor: pointer; color: var(--text-muted); font-weight: 500;
+            transition: color 0.3s;
         }
-        nav a:hover {
-            background: var(--primary-color);
+        .nav-links button:hover, .nav-links button.active { color: var(--primary); }
+
+        /* Hiệu ứng chuyển trang mượt mà */
+        .page {
+            display: none; opacity: 0;
+            transform: translateY(15px);
+            animation: fadeIn 0.5s forwards;
         }
-        .container {
-            max-width: 1000px;
-            margin: 20px auto;
-            padding: 0 20px;
+        .page.active { display: block; }
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
         }
-        .section-card {
-            background: var(--secondary-color);
-            border-radius: 8px;
-            padding: 25px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+
+        /* --- TRANG HOME --- */
+        #home-page { max-width: 900px; margin: 60px auto; padding: 20px; text-align: center; }
+        .hero-title { font-size: 2.8rem; margin-bottom: 10px; }
+        .hero-subtitle { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 40px; }
+        .team-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+        .member-card {
+            background: #fff; padding: 30px; border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); width: 300px;
+            transition: transform 0.3s;
         }
-        h2 {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 10px;
+        .member-card:hover { transform: translateY(-5px); }
+        .avatar { width: 80px; height: 80px; background: var(--primary); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 15px; font-weight: bold; }
+
+        /* --- TRANG PROJECT --- */
+        #project-page { display: flex; min-height: calc(100vh - 65px); }
+        
+        /* Sidebar của Project */
+        .sidebar {
+            width: 250px; background: var(--sidebar-bg); border-right: 1px solid var(--border);
+            padding: 30px 0; display: flex; flex-direction: column;
         }
-        .team-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
+        .sidebar-btn {
+            padding: 15px 30px; background: none; border: none; text-align: left;
+            font-size: 1.1rem; cursor: pointer; color: var(--text-muted);
+            border-left: 4px solid transparent; transition: all 0.3s;
         }
-        .team-table th, .team-table td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
+        .sidebar-btn:hover { background: var(--bg-color); color: var(--primary); }
+        .sidebar-btn.active {
+            background: var(--bg-color); color: var(--primary);
+            border-left: 4px solid var(--primary); font-weight: bold;
         }
-        .team-table th {
-            background-color: var(--primary-color);
-            color: white;
+
+        /* Nội dung Project */
+        .content-area { flex: 1; padding: 40px; overflow-y: auto; }
+        .tab-content { display: none; animation: fadeIn 0.4s forwards; }
+        .tab-content.active { display: block; }
+        
+        /* Typography trong nội dung */
+        h2 { font-size: 2rem; margin-bottom: 10px; color: var(--primary); }
+        h3 { font-size: 1.4rem; margin: 30px 0 15px; padding-bottom: 5px; border-bottom: 2px solid var(--border); }
+        p { margin-bottom: 15px; }
+        
+        /* Bảng Data Dictionary */
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        th, td { border: 1px solid var(--border); padding: 12px 15px; text-align: left; }
+        th { background-color: var(--primary); color: #fff; }
+
+        /* Khung chứa hình ảnh */
+        .img-placeholder {
+            width: 100%; min-height: 300px; background: #e2e8f0; border: 2px dashed #cbd5e1;
+            border-radius: 8px; display: flex; align-items: center; justify-content: center;
+            color: #64748b; font-style: italic; margin-bottom: 20px; position: relative; overflow: hidden;
         }
-        .btn {
-            display: inline-block;
-            background: var(--primary-color);
-            color: #fff;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 15px;
-        }
-        .btn:hover {
-            background: #004494;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #333;
-            color: #fff;
-            margin-top: 40px;
-        }
+        .img-placeholder img { width: 100%; height: auto; display: block; }
+
+        /* Insights Box */
+        .insights { background: #e0f2fe; border-left: 5px solid var(--primary); padding: 20px; border-radius: 0 8px 8px 0; margin-top: 20px; }
+        .insights ul { margin-left: 20px; }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Exploratory Data Analysis (EDA)</h1>
-        <p>Assignment 1 | Programming for AI and Data Science (CO3135)</p>
-    </header>
-
-    <nav>
-        <a href="#about">About</a>
-        <a href="#tabular">Tabular Data</a>
-        <a href="#text">Text Data</a>
-        <a href="#image">Image Data</a>
+    <nav class="navbar">
+        <div class="logo">Ben 10 Studio</div>
+        <div class="nav-links">
+            <button onclick="switchPage('home-page')" id="nav-home" class="active">Home</button>
+            <button onclick="switchPage('project-page')" id="nav-project">Project</button>
+        </div>
     </nav>
 
-    <div class="container">
+    <div id="home-page" class="page active">
+        <h1 class="hero-title">Exploratory Data Analysis</h1>
+        <p class="hero-subtitle">Assignment 1 | Programming for AI & Data Science (CO3135)<br>Instructor: Dr. Thanh-Sach LE</p>
         
-        <section id="about" class="section-card">
-            <h2>👥 Team: Ben 10</h2>
-            <p><strong>Instructor:</strong> Dr. Thanh-Sach LE | <strong>Semester:</strong> I (2025-2026)</p>
-            <table class="team-table">
-                <tr>
-                    <th>Name</th>
-                    <th>Student ID</th>
-                    <th>Class</th>
-                    <th>Contribution</th>
-                </tr>
-                <tr>
-                    <td>Trần Phan Đăng Khôi</td>
-                    <td>2352626</td>
-                    <td>CC03</td>
-                    <td>50%</td>
-                </tr>
-                <tr>
-                    <td>Trương Anh Phan</td>
-                    <td>2352881</td>
-                    <td>CC03</td>
-                    <td>50%</td>
-                </tr>
-            </table>
-            <br>
-            <a href="https://github.com/dangkhoi-dev/P4AI-DS/blob/main/Beng10.ipynb" class="btn" target="_blank">View Source Code (Jupyter Notebook)</a>
-        </section>
-
-        <section id="tabular" class="section-card">
-            <h2>📊 1. Tabular Data (Titanic Dataset)</h2>
-            <p><strong>Goal:</strong> Predict passenger survival based on tabular features.</p>
-            <ul>
-                <li><strong>Missing Data:</strong> Found significant missing values in the <code>Age</code> (~20%) and <code>Cabin</code> (>70%) columns.</li>
-                <li><strong>Bivariate Analysis:</strong> 
-                    <ul>
-                        <li>Females had a drastically higher survival rate compared to males.</li>
-                        <li>Passengers in 1st class (Pclass = 1) had the highest chance of survival.</li>
-                    </ul>
-                </li>
-            </ul>
-        </section>
-
-        <section id="text" class="section-card">
-            <h2>📝 2. Text Data (SMS Spam Collection)</h2>
-            <p><strong>Goal:</strong> Classify text messages as Spam or Ham.</p>
-            <ul>
-                <li><strong>Class Imbalance:</strong> The dataset is heavily imbalanced, with ~87% 'Ham' (normal) messages.</li>
-                <li><strong>Length Distribution:</strong> Spam messages are significantly longer on average and cluster at a higher character count compared to normal messages.</li>
-                <li><strong>Vocabulary:</strong> Spam messages frequently use promotional keywords (e.g., "FREE", "WIN", "Call").</li>
-            </ul>
-        </section>
-
-        <section id="image" class="section-card">
-            <h2>🖼️ 3. Image Data (CIFAR-10 Dataset)</h2>
-            <p><strong>Goal:</strong> Object classification across 10 categories.</p>
-            <ul>
-                <li><strong>Dataset Specs:</strong> 50,000 training images, 32x32 pixels, RGB channels. Perfectly balanced (5,000 images per class).</li>
-                <li><strong>Pixel Statistics:</strong> The Mean value of the Blue channel (~113.8) is lower than Red and Green, indicating an overall warmer tone in the dataset.</li>
-                <li><strong>Variance:</strong> High standard deviation (~62-66) across channels reflects a high diversity in image contrast.</li>
-            </ul>
-        </section>
-
+        <div class="team-grid">
+            <div class="member-card">
+                <div class="avatar">K</div>
+                <h2>Trần Phan Đăng Khôi</h2>
+                <p>ID: 2352626<br>Class: CC03</p>
+                <p style="color: var(--primary); font-weight: bold; margin-top: 10px;">Contribution: 50%</p>
+            </div>
+            <div class="member-card">
+                <div class="avatar">P</div>
+                <h2>Trương Anh Phan</h2>
+                <p>ID: 2352881<br>Class: CC03</p>
+                <p style="color: var(--primary); font-weight: bold; margin-top: 10px;">Contribution: 50%</p>
+            </div>
+        </div>
     </div>
 
-    <footer>
-        <p>Made with ☕ by Team Ben 10 | Ho Chi Minh City University of Technology (HCMUT)</p>
-    </footer>
+    <div id="project-page" class="page">
+        <div class="sidebar">
+            <button class="sidebar-btn active" onclick="switchTab('tabular')" id="btn-tabular">📊 Tabular Data</button>
+            <button class="sidebar-btn" onclick="switchTab('text')" id="btn-text">📝 Text Data</button>
+            <button class="sidebar-btn" onclick="switchTab('image')" id="btn-image">🖼️ Image Data</button>
+            <button class="sidebar-btn" onclick="switchTab('multimodal')" id="btn-multimodal">🌌 Multimodal Data</button>
+        </div>
 
+        <div class="content-area">
+            
+            <div id="tab-tabular" class="tab-content active">
+                <h2>Titanic Dataset Analysis</h2>
+                <p><strong>Objective:</strong> Perform EDA to understand features influencing passenger survival.</p>
+
+                <h3>1. Overview & Feature Dictionary</h3>
+                <table>
+                    <tr><th>Feature</th><th>Type</th><th>Description</th></tr>
+                    <tr><td>Survived</td><td>Categorical</td><td>0 = No, 1 = Yes (Target Variable)</td></tr>
+                    <tr><td>Pclass</td><td>Categorical</td><td>Ticket class (1 = 1st, 2 = 2nd, 3 = 3rd)</td></tr>
+                    <tr><td>Sex, Age</td><td>Mixed</td><td>Gender and age in years</td></tr>
+                    <tr><td>Fare</td><td>Numerical</td><td>Passenger fare</td></tr>
+                </table>
+
+                <h3>2. Random 10 Samples</h3>
+                <div class="img-placeholder">
+                    [Chèn ảnh dataframe.sample(10) tại đây]
+                </div>
+
+                <h3>3. Missing & Duplicate Values</h3>
+                <div class="img-placeholder">[Chèn biểu đồ Missing Values / Bar chart]</div>
+
+                <h3>4. Numerical Features Distribution</h3>
+                <div class="img-placeholder">[Chèn ảnh Histograms của Age, Fare]</div>
+
+                <h3>5. Categorical Features Distribution</h3>
+                <div class="img-placeholder">[Chèn ảnh Countplots của Sex, Pclass, Embarked]</div>
+
+                <h3>6. Correlation Analysis</h3>
+                <div class="img-placeholder">[Chèn ảnh Heatmap]</div>
+
+                <h3>7. Target Analysis (Survival Rate)</h3>
+                <div class="img-placeholder">[Chèn ảnh Bivariate analysis: Survived vs Sex, Survived vs Pclass]</div>
+
+                <h3>8. Outlier Detection</h3>
+                <div class="img-placeholder">[Chèn ảnh Boxplots của Fare, Age]</div>
+
+                <h3>9. Key Insights & Conclusion</h3>
+                <div class="insights">
+                    <ul>
+                        <li><strong>Gender Impact:</strong> Females had a significantly higher survival rate.</li>
+                        <li><strong>Class Impact:</strong> 1st class passengers were prioritized during rescue.</li>
+                        <li><strong>Missing Data:</strong> `Cabin` has >70% missing values and should be dropped or encoded.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="tab-text" class="tab-content">
+                <h2>SMS Spam Collection Analysis</h2>
+                <p><strong>Objective:</strong> Distinguish between Spam and Ham (normal) messages.</p>
+
+                <h3>1. Overview & Sample Texts</h3>
+                <div class="img-placeholder">[Chèn bảng df.head() gồm label và message]</div>
+
+                <h3>2. Target Distribution (Spam vs Ham)</h3>
+                <div class="img-placeholder">[Chèn biểu đồ Countplot thể hiện sự mất cân bằng dữ liệu]</div>
+
+                <h3>3. Text Length Analysis</h3>
+                <div class="img-placeholder">[Chèn biểu đồ Overlay Histogram so sánh độ dài ký tự của Spam và Ham]</div>
+
+                <h3>4. Word Frequency & N-grams</h3>
+                <div class="img-placeholder">[Chèn ảnh WordCloud hoặc biểu đồ Top 10 Bigrams]</div>
+
+                <h3>5. Key Insights</h3>
+                <div class="insights">
+                    <ul>
+                        <li><strong>Imbalance:</strong> The dataset is highly imbalanced (~87% Ham).</li>
+                        <li><strong>Length:</strong> Spam messages are noticeably longer than Ham messages.</li>
+                        <li><strong>Keywords:</strong> Spams heavily use action words like "Call", "Free", "Win".</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="tab-image" class="tab-content">
+                <h2>CIFAR-10 Image Analysis</h2>
+                <p><strong>Objective:</strong> Explore image characteristics and pixel distributions for object classification.</p>
+
+                <h3>1. Dataset Overview & Random Samples</h3>
+                <p>50,000 RGB images of size 32x32 across 10 classes.</p>
+                <div class="img-placeholder">[Chèn ảnh lưới 10-15 hình ảnh mẫu kèm label (plt.imshow)]</div>
+
+                <h3>2. Class Distribution</h3>
+                <div class="img-placeholder">[Chèn biểu đồ cột chứng minh data hoàn toàn cân bằng 5000 hình/class]</div>
+
+                <h3>3. Pixel Statistics & RGB Distribution</h3>
+                <div class="img-placeholder">[Chèn biểu đồ Histogram 3 đường màu Đỏ, Xanh lá, Xanh dương]</div>
+
+                <h3>4. Key Insights</h3>
+                <div class="insights">
+                    <ul>
+                        <li><strong>Perfect Balance:</strong> No need for SMOTE or weighted loss.</li>
+                        <li><strong>Color Tone:</strong> The Blue channel has the lowest mean, indicating a warmer tone bias.</li>
+                        <li><strong>Variance:</strong> High contrast variance requires proper normalization before CNN training.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="tab-multimodal" class="tab-content">
+                <h2>Multimodal Data Analysis</h2>
+                <p><strong>Objective:</strong> Analyze datasets that combine multiple modalities (e.g., Text + Image).</p>
+                
+                <div class="img-placeholder">
+                    [Nếu nhóm có làm thêm bộ dữ liệu Multimodal, hãy chèn các phân tích vào đây]
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Chuyển giữa Home và Project
+        function switchPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            
+            document.getElementById('nav-home').classList.remove('active');
+            document.getElementById('nav-project').classList.remove('active');
+            if(pageId === 'home-page') document.getElementById('nav-home').classList.add('active');
+            if(pageId === 'project-page') document.getElementById('nav-project').classList.add('active');
+        }
+
+        // Chuyển các tab trong Project
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.getElementById('tab-' + tabId).classList.add('active');
+
+            document.querySelectorAll('.sidebar-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + tabId).classList.add('active');
+        }
+    </script>
 </body>
 </html>
