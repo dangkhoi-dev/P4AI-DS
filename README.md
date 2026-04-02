@@ -57,4 +57,32 @@ This repository contains the source code and report for Assignment 1 of the P4AI
 ```text
 ├── 📓 Beng10 (1).ipynb          # Main Jupyter Notebook containing all EDA code
 ├── 📄 P4AI_BEN10.pdf            # Formal Assignment Report
-├──  README.md                    # Project Landing Page
+└── 📄 README.md                 # Project Landing Page
+```
+
+---
+
+## ⚙️ How to Run
+
+1. Clone this repository to your local machine:
+   ```bash
+   git clone [https://github.com/your-username/P4AI-Assign1-Ben10.git](https://github.com/your-username/P4AI-Assign1-Ben10.git)
+   ```
+2. Navigate to the directory:
+   ```bash
+   cd P4AI-Assign1-Ben10
+   ```
+3. Install required dependencies:
+   ```bash
+   pip install pandas numpy matplotlib seaborn wordcloud opencv-python jupyter
+   ```
+4. Launch the Jupyter Notebook:
+   ```bash
+   jupyter notebook
+   ```
+5. Open `Beng10 (1).ipynb` and run all cells to reproduce the analysis.
+
+---
+<div align="center">
+  <i>Made with ☕ by Team Ben 10 for HCMUT - Computer Science Department</i>
+</div>
