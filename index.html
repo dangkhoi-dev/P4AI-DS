@@ -64,7 +64,7 @@
         .page.active, .tab-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Typography inside content */
+        /* Typography */
         .page-header h2 { font-size: 2.2rem; color: var(--primary); margin-bottom: 5px; }
         .page-header p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 30px; padding-bottom: 15px; border-bottom: 2px solid var(--border-color); }
         h3 { font-size: 1.5rem; color: var(--secondary); margin: 40px 0 15px; display: flex; align-items: center; }
@@ -82,25 +82,17 @@
         .insights-box h4 { color: var(--secondary); margin: 0 0 15px 0; font-size: 1.2rem; }
         .insights-box ul { margin-left: 20px; }
         .insights-box li { margin-bottom: 10px; }
-        .insights-box strong { color: var(--primary); }
 
-        /* Image Display */
+        /* Image Containers */
         .img-container { width: 100%; text-align: center; margin: 30px 0; }
         .img-container img { max-width: 100%; height: auto; border-radius: 6px; box-shadow: 0 3px 10px rgba(0,0,0,0.08); display: block; margin: 0 auto; }
         .img-label { font-size: 0.9rem; color: var(--text-muted); font-style: italic; margin-top: 10px; }
         
-        /* Sample Text Boxes */
-        .sample-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
-        .sample-box { background: #fff; border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
-        .sample-box h5 { margin: 0 0 10px 0; color: var(--primary); font-size: 1.1rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px; }
-        .sample-box p { font-size: 0.95rem; font-style: italic; color: #4a5568; margin: 0; }
-
         /* Tables */
         .table-wrapper { overflow-x: auto; margin-bottom: 25px; border-radius: 8px; border: 1px solid var(--border-color); }
         table { width: 100%; border-collapse: collapse; background: white; text-align: left; font-size: 0.9rem; white-space: nowrap; }
         th, td { padding: 12px 15px; border-bottom: 1px solid var(--border-color); }
         th { background-color: var(--primary); color: white; font-weight: 600; }
-        tr:last-child td { border-bottom: none; }
         tr:nth-child(even) { background-color: #f8fafc; }
 
         footer { text-align: center; padding: 20px; color: var(--text-muted); font-size: 0.9rem; margin-top: 20px; border-top: 1px solid var(--border-color); }
@@ -120,19 +112,11 @@
         <div class="content" style="max-width: 800px; margin: 60px auto; text-align: center;">
             <h2 style="font-size: 2.5rem; color: var(--primary); margin-bottom: 10px;">Exploratory Data Analysis</h2>
             <p style="font-size: 1.2rem; color: var(--text-muted); margin-bottom: 40px;">Programming for AI & Data Science (CO3135)<br>Instructor: Dr. Thanh-Sach LE</p>
-            
-            <h3 style="justify-content: center; border: none;">Team Members</h3>
+            <h3>Team Members</h3>
             <div class="stats-grid" style="margin-top: 20px;">
-                <div class="stat-card">
-                    <h4 style="font-size: 1.5rem;">Trần Phan Đăng Khôi</h4>
-                    <p>ID: 2352626 | CC03</p>
-                </div>
-                <div class="stat-card">
-                    <h4 style="font-size: 1.5rem;">Trương Anh Phan</h4>
-                    <p>ID: 2352881 | CC03</p>
-                </div>
+                <div class="stat-card"><h4>Trần Phan Đăng Khôi</h4><p>ID: 2352626</p></div>
+                <div class="stat-card"><h4>Trương Anh Phan</h4><p>ID: 2352881</p></div>
             </div>
-            <a href="https://github.com/" target="_blank" style="display: inline-block; background: var(--secondary); color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 20px;">View GitHub Repository</a>
         </div>
     </div>
 
@@ -151,419 +135,136 @@
                 <div id="tab-tabular" class="tab-content active">
                     <div class="page-header">
                         <h2>Tabular Data Exploration</h2>
-                        <p>Detailed analysis of the Titanic tabular dataset, from exploring the general overview and handling missing data to in-depth analysis of numerical and categorical features.</p>
+                        <p>Titanic Dataset: Missing data handling and survival correlation analysis.</p>
                     </div>
-
-                    <h3>1. Dataset Overview</h3>
                     <div class="stats-grid">
                         <div class="stat-card"><h4>891</h4><p>Samples</p></div>
-                        <div class="stat-card"><h4>12</h4><p>Total Features</p></div>
-                        <div class="stat-card"><h4>5</h4><p>Numerical</p></div>
-                        <div class="stat-card"><h4>6</h4><p>Categorical</p></div>
+                        <div class="stat-card"><h4>12</h4><p>Features</p></div>
                     </div>
-
                     <div class="img-container">
                         <img src="images/target_dist.png" alt="Target Distribution">
-                        <div class="img-label">Fig 1.1: Survival rate demonstrating class imbalance in target feature.</div>
-                    </div>
-
-                    <h3>2. Missing & Duplicate Values</h3>
-                    <div class="table-wrapper">
-                        <table>
-                            <tr><th>Feature</th><th>Missing Count</th><th>Missing %</th><th>Severity</th></tr>
-                            <tr><td>Cabin</td><td>687</td><td>77.10%</td><td>🔴 Critical</td></tr>
-                            <tr><td>Age</td><td>177</td><td>19.87%</td><td>🟡 Medium</td></tr>
-                            <tr><td>Embarked</td><td>2</td><td>0.22%</td><td>🟢 Low</td></tr>
-                        </table>
-                    </div>
-
-                    <h3>3. Numerical Features Distribution</h3>
-                    <div class="img-container">
-                        <img src="images/age_fare_dist.png" alt="Age and Fare Distribution">
-                        <div class="img-label">Fig 3.1: Distribution of continuous features (Age and Fare). Note the strong right-skew in Fare.</div>
+                        <div class="img-label">Fig 1: Target Distribution (Survived vs Dead)</div>
                     </div>
                     <div class="img-container">
-                        <img src="images/sibsp_parch_dist.png" alt="SibSp and Parch Distribution">
-                        <div class="img-label">Fig 3.2: Distribution of family-related discrete features (SibSp and Parch).</div>
-                    </div>
-
-                    <h3>4. Categorical Features Distribution</h3>
-                    <div class="img-container">
-                        <img src="images/categorical_dist.png" alt="Categorical Features Distribution">
-                        <div class="img-label">Fig 4.1: Breakdown of passengers by Class, Gender, Embarkation Port, and Cabin status.</div>
+                        <img src="images/age_fare_dist.png" alt="Numerical Dist">
+                        <div class="img-label">Fig 2: Age and Fare Distributions</div>
                     </div>
                     <div class="img-container">
-                        <img src="images/ticket_prefix.png" alt="Ticket Prefix Analysis">
-                        <div class="img-label">Fig 4.2: Extraction and frequency of alphanumeric ticket prefixes.</div>
+                        <img src="images/heatmap.png" alt="Correlation">
+                        <div class="img-label">Fig 3: Pearson Correlation Heatmap</div>
                     </div>
-
-                    <h3>5. Correlation Analysis</h3>
                     <div class="img-container">
-                        <img src="images/heatmap.png" alt="Correlation Heatmap">
-                        <div class="img-label">Fig 5.1: Pearson Correlation matrix of numerical variables. Pclass and Fare show moderate negative correlation.</div>
-                    </div>
-
-                    <h3>6. Target Analysis</h3>
-                    <div class="img-container">
-                        <img src="images/cat_vs_target.png" alt="Survival by Categorical Features">
-                        <div class="img-label">Fig 6.1: Survival rates broken down by Gender and Ticket Class.</div>
-                    </div>
-
-                    <h3>7. Outlier Detection</h3>
-                    <div class="img-container">
-                        <img src="images/outliers_boxplots.png" alt="Outlier Detection">
-                        <div class="img-label">Fig 7.1: Boxplots highlighting extreme values in Fare and Age columns.</div>
-                    </div>
-
-                    <h3>8. Key Insights & Conclusion</h3>
-                    <div class="insights-box">
-                        <ul>
-                            <li><strong>Demographic Disparity:</strong> Gender and Age were the strongest demographic predictors of survival. Females exhibited a drastically higher survival rate compared to males, reflecting the "women and children first" protocol.</li>
-                            <li><strong>Socio-Economic Impact:</strong> Pclass and Fare strongly correlated with survival length. First-class passengers had a significantly higher survival rate than those in third class.</li>
-                            <li><strong>Distribution Shapes & Outliers:</strong> Features like Fare and SibSp are immensely right-skewed with heavy kurtosis. These massive outliers require logarithmic transformations before modeling.</li>
-                        </ul>
+                        <img src="images/outliers_boxplots.png" alt="Outliers">
+                        <div class="img-label">Fig 4: Outlier Detection via Boxplots</div>
                     </div>
                 </div>
 
                 <div id="tab-text" class="tab-content">
-    <div class="page-header">
-        <h2>Textual Data Exploration</h2>
-        <p>In-depth NLP analysis of the SMS Spam Collection dataset. This report focuses on text preprocessing, vocabulary distribution, and feature extraction (TF-IDF/N-Grams) for Text Classification.</p>
-    </div>
-
-    <h3>1. Dataset Overview & Samples</h3>
-    <div class="stats-grid">
-        <div class="stat-card"><h4>5,572</h4><p>Samples</p></div>
-        <div class="stat-card"><h4>15.6</h4><p>Avg Words</p></div>
-        <div class="stat-card"><h4>0</h4><p>Missing Data</p></div>
-        <div class="stat-card"><h4>~9,000</h4><p>Unique Words</p></div>
-    </div>
-
-    <h4>📝 Message Samples by Class</h4>
-    <div class="sample-grid">
-        <div class="sample-box">
-            <h5>Class: HAM (Normal)</h5>
-            <p>"I'm gonna be home soon and i don't want to talk about this stuff anymore tonight, k? I've cried enough today."</p>
-        </div>
-        <div class="sample-box">
-            <h5>Class: SPAM</h5>
-            <p>"URGENT! You have won a 1 week FREE membership in our £100,000 Prize Jackpot! Txt the word: CLAIM to No: 81010 T&C www.dbuk.net LCCLTD POBOX 4403LDNW1A7RW18"</p>
-        </div>
-    </div>
-
-    <div class="insights-box">
-        <h4>Key Insights: Dataset Overview</h4>
-        <ul>
-            <li>The dataset size (5,572 samples) is optimal for training robust machine learning and NLP models.</li>
-            <li>Missing data is non-existent. The primary text column is 100% complete.</li>
-            <li>The average length of a message (~15 words) requires precise feature extraction since context window is narrow.</li>
-        </ul>
-    </div>
-
-    <h3>2. Distribution & Labeling</h3>
-    <div class="img-container">
-        <img src="images/text_distribution.png" alt="Frequency Distribution and Proportion">
-        <div class="img-label">Fig 2.1: Frequency Distribution (Left) and Class Proportion (Right).</div>
-    </div>
-    <div class="insights-box">
-        <h4>Key Insights: Target Distribution</h4>
-        <ul>
-            <li>The label distribution exhibits a strong <strong>class imbalance</strong> (~86.6% Ham), indicating models are highly likely to overfit towards the majority class.</li>
-            <li><strong>Strategy:</strong> Applying techniques like SMOTE or adjusting class weights is necessary to improve the decision boundaries for the minority class (Spam).</li>
-        </ul>
-    </div>
-
-    <h3>3. Stopword Analysis</h3>
-    <div class="stats-grid">
-        <div class="stat-card"><h4>86,961</h4><p>Total Words</p></div>
-        <div class="stat-card"><h4>35,420</h4><p>Total Stopwords</p></div>
-        <div class="stat-card"><h4>~40.7%</h4><p>Percentage</p></div>
-    </div>
-    
-    <div style="display: flex; gap: 20px;">
-        <div class="img-container" style="flex: 1;"><img src="images/text_top_stopwords.png" alt="Top 10 Stopwords"></div>
-        <div class="img-container" style="flex: 1;"><img src="images/text_stopwords_wc.png" alt="Stopwords Wordcloud"></div>
-    </div>
-
-    <div class="insights-box">
-        <h4>Key Insights: Stopwords</h4>
-        <ul>
-            <li>A massive <strong>~40.7%</strong> of the entire text corpus consists of non-informative stopwords (e.g., 'i', 'to', 'you', 'a').</li>
-            <li>While highly frequent, these words carry zero predictive weight and obscure meaningful patterns.</li>
-            <li><strong>Action Taken:</strong> Removing stopwords is a crucial preprocessing step. It effectively halves the Vector Space Dimensionality and reduces statistical noise.</li>
-        </ul>
-    </div>
-
-    <h3>4. Review Length & Language</h3>
-    <div class="img-container">
-        <img src="images/text_length_dist.png" alt="Word Count Distribution">
-        <div class="img-label">Fig 4.1: Word Count Distribution highlighting the difference between Spam and Ham.</div>
-    </div>
-    <div class="insights-box">
-        <h4>Key Insights: Text Structure</h4>
-        <ul>
-            <li>The Word Count Distribution for Spam is tightly clustered around higher word counts (25-30 words) compared to Ham, which is generally much shorter.</li>
-            <li>Language detection algorithms confirm the dataset is predominantly English, meaning standard NLP dictionaries (like NLTK or Scikit-Learn's default stops) will operate perfectly.</li>
-        </ul>
-    </div>
-
-    <h3>5. Vocabulary Statistics & Top Words</h3>
-    <div class="img-container">
-        <img src="images/text_overall_top.png" alt="Overall Top Words">
-        <div class="img-label">Fig 5.1: Top Words by Frequency (Before applying TF-IDF).</div>
-    </div>
-    <div class="insights-box">
-        <h4>Key Insights: Vocabulary Richness</h4>
-        <ul>
-            <li>Looking at the Overall Top Words grid, basic action verbs like "call", "get", and "go" appear frequently across all messages.</li>
-            <li>Because they appear everywhere, they offer poor distinguishing power for predictive models. We need TF-IDF to penalize them.</li>
-        </ul>
-    </div>
-
-    <h3>6. Unigram TF-IDF Analysis</h3>
-    <div style="display: flex; gap: 20px;">
-        <div class="img-container" style="flex: 1;"><img src="images/text_tfidf_uni_ham.png" alt="TF-IDF Unigrams Ham"></div>
-        <div class="img-container" style="flex: 1;"><img src="images/text_tfidf_uni_spam.png" alt="TF-IDF Unigrams Spam"></div>
-    </div>
-    <div class="insights-box">
-        <h4>Key Insights: TF-IDF Unigrams</h4>
-        <ul>
-            <li><strong>TF-IDF Magic:</strong> By applying Term Frequency-Inverse Document Frequency, generic words are penalized, allowing unique sentiment-bearing keywords to surface.</li>
-            <li><strong>Spam Signatures:</strong> Dominated by strong promotional nouns/verbs such as "free", "txt", "mobile", and "claim".</li>
-            <li><strong>Ham Signatures:</strong> Highlighted by personal affirmations and conversational tokens like "ok", "good", "come", and "love".</li>
-        </ul>
-    </div>
-
-    <h3>7. Bigram TF-IDF Analysis</h3>
-    <div style="display: flex; gap: 20px;">
-        <div class="img-container" style="flex: 1;"><img src="images/text_tfidf_bi_ham.png" alt="TF-IDF Bigrams Ham"></div>
-        <div class="img-container" style="flex: 1;"><img src="images/text_tfidf_bi_spam.png" alt="TF-IDF Bigrams Spam"></div>
-    </div>
-    <div class="insights-box">
-        <h4>Key Insights: N-Gram Context</h4>
-        <ul>
-            <li>Bigrams naturally capture <strong>context</strong> that single words lose.</li>
-            <li>Extracted phrases like "customer service", "free entry" (Spam) versus "let know", "good morning" (Ham) act as the most powerful discriminative features for classification models.</li>
-        </ul>
-    </div>
-
-    <h3>8. Semantic Similarity & Clouds</h3>
-    <div class="img-container">
-        <img src="images/text_cosine_sim.png" alt="Cosine Similarity Heatmap" style="max-width: 400px;">
-        <div class="img-label">Fig 8.1: Average Cosine Similarity Matrix between document vectors.</div>
-    </div>
-    <div class="img-container">
-        <img src="images/text_sentiment_wc.png" alt="Spam vs Ham WordClouds">
-        <div class="img-label">Fig 8.2: Vocabulary visualization separated by Class.</div>
-    </div>
-    <div class="insights-box">
-        <h4>Key Insights: Semantic Distance</h4>
-        <ul>
-            <li><strong>Cosine Similarity Heatmap:</strong> This measures the vector distance between classes. Noticeably, Spam and Ham vectors share an extremely low similarity score (~0.0075), proving their vocabularies are fundamentally disjointed.</li>
-            <li><strong>WordClouds:</strong> Visualizing by label visually proves that the dataset is partitioned into two highly distinct semantic profiles, priming it perfectly for binary classification.</li>
-        </ul>
-    </div>
-</div>
+                    <div class="page-header">
+                        <h2>Textual Data Exploration</h2>
+                        <p>SMS Spam Analysis: Preprocessing, Length and TF-IDF analysis.</p>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-card"><h4>5,572</h4><p>Messages</p></div>
+                        <div class="stat-card"><h4>~15.6</h4><p>Avg Words</p></div>
+                    </div>
+                    <div class="img-container">
+                        <img src="images/text_distribution.png" alt="Text Label Dist">
+                        <div class="img-label">Fig 5: Spam vs Ham Proportion</div>
+                    </div>
+                    <div class="img-container">
+                        <img src="images/text_length_dist.png" alt="Length Dist">
+                        <div class="img-label">Fig 6: Word Count Distribution per Class</div>
+                    </div>
+                    <div class="img-container">
+                        <img src="images/text_top_stopwords.png" alt="Stopwords">
+                        <div class="img-label">Fig 7: Top 10 Most Frequent Stopwords</div>
+                    </div>
+                    <div style="display:flex; gap:10px;">
+                        <div class="img-container"><img src="images/text_tfidf_uni_spam.png"><div class="img-label">TF-IDF Unigrams (Spam)</div></div>
+                        <div class="img-container"><img src="images/text_tfidf_bi_spam.png"><div class="img-label">TF-IDF Bigrams (Spam)</div></div>
+                    </div>
+                    <div class="img-container">
+                        <img src="images/text_cosine_sim.png" alt="Cosine">
+                        <div class="img-label">Fig 8: Cosine Similarity Heatmap between Labels</div>
+                    </div>
+                </div>
 
                 <div id="tab-image" class="tab-content">
-    <div class="page-header">
-        <h2>Image Data Exploration</h2>
-        <p>Exploratory Data Analysis for the CIFAR-10 Dataset. This section focuses on image structure, quality metrics (blur, brightness), and feature distributions to prepare for Computer Vision modeling.</p>
-    </div>
-
-    <h3>1. Dataset Overview & Sample</h3>
-    <div class="stats-grid">
-        <div class="stat-card"><h4>50,000</h4><p>Total Images</p></div>
-        <div class="stat-card"><h4>10</h4><p>Classes</p></div>
-        <div class="stat-card"><h4>5,000</h4><p>Avg Images / Class</p></div>
-    </div>
-
-    <div class="img-container">
-        <img src="images/image_samples.png" alt="CIFAR-10 Samples Grid">
-        <div class="img-label">Fig 1.1: Random samples of different object classes from the dataset.</div>
-    </div>
-    <div class="img-container">
-        <img src="images/image_class_dist.png" alt="Image Class Distribution">
-        <div class="img-label">Fig 1.2: Image distribution across all 10 categories.</div>
-    </div>
-
-    <div class="insights-box">
-        <h4>Key Insights: Dataset Overview</h4>
-        <ul>
-            <li>The dataset contains <strong>50,000 training images</strong> across 10 classes, providing a robust foundation for training deep Convolutional Neural Networks (CNNs).</li>
-            <li>The class distribution is <strong>perfectly balanced</strong> (exactly 5,000 images per class), which minimizes class imbalance issues during training. Oversampling or undersampling techniques are not required.</li>
-            <li>With 10 distinct classes containing diverse backgrounds, this is a relatively complex multi-class classification problem.</li>
-            <li>Applying <strong>data augmentation techniques</strong> (e.g., horizontal flipping, slight shifting) is highly recommended to improve model generalization and combat overfitting.</li>
-        </ul>
-    </div>
-
-    <h3>2. Data Quality</h3>
-    <div class="stats-grid">
-        <div class="stat-card"><h4>0</h4><p>Missing Images</p></div>
-        <div class="stat-card"><h4>0</h4><p>Corrupted Images</p></div>
-        <div class="stat-card"><h4>0</h4><p>Duplicate Images</p></div>
-    </div>
-
-    <div class="img-container">
-        <img src="images/image_quality.png" alt="Blur and Brightness Diversity">
-        <div class="img-label">Fig 2.1: Variance of Laplacian (Sharpness/Blur) and Average Brightness across different classes.</div>
-    </div>
-
-    <div class="insights-box">
-        <h4>Key Insights: Data Quality</h4>
-        <ul>
-            <li>The dataset contains no missing or corrupted images, indicating strong data integrity.</li>
-            <li><strong>Blur & Sharpness:</strong> Because the resolution is natively very low (32x32), the Laplacian variance (sharpness) is generally low across all classes. However, classes with distinct edges (like 'airplane' or 'ship') show slightly higher variance outliers compared to natural subjects like 'frog'.</li>
-            <li><strong>Brightness Diversity:</strong> There is a significant variation in image brightness. Classes like 'ship' and 'airplane' (often photographed against bright skies) exhibit much higher average brightness than 'cat' or 'dog' (often photographed indoors).</li>
-            <li><strong>Recommended actions:</strong> Apply global contrast normalization or Z-score normalization per channel to stabilize feature extraction regardless of lighting conditions.</li>
-        </ul>
-    </div>
-
-    <h3>3. Image Statistics</h3>
-    <div style="display: flex; gap: 20px;">
-        <div class="img-container" style="flex: 1;">
-            <img src="images/image_dimensions.png" alt="Width and Height Distribution">
-            <div class="img-label">Fig 3.1: Resolution uniformity mapping.</div>
-        </div>
-        <div class="img-container" style="flex: 1;">
-            <img src="images/image_rgb_dist.png" alt="RGB Channel Distribution">
-            <div class="img-label">Fig 3.2: Pixel intensity distributions across Red, Green, and Blue.</div>
-        </div>
-    </div>
-
-    <div class="insights-box">
-        <h4>Key Insights: Image Statistics</h4>
-        <ul>
-            <li>The width and height distributions show a single dot at <strong>32x32 pixels</strong>. This strict uniformity eliminates the need for computational-heavy resizing during preprocessing, ensuring stable input dimensions for CNNs.</li>
-            <li>The RGB channel distributions reveal that the <strong>Blue channel</strong> has a lower mean intensity, suggesting an overall warmer tone across the dataset (likely due to many indoor, animal, and ground-vehicle subjects).</li>
-            <li>The overlapping distributions of RGB channels indicate that while color helps, the dataset relies heavily on <strong>shape and spatial textures</strong> for classification.</li>
-        </ul>
-    </div>
-
-    <h3>4. Feature Analysis</h3>
-    <div class="img-container">
-        <img src="images/image_corr_matrix.png" alt="Image Feature Correlation Matrix" style="max-width: 600px;">
-        <div class="img-label">Fig 4.1: Correlation matrix between RGB channels, Brightness, Contrast, and Sharpness (Blur).</div>
-    </div>
-
-    <div class="insights-box">
-        <h4>Key Insights: Feature Engineering</h4>
-        <ul>
-            <li><strong>High RGB Correlation:</strong> Strong correlations exist between the Red, Green, and Blue channels (r > 0.85), indicating redundant color information. Brightness is perfectly correlated with the channels as it is derived from them.</li>
-            <li><strong>Independence of Contrast/Blur:</strong> Image Contrast and Sharpness (Blur) show very weak correlations with color intensity. This means structural properties (edges, textures) provide completely unique and valuable information to the model, distinct from color.</li>
-            <li><strong>Recommendation:</strong> CNN architectures naturally extract these structural features. However, if using traditional ML algorithms (like SVM or Random Forest), dimensionality reduction (PCA) on colors and explicitly feeding contrast/edge features would be highly beneficial.</li>
-        </ul>
-    </div>
-</div>
+                    <div class="page-header">
+                        <h2>Image Data Exploration</h2>
+                        <p>CIFAR-10 Dataset: RGB distributions and quality metrics.</p>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-card"><h4>50,000</h4><p>Images</p></div>
+                        <div class="stat-card"><h4>10</h4><p>Classes</p></div>
+                    </div>
+                    <div class="img-container">
+                        <img src="images/image_samples.png" alt="CIFAR Samples">
+                        <div class="img-label">Fig 9: Grid of Random Image Samples</div>
+                    </div>
+                    <div class="img-container">
+                        <img src="images/image_quality.png" alt="Quality Boxplots">
+                        <div class="img-label">Fig 10: Sharpness (Blur) and Brightness Diversity across Classes</div>
+                    </div>
+                    <div class="img-container">
+                        <img src="images/image_rgb_dist.png" alt="RGB Dist">
+                        <div class="img-label">Fig 11: RGB Channel Intensity Distribution</div>
+                    </div>
+                    <div class="img-container">
+                        <img src="images/image_corr_matrix.png" alt="Feature Corr">
+                        <div class="img-label">Fig 12: Image Feature Correlation Matrix</div>
+                    </div>
+                </div>
 
                 <div id="tab-multimodal" class="tab-content">
-    <div class="page-header">
-        <h2>Multimodal Data Exploration</h2>
-        <p>Exploratory Data Analysis for the Flickr8k dataset, examining the relationship between real-world images and their corresponding natural language captions.</p>
-    </div>
+                    <div class="page-header">
+                        <h2>Multimodal Data Exploration</h2>
+                        <p>Flickr8k: Relationship between images and descriptive captions.</p>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-card"><h4>8,092</h4><p>Unique Images</p></div>
+                        <div class="stat-card"><h4>5.0</h4><p>Captions / Image</p></div>
+                    </div>
+                    <div class="img-container">
+                        <img src="images/multi_caption_len.png" alt="Caption Len">
+                        <div class="img-label">Fig 13: Caption Word Count Distribution</div>
+                    </div>
+                    <div class="img-container">
+                        <img src="images/multi_top_words.png" alt="Multi Top Words">
+                        <div class="img-label">Fig 14: Top 15 Common Words in Captions</div>
+                    </div>
+                    <div class="img-container">
+                        <img src="images/multi_dimensions.png" alt="Dimensions">
+                        <div class="img-label">Fig 15: Image Resolution (Width vs Height) Distribution</div>
+                    </div>
+                    <div class="img-container">
+                        <img src="images/multi_rgb_dist.png" alt="Multi RGB">
+                        <div class="img-label">Fig 16: RGB Intensity Distribution in Flickr Dataset</div>
+                    </div>
+                </div>
 
-    <h3>1. Dataset Overview</h3>
-    <div class="stats-grid">
-        <div class="stat-card"><h4>8,092</h4><p>Unique Images</p></div>
-        <div class="stat-card"><h4>40,460</h4><p>Total Captions</p></div>
-        <div class="stat-card"><h4>5.0</h4><p>Captions / Image</p></div>
-    </div>
-
-    <h4>Image & Captions Example</h4>
-    <div class="sample-grid">
-        <div class="sample-box">
-            <h5>Image: 1000268201_693b08cb0e.jpg</h5>
-            <p>1. "A child in a pink dress is climbing up a set of stairs in an entry way ."</p>
-            <p>2. "A little girl in a pink dress going into a wooden cabin ."</p>
-            <p>3. "A girl going into a wooden building ."</p>
-        </div>
-        <div class="sample-box">
-            <h5>Image: 2073444485_c0b4353f86.jpg</h5>
-            <p>1. "Two young guys with shaggy hair look at their hands while hanging out in the yard ."</p>
-            <p>2. "Two young white males are outside near many bushes ."</p>
-            <p>3. "Two men in green shirts are standing in a yard ."</p>
-        </div>
-    </div>
-
-    <h3>2. Caption Text Analysis</h3>
-    <div style="display: flex; gap: 20px;">
-        <div class="img-container" style="flex: 1;">
-            <img src="images/multi_caption_len.png" alt="Caption Length Distribution">
-            <div class="img-label">Fig 2.1: Caption Length Distribution.</div>
-        </div>
-        <div class="img-container" style="flex: 1;">
-            <img src="images/multi_caption_box.png" alt="Caption Length Boxplot">
-            <div class="img-label">Fig 2.2: Boxplot highlighting length outliers.</div>
+            </div>
         </div>
     </div>
-    <div class="img-container">
-        <img src="images/multi_word_char.png" alt="Word vs Char Count">
-        <div class="img-label">Fig 2.3: Scatter mapping word count against character count.</div>
-    </div>
-
-    <div class="insights-box">
-        <h4>Key Insights: Text Distribution</h4>
-        <ul>
-            <li><strong>Consistency:</strong> The vast majority of captions fall neatly between 8 and 14 words. The dataset is tightly controlled and highly descriptive.</li>
-            <li><strong>Outliers:</strong> There are very few captions under 4 words or over 30 words, making sequence padding in LSTM/Transformer models highly efficient without wasting memory on sparse matrices.</li>
-        </ul>
-    </div>
-
-    <h3>3. Vocabulary & Word Analysis</h3>
-    <div class="img-container">
-        <img src="images/multi_top_words.png" alt="Top Common Words">
-        <div class="img-label">Fig 3.1: Top 15 Most Common Words (Excluding basic stopwords like 'a', 'the', 'in').</div>
-    </div>
-
-    <div class="insights-box">
-        <h4>Key Insights: Vocabulary Focus</h4>
-        <ul>
-            <li>Nouns representing distinct entities (<strong>man, dog, boy, water, people</strong>) dominate the vocabulary.</li>
-            <li>This clearly reflects the nature of image captioning tasks: the text is heavily focused on describing physical subjects and their environments rather than abstract concepts.</li>
-        </ul>
-    </div>
-
-    <h3>4. Image Quality & Dimension Analysis</h3>
-    <div style="display: flex; gap: 20px;">
-        <div class="img-container" style="flex: 1;">
-            <img src="images/multi_dimensions.png" alt="Image Dimensions">
-            <div class="img-label">Fig 4.1: Width vs Height Distribution.</div>
-        </div>
-        <div class="img-container" style="flex: 1;">
-            <img src="images/multi_rgb_dist.png" alt="RGB Distribution">
-            <div class="img-label">Fig 4.2: RGB Intensity Distribution across dataset.</div>
-        </div>
-    </div>
-
-    <div class="insights-box">
-        <h4>Key Insights: Image Structure</h4>
-        <ul>
-            <li><strong>Dimension Diversity:</strong> Unlike CIFAR-10, Flickr images have varying aspect ratios. Most images are scaled to have their longest edge at exactly 500 pixels. Center-cropping or padding will be necessary before feeding them into a CNN like ResNet50 or VGG16.</li>
-            <li><strong>Color Distribution:</strong> The dataset has a relatively balanced RGB distribution, providing rich color contexts for feature extraction algorithms.</li>
-        </ul>
-    </div>
-</div>
 
     <footer>
         <p>Ho Chi Minh City University of Technology (HCMUT)<br>&copy; 2026 Group Ben 10. All rights reserved.</p>
     </footer>
 
     <script>
-        // Điều hướng Navbar
         function switchPage(pageId) {
-            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
-            
-            document.querySelectorAll('.top-navbar .nav-links button').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('nav-home').classList.remove('active');
+            document.getElementById('nav-project').classList.remove('active');
             document.getElementById('nav-' + pageId).classList.add('active');
         }
 
-        // Điều hướng Sidebar Tabs
         function switchTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
             document.getElementById('tab-' + tabId).classList.add('active');
-
-            document.querySelectorAll('.sidebar-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.sidebar-btn').forEach(b => b.classList.remove('active'));
             document.getElementById('btn-' + tabId).classList.add('active');
         }
     </script>
