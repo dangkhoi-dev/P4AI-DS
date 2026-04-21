@@ -1,10 +1,8 @@
 % =========================================================
 % SECTION: TEXT DATA EDA
 % =========================================================
-\section{Exploratory Data Analysis: Text Data}
-\label{sec:text}
 
-\subsection{Dataset Overview}
+\subsubsection{Dataset Overview}
 For the text modality, we used the \textbf{SMS Spam Collection Dataset}, a well-known benchmark for binary text classification in natural language processing research. The dataset consists of English-language SMS messages labeled as either \texttt{ham} (legitimate personal messages) or \texttt{spam} (unsolicited promotional messages).
 
 \begin{itemize}
@@ -33,7 +31,7 @@ The class distribution is visualised in the figure below. The dataset contains a
     \label{fig:text_target}
 \end{figure}
 
-\subsection{Data Inspection and Quality}
+\subsubsection{Data Inspection and Quality}
 
 \begin{itemize}
     \item \textbf{Shape:} \texttt{(5572, 2)} --- 5{,}572 rows, 2 columns (\texttt{label}, \texttt{text}).
@@ -42,7 +40,7 @@ The class distribution is visualised in the figure below. The dataset contains a
     \item \textbf{Label encoding:} \texttt{ham} $\rightarrow$ 0, \texttt{spam} $\rightarrow$ 1 for modelling.
 \end{itemize}
 
-\subsection{Message Length Analysis}
+\subsubsection{Message Length Analysis}
 
 Message character length is one of the simplest yet most powerful raw features for separating ham from spam. Table T1 below summarises the statistics by label, and the resulting distributions are shown in Figure T2.
 
@@ -76,7 +74,7 @@ Key observations:
     \label{fig:text_length}
 \end{figure}
 
-\subsection{Vocabulary and Word Cloud Analysis}
+\subsubsection{Vocabulary and Word Cloud Analysis}
 
 Word clouds (Figure T3 below) were generated using the \texttt{WordCloud} library on each label's concatenated text. The visual contrast is immediately striking:
 
@@ -93,7 +91,7 @@ Word clouds (Figure T3 below) were generated using the \texttt{WordCloud} librar
     \label{fig:wordclouds}
 \end{figure}
 
-\subsection{Token Frequency Analysis}
+\subsubsection{Token Frequency Analysis}
 
 \subsubsection*{Step 1 --- Top Overall Tokens (Before Preprocessing)}
 
@@ -136,7 +134,7 @@ Figure T6 below shows the class-specific top tokens after removing standard Engl
     \label{fig:text_top_important}
 \end{figure}
 
-\subsection{N-gram Analysis}
+\subsubsection{N-gram Analysis}
 
 Single-token frequencies miss multi-word patterns. Figure T7 below extends the analysis to bigrams and trigrams, revealing formulaic phrase patterns unique to each class:
 
@@ -155,7 +153,7 @@ N-gram features (e.g., a TF-IDF vectoriser with \texttt{ngram\_range=(1,2)}) are
     \label{fig:text_bigrams}
 \end{figure}
 
-\subsection{Word Count vs.\ Character Count}
+\subsubsection{Word Count vs.\ Character Count}
 
 Figure T8 below scatterplots the word count (number of whitespace-delimited tokens) against character count for each message, coloured by label. The two classes form visually separable clusters:
 
@@ -175,7 +173,7 @@ The visual separation confirms that \textbf{both word count and character count 
 \end{figure}
 
 % ---------------------------------------------------------
-\subsection{Special Character and URL Feature Analysis}
+\subsubsection{Special Character and URL Feature Analysis}
 
 Beyond raw length and vocabulary, \textbf{structural features} of the message text reveal strong spam signals. The following six binary or ratio features were engineered and compared between classes:
 
@@ -227,7 +225,7 @@ Key observations from Figure T9:
 \end{itemize}
 
 % ---------------------------------------------------------
-\subsection{Vocabulary Richness Analysis (Type-Token Ratio)}
+\subsubsection{Vocabulary Richness Analysis (Type-Token Ratio)}
 
 The \textbf{Type-Token Ratio (TTR)} measures vocabulary richness: it is the ratio of unique words (types) to total words (tokens). A higher TTR indicates more diverse, less repetitive language.
 
@@ -264,7 +262,7 @@ Key observations from Figure T10 and Table T3 above:
 \end{itemize}
 
 % ---------------------------------------------------------
-\subsection{Key Findings}
+\subsubsection{Key Findings (Text EDA)}
 
 \begin{importantbox}
 \textbf{Summary of Text EDA Key Findings:}

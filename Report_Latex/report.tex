@@ -10,7 +10,6 @@
 \definecolor{myblue}{RGB}{33, 102, 172}
 \definecolor{myred}{RGB}{180, 50, 50}
 
-\newcommand{\ent}[1]{\textcolor{myblue}{\texttt{#1}}}
 \newcommand{\rulehl}[1]{\textcolor{myred}{#1}}
 % ====== Packages for colored code boxes ======
 \usepackage[most]{tcolorbox}
@@ -146,11 +145,12 @@ FACULTY OF COMPUTER SCIENCE AND ENGINEERING\\
 
 \begin{center}
 \begin{tabular}{c}
-\multicolumn{1}{c}{\textbf{{\Large PROGRAMMING FOR AI : ASSIGNMENT 1 REPORT}}}\\ %Name of the subject
+\multicolumn{1}{c}{\textbf{{\Large PROGRAMMING FOR AI : ASSIGNMENTS 1 \& 2 REPORT}}}\\ %Name of the subject
 ~~\\
 \hline
 \\
-\textbf{{\Large EXPLORATORY DATA ANALYSIS}} \\
+\textbf{{\Large EXPLORATORY DATA ANALYSIS}}\\
+\textbf{{\Large \& MACHINE LEARNING PIPELINES}} \\
 
 
 \textbf{{\large \textit{{ Group: Ben 10}}}}\\
@@ -213,9 +213,16 @@ FACULTY OF COMPUTER SCIENCE AND ENGINEERING\\
 \clearpage
 
 \input{chapters/1.1}
-\section{Exploratory Data Analysis: Tabular Data}
+
+% =======================================================================
+% SECTION 1: TABULAR DATA (TITANIC)
+% =======================================================================
+\section{Tabular Data: Titanic Survival Classification}
 \label{sec:tabular}
-\subsection{Dataset Overview}
+
+\subsection{Exploratory Data Analysis}
+
+\subsubsection{Dataset Overview}
 For the tabular modality, we utilized the \textbf{Titanic Dataset} (Version: Yasserh/V1), sourced from Kaggle. This dataset is a cleaned version of the original Titanic competition data, focusing on passenger survival factors.
 
 \begin{itemize}
@@ -242,7 +249,7 @@ For the tabular modality, we utilized the \textbf{Titanic Dataset} (Version: Yas
     \label{fig:tab_target}
 \end{figure}
 
-\subsection{Data Inspection and Missing Values}
+\subsubsection{Data Inspection and Missing Values}
 Upon initial inspection, we identified the following distribution of missing values:
 \begin{itemize}
     \item \textbf{Cabin:} 687 missing values (significant sparsity).
@@ -250,7 +257,7 @@ Upon initial inspection, we identified the following distribution of missing val
     \item \textbf{Embarked:} 2 missing values.
 \end{itemize}
 
-\subsection{Descriptive Statistics}
+\subsubsection{Descriptive Statistics}
 
 The numerical summary (\texttt{df.describe()}) reveals several notable properties of the dataset:
 
@@ -318,7 +325,7 @@ The numerical summary (\texttt{df.describe()}) reveals several notable propertie
     \label{fig:tab_surv_heat}
 \end{figure}
 
-\subsection{Family Structure Analysis}
+\subsubsection{Family Structure Analysis}
 
 The \texttt{SibSp} (number of siblings/spouses) and \texttt{Parch} (number of parents/children) features jointly capture family structure on board, as shown in Figure TAB-9 below.
 
@@ -336,7 +343,7 @@ Key observations:
     \item \textbf{Family size feature:} The derived feature \texttt{FamilySize = SibSp + Parch + 1} is commonly used in downstream modelling. Small families (2--4) tend to show higher survival rates than solo travellers or very large families (6+).
 \end{itemize}
 
-\subsection{Categorical Features vs.\ Survival Target}
+\subsubsection{Categorical Features vs.\ Survival Target}
 
 Figure TAB-10 below directly compares survival rates across the three main categorical features, providing clear quantitative evidence of their predictive power.
 
@@ -355,7 +362,7 @@ Key survival rates from the group analysis:
     \item \textbf{Embarked:} Cherbourg (C) shows slightly higher survival ($\sim$55\%) vs.\ Southampton (S) ($\sim$34\%), likely due to the higher proportion of 1st-class passengers boarding at Cherbourg.
 \end{itemize}
 
-\subsection{Ticket Prefix Analysis}
+\subsubsection{Ticket Prefix Analysis}
 
 The \texttt{Ticket} column contains alphanumeric codes with varying prefixes that may encode booking class or origin information. The frequency distribution of ticket prefixes is shown in Figure TAB-11 below.
 
@@ -373,7 +380,7 @@ The \texttt{Ticket} column contains alphanumeric codes with varying prefixes tha
     \item The \texttt{Ticket} feature is generally dropped or encoded as a binary ``has prefix / no prefix'' indicator for modelling.
 \end{itemize}
 
-\subsection{Key Findings and Preprocessing Recommendations}
+\subsubsection{Key Findings and Preprocessing Recommendations (Tabular EDA)}
 
 \begin{importantbox}
 \textbf{Summary of Tabular EDA Key Findings:}
@@ -399,16 +406,30 @@ The \texttt{Ticket} column contains alphanumeric codes with varying prefixes tha
 \end{itemize}
 \end{importantbox}
 
+% --- Tabular ML (Titanic): Preprocessing + Models (subsections continue under Section 1) ---
+\input{chapters/a2_tabular}
+
+% =======================================================================
+% SECTION 2: TEXT DATA (SMS SPAM)
+% =======================================================================
+\section{Text Data: SMS Spam Classification}
+\label{sec:text}
+
+\subsection{Exploratory Data Analysis}
 \input{chapters/1.2}
-% =======================================================================
 
+% --- Text ML (SMS Spam): Preprocessing + Models (subsections continue under Section 2) ---
+\input{chapters/a2_text}
 
 % =======================================================================
+% SECTION 3: IMAGE DATA (CIFAR-10)
 % =======================================================================
-\section{Exploratory Data Analysis: Image Data}
+\section{Image Data: CIFAR-10 Classification}
 \label{sec:image}
 
-\subsection{Dataset Overview}
+\subsection{Exploratory Data Analysis}
+
+\subsubsection{Dataset Overview}
 We utilized the \textbf{CIFAR-10} dataset (Python version), a widely adopted benchmark
 for image classification research, originally developed by the Canadian Institute for
 Advanced Research (CIFAR). It covers a broad range of real-world object categories and
@@ -438,7 +459,7 @@ The sample grid in Figure IMG-1 below immediately reveals a key challenge of thi
     \label{fig:cifar_samples}
 \end{figure}
 
-\subsection{Class Distribution and Balance}
+\subsubsection{Class Distribution and Balance}
 
 As shown in Figure IMG-2 below, CIFAR-10 contains exactly \textbf{5,000
 training images per class}, yielding a perfectly uniform distribution across all 10
@@ -461,7 +482,7 @@ important consequences for downstream modelling:
     \label{fig:cifar_dist}
 \end{figure}
 
-\subsection{Statistical Analysis of Pixels}
+\subsubsection{Statistical Analysis of Pixels}
 
 We computed per-channel pixel statistics over the full 50,000-image training set
 to characterize the color properties of the data and to derive the normalization
@@ -516,7 +537,7 @@ dataset.
     \label{fig:cifar_rgb}
 \end{figure}
 
-\subsection{Per-Class Visual Analysis}
+\subsubsection{Per-Class Visual Analysis}
 
 To move beyond aggregate statistics, we examined the visual characteristics of
 each class individually through two complementary techniques.
@@ -580,7 +601,7 @@ statistical property of the data, not an artifact.
     \label{fig:cifar_bright}
 \end{figure}
 
-\subsection{Data Quality Check}
+\subsubsection{Data Quality Check}
 
 Before proceeding to any modelling steps, we performed a rigorous data integrity
 audit of the full 50,000-image training set. Each check targets a specific failure
@@ -619,7 +640,7 @@ cleaning, deduplication, or label correction is required prior to model training
     \label{fig:cifar_quality}
 \end{figure}
 
-\subsection{Key Findings and Preprocessing Recommendations}
+\subsubsection{Key Findings and Preprocessing Recommendations (Image EDA)}
 
 \begin{importantbox}
 \textbf{Summary of Image EDA Key Findings:}
@@ -635,8 +656,13 @@ cleaning, deduplication, or label correction is required prior to model training
 \end{itemize}
 \end{importantbox}
 
+% --- Image ML (CIFAR-10): Preprocessing + Models (subsections continue under Section 3) ---
+\input{chapters/a2_image}
+
 % =======================================================================
-\section{Exploratory Data Analysis: Multimodal Data}
+% SECTION 4: MULTIMODAL DATA (FLICKR8K) -- EDA ONLY, NO ML
+% =======================================================================
+\section{Multimodal Data: Flickr8k}
 \label{sec:multi}
 
 \subsection{Dataset Overview}
@@ -808,7 +834,8 @@ This report is accompanied by a fully interactive web-based EDA Report, open-sou
 % =========================================================
 % ATTRIBUTION & DATA SOURCES SECTION
 % =========================================================
-\section{Attribution \& Data Sources}
+\section*{Attribution \& Data Sources}
+\addcontentsline{toc}{section}{Attribution \& Data Sources}
 
 In compliance with data usage policies and academic integrity, we would like to acknowledge the original authors, creators, and curators of the datasets used in this Exploratory Data Analysis report. The datasets were sourced from the following repositories:
 
@@ -829,9 +856,5 @@ In compliance with data usage policies and academic integrity, we would like to 
     Sourced from Kaggle. A standard benchmark dataset containing 8,000 images, each paired with 5 different human-annotated captions. \\
     \textbf{Link:} \url{https://www.kaggle.com/datasets/adityajn105/flickr8k}
 \end{itemize}
-
-\input{chapters/2}
-\input{chapters/3}
-
 
 \end{document}

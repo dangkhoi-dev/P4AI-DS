@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Beng 10 | EDA Report – CO3135</title>
+  <title>Beng 10 | EDA + ML Pipelines – CO3135</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
   <style>
     /* ─── RESET & BASE ─────────────────────────────────────── */
@@ -140,6 +140,24 @@
     .ci-item { text-align: center; }
     .ci-item small { font-size: .75rem; color: #475569; text-transform: uppercase; letter-spacing: .08em; font-weight: 600; }
     .ci-item p { font-size: .95rem; color: #CBD5E1; font-weight: 500; margin-top: 4px; }
+
+    /* Hero resources */
+    .hero-resources {
+      margin-top: 40px; display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px; max-width: 860px; width: 100%; position: relative;
+    }
+    .res-card {
+      display: flex; flex-direction: column; align-items: center;
+      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius); padding: 22px 18px; text-align: center;
+      text-decoration: none; transition: all .25s;
+    }
+    .res-card:hover { background: rgba(255,255,255,.1); transform: translateY(-3px); border-color: rgba(59,130,246,.4); }
+    .res-card .res-icon { font-size: 2rem; margin-bottom: 10px; }
+    .res-card h5 { font-size: .95rem; font-weight: 600; color: #fff; margin-bottom: 4px; font-family:'Space Grotesk',sans-serif; }
+    .res-card small { font-size: .75rem; color: #94A3B8; }
+    @media (max-width: 900px) { .hero-resources { grid-template-columns: 1fr; } }
 
     /* ─── PROJECT LAYOUT ───────────────────────────────────── */
     .project-layout { display: flex; min-height: calc(100vh - 60px); }
@@ -371,6 +389,205 @@
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 3px; }
 
+    /* ─── ML PIPELINE (Assignment 2) ───────────────────────── */
+    .ml-divider {
+      margin: 56px 0 24px; padding: 14px 0;
+      border-top: 2px dashed var(--border);
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+    }
+    .ml-divider-badge {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: .72rem; font-weight: 700; letter-spacing: .14em;
+      text-transform: uppercase; padding: 6px 16px; border-radius: 100px;
+      background: var(--navy); color: #fff;
+    }
+    .ml-hero {
+      padding: 28px 32px; border-radius: 14px; margin-bottom: 28px;
+      position: relative; overflow: hidden;
+    }
+    .ml-hero.blue    { background: linear-gradient(135deg,#0c4a6e 0%, #3B82F6 100%); }
+    .ml-hero.purple  { background: linear-gradient(135deg,#4c1d95 0%, #8B5CF6 100%); }
+    .ml-hero.amber   { background: linear-gradient(135deg,#7c2d12 0%, #F59E0B 100%); }
+    .ml-hero h3 { font-family:'Space Grotesk',sans-serif; font-size:1.5rem; color:#fff; margin-bottom:6px; }
+    .ml-hero p { color: rgba(255,255,255,.82); font-size:.95rem; max-width:680px; }
+    .ml-hero-tag {
+      display:inline-block; background: rgba(255,255,255,.15);
+      border:1px solid rgba(255,255,255,.25); color:#fff;
+      font-size:.7rem; font-weight:700; letter-spacing:.1em;
+      text-transform:uppercase; padding:4px 12px; border-radius:100px; margin-bottom:10px;
+    }
+
+    /* Pipeline steps — horizontal flow with arrow connectors */
+    .pipeline-steps {
+      display: flex; flex-wrap: wrap;
+      gap: 26px 36px;
+      margin: 18px 0 32px;
+      align-items: stretch;
+    }
+    .pipe-step {
+      flex: 1 1 200px; max-width: 230px;
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 14px; padding: 18px 18px 16px;
+      box-shadow: var(--shadow);
+      position: relative;
+      transition: transform .25s, box-shadow .25s;
+      display: flex; flex-direction: column;
+    }
+    .pipe-step:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+
+    /* Circular step number badge (top-left) */
+    .pipe-step .pipe-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 34px; height: 34px; border-radius: 50%;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem; font-weight: 700; letter-spacing: 0;
+      color: #fff; background: var(--blue);
+      box-shadow: 0 3px 10px rgba(59,130,246,.35);
+      margin-bottom: 12px;
+    }
+    .pipe-step.p .pipe-num { background: var(--purple); box-shadow: 0 3px 10px rgba(139,92,246,.35); }
+    .pipe-step.a .pipe-num { background: var(--amber); box-shadow: 0 3px 10px rgba(245,158,11,.35); }
+
+    /* Accent border on top */
+    .pipe-step::before {
+      content: ''; position: absolute; top: 0; left: 16px; right: 16px;
+      height: 3px; border-radius: 2px;
+      background: var(--blue);
+    }
+    .pipe-step.p::before { background: var(--purple); }
+    .pipe-step.a::before { background: var(--amber); }
+
+    /* Arrow connector between steps (horizontal) */
+    .pipe-step::after {
+      content: '';
+      position: absolute;
+      right: -26px; top: 50%;
+      width: 18px; height: 18px;
+      transform: translateY(-50%) rotate(45deg);
+      border-top: 3px solid var(--blue);
+      border-right: 3px solid var(--blue);
+      opacity: .55;
+      pointer-events: none;
+    }
+    .pipe-step.p::after { border-top-color: var(--purple); border-right-color: var(--purple); }
+    .pipe-step.a::after { border-top-color: var(--amber); border-right-color: var(--amber); }
+    .pipe-step:last-child::after { display: none; }
+
+    .pipe-step h5 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem; font-weight: 700; color: var(--text);
+      margin-bottom: 6px; line-height: 1.3;
+    }
+    .pipe-step p {
+      font-size: .83rem; color: #4B5563; line-height: 1.55;
+      margin: 0;
+    }
+    .pipe-step p code {
+      background: #F1F5F9; border-radius: 4px; padding: 1px 5px;
+      font-size: .78rem; color: #1E293B;
+    }
+
+    /* Mobile: stack vertically with down-arrow */
+    @media (max-width: 720px) {
+      .pipeline-steps { gap: 26px 0; flex-direction: column; }
+      .pipe-step { max-width: 100%; }
+      .pipe-step::after {
+        right: 50%; top: auto; bottom: -22px;
+        transform: translateX(50%) rotate(135deg);
+      }
+    }
+
+    /* Code block */
+    .code-block {
+      background: #0F172A; color: #E2E8F0;
+      border-radius: var(--radius); padding: 18px 20px;
+      font-family: 'Courier New', 'Menlo', monospace; font-size: .82rem;
+      line-height: 1.55; overflow-x: auto; margin-bottom: 22px;
+      box-shadow: var(--shadow);
+      border-left: 4px solid var(--blue);
+    }
+    .code-block.p { border-left-color: var(--purple); }
+    .code-block.a { border-left-color: var(--amber); }
+    .code-block pre { white-space: pre; font-family: inherit; color: inherit; }
+    .code-block .c-kw   { color: #C084FC; }
+    .code-block .c-str  { color: #FCA5A5; }
+    .code-block .c-com  { color: #64748B; font-style: italic; }
+    .code-block .c-num  { color: #FDBA74; }
+    .code-block .c-fn   { color: #60A5FA; }
+
+    /* Model card grid */
+    .model-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 18px; margin-bottom: 28px;
+    }
+    .model-card-ml {
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 22px; box-shadow: var(--shadow); transition: transform .25s, box-shadow .25s;
+      position: relative;
+    }
+    .model-card-ml:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+    .model-card-ml.best::after {
+      content: '★ BEST'; position: absolute; top: 12px; right: 12px;
+      background: linear-gradient(135deg,#F59E0B,#EF4444); color:#fff;
+      padding: 3px 10px; border-radius: 100px; font-size:.65rem; font-weight:700; letter-spacing:.1em;
+    }
+    .model-card-ml h4 { font-family:'Space Grotesk',sans-serif; font-size:1.1rem; font-weight:700; color:var(--text); margin-bottom:4px; }
+    .model-card-ml .mc-type { font-size:.72rem; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; margin-bottom:14px; }
+    .model-card-ml .mc-desc { font-size:.85rem; color:#4B5563; line-height:1.6; margin-bottom:14px; }
+    .model-card-ml .mc-params { background:#F8FAFC; border-radius:8px; padding:12px 14px; margin-bottom:14px; }
+    .model-card-ml .mc-params .mc-param-title { font-size:.7rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; margin-bottom:8px; }
+    .model-card-ml .mc-params table { width:100%; font-size:.78rem; }
+    .model-card-ml .mc-params td { padding:3px 0; vertical-align:top; }
+    .model-card-ml .mc-params td:first-child { color:#1E293B; font-family:'Courier New',monospace; width:45%; }
+    .model-card-ml .mc-params td:last-child  { color:#64748B; }
+    .model-card-ml .mc-metrics { display:flex; gap:10px; flex-wrap:wrap; }
+    .metric-badge {
+      background:#EFF6FF; color:#1D4ED8; border-radius:8px;
+      padding: 6px 12px; font-size: .82rem; font-weight: 600;
+      display:inline-flex; align-items:center; gap:6px;
+    }
+    .metric-badge .mb-num { font-family:'Space Grotesk',sans-serif; font-weight:700; }
+    .metric-badge.good { background:#ECFDF5; color:#065F46; }
+    .metric-badge.warn { background:#FEF3C7; color:#92400E; }
+    .metric-badge.bad  { background:#FEE2E2; color:#991B1B; }
+
+    /* Results comparison table styling additions */
+    .ml-results-table tbody tr.best-row { background:#FEF3C7 !important; }
+    .ml-results-table tbody tr.best-row td { font-weight:600; }
+
+    /* Sub-heading for ML subsections */
+    .sh-ml { font-family:'Space Grotesk',sans-serif; font-size:1.15rem; font-weight:700; color:var(--text); margin:32px 0 14px; display:flex; align-items:center; gap:10px; }
+    .sh-ml::before { content:''; width: 24px; height: 3px; border-radius: 2px; background: var(--blue); }
+    .sh-ml.p::before { background: var(--purple); }
+    .sh-ml.a::before { background: var(--amber); }
+
+    /* Major subsection banner (1.1 EDA, 1.2 Preprocessing, 1.3 Models…) */
+    .sub-section {
+      display: flex; align-items: center; gap: 14px;
+      margin: 36px 0 22px; padding: 14px 20px;
+      border-radius: 10px;
+      background: linear-gradient(90deg, rgba(59,130,246,.08), transparent 70%);
+      border-left: 5px solid var(--blue);
+    }
+    .sub-section.p { background: linear-gradient(90deg, rgba(139,92,246,.08), transparent 70%); border-left-color: var(--purple); }
+    .sub-section.a { background: linear-gradient(90deg, rgba(245,158,11,.08), transparent 70%); border-left-color: var(--amber); }
+    .sub-section.e { background: linear-gradient(90deg, rgba(16,185,129,.08), transparent 70%); border-left-color: var(--emerald); }
+    .sub-section .ss-num {
+      font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 800;
+      color: var(--blue); line-height: 1;
+    }
+    .sub-section.p .ss-num { color: var(--purple); }
+    .sub-section.a .ss-num { color: var(--amber); }
+    .sub-section.e .ss-num { color: var(--emerald); }
+    .sub-section .ss-text { flex: 1; }
+    .sub-section h3 {
+      font-family: 'Space Grotesk', sans-serif; font-size: 1.35rem; font-weight: 700;
+      color: var(--text); margin: 0 0 2px;
+    }
+    .sub-section p {
+      font-size: .88rem; color: var(--muted); margin: 0;
+    }
+
     /* ─── RESPONSIVE ───────────────────────────────────────── */
     @media (max-width: 900px) {
       .project-layout { flex-direction: column; }
@@ -412,10 +629,10 @@
 ══════════════════════════════════════════════════════════ -->
 <div id="page-home" class="page active">
   <section class="hero">
-    <div class="hero-badge">📊 CO3135 · Semester 2 · 2025–2026</div>
+    <div class="hero-badge">📊 CO3135 · Semester 2 · 2025–2026 · Assignments 1 &amp; 2</div>
 
-    <h1>Exploratory <span>Data Analysis</span><br>Assignment 1</h1>
-    <p>Deep-dive into three real-world data modalities — Tabular, Text, and Image — plus a Multimodal combination, to uncover structure, patterns, and insights that guide AI modeling decisions.</p>
+    <h1>EDA + <span>Machine Learning</span><br>Pipelines</h1>
+    <p>End-to-end walkthrough of <strong>four data modalities</strong> — Tabular, Text, Image, and Multimodal — combining deep Exploratory Data Analysis (Assignment 1) with full classical &amp; deep-learning pipelines (Assignment 2): preprocessing, modelling, evaluation, and interpretation. Multimodal section is EDA-only (no ML).</p>
 
     <div class="hero-team">
       <div class="team-card">
@@ -433,34 +650,52 @@
     <div class="hero-overview">
       <div class="overview-card" onclick="showPage('project'); switchTab('tabular')">
         <div class="oc-icon">📋</div>
-        <div class="oc-type">Tabular</div>
-        <h4>Titanic Dataset</h4>
-        <small>891 samples · 12 features</small>
+        <div class="oc-type">Section 1 · Tabular</div>
+        <h4>Titanic · RF + SVM</h4>
+        <small>EDA + ML → RF 84.4%</small>
       </div>
       <div class="overview-card" onclick="showPage('project'); switchTab('text')">
         <div class="oc-icon">💬</div>
-        <div class="oc-type">Text</div>
-        <h4>SMS Spam Collection</h4>
-        <small>5,572 messages · 2 classes</small>
+        <div class="oc-type">Section 2 · Text</div>
+        <h4>SMS Spam · 4 Models</h4>
+        <small>EDA + ML → DistilBERT F1 0.97</small>
       </div>
       <div class="overview-card" onclick="showPage('project'); switchTab('image')">
         <div class="oc-icon">🖼️</div>
-        <div class="oc-type">Image</div>
-        <h4>CIFAR-10</h4>
-        <small>60,000 images · 10 classes</small>
+        <div class="oc-type">Section 3 · Image</div>
+        <h4>CIFAR-10 · ResNet50</h4>
+        <small>EDA + ML → Transfer 90.5%</small>
       </div>
       <div class="overview-card" onclick="showPage('project'); switchTab('multimodal')">
         <div class="oc-icon">🔗</div>
-        <div class="oc-type">Multimodal</div>
-        <h4>Image–Caption Pairs</h4>
-        <small>Visual + Linguistic analysis</small>
+        <div class="oc-type">Section 4 · Multimodal</div>
+        <h4>Flickr8k · Image + Caption</h4>
+        <small>EDA only — no ML applied</small>
       </div>
     </div>
 
     <button class="cta-btn" onclick="showPage('project')">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      View Full EDA Report
+      Explore the Interactive Report
     </button>
+
+    <div class="hero-resources">
+      <a class="res-card" href="Report_Latex/report.pdf" target="_blank" rel="noopener">
+        <div class="res-icon">📄</div>
+        <h5>Full PDF Report</h5>
+        <small>Report_Latex/report.pdf · 65 pages</small>
+      </a>
+      <a class="res-card" href="https://github.com/dangkhoi-dev/P4AI-DS" target="_blank" rel="noopener">
+        <div class="res-icon">💻</div>
+        <h5>Source Code</h5>
+        <small>GitHub: dangkhoi-dev/P4AI-DS</small>
+      </a>
+      <a class="res-card" href="https://youtu.be/Ikld5pqy6e8" target="_blank" rel="noopener">
+        <div class="res-icon">🎥</div>
+        <h5>Presentation Video</h5>
+        <small>YouTube · Walkthrough</small>
+      </a>
+    </div>
 
     <div class="course-info">
       <div class="ci-item">
@@ -495,18 +730,18 @@
 
     <!-- ── SIDEBAR ── -->
     <aside class="sidebar">
-      <div class="sidebar-label">Data Modalities</div>
+      <div class="sidebar-label">Report Sections</div>
       <button class="sidebar-btn active" id="btn-tabular" onclick="switchTab('tabular')">
-        <span class="sb-dot dot-blue"></span> Tabular Data
+        <span class="sb-dot dot-blue"></span> 1. Tabular — Titanic
       </button>
       <button class="sidebar-btn tab-text" id="btn-text" onclick="switchTab('text')">
-        <span class="sb-dot dot-purple"></span> Text Data
+        <span class="sb-dot dot-purple"></span> 2. Text — SMS Spam
       </button>
       <button class="sidebar-btn tab-image" id="btn-image" onclick="switchTab('image')">
-        <span class="sb-dot dot-amber"></span> Image Data
+        <span class="sb-dot dot-amber"></span> 3. Image — CIFAR-10
       </button>
       <button class="sidebar-btn tab-multi" id="btn-multimodal" onclick="switchTab('multimodal')">
-        <span class="sb-dot dot-emerald"></span> Multimodal Data
+        <span class="sb-dot dot-emerald"></span> 4. Multimodal — Flickr8k
       </button>
 
       <div class="sidebar-sep"></div>
@@ -526,9 +761,18 @@
       <div id="tab-tabular" class="tab-content active">
 
         <div class="section-hero blue" data-bg-text="TITANIC">
-          <div class="section-hero-badge">📋 Dataset 1 · Tabular</div>
-          <h2>Titanic Survival Dataset</h2>
-          <p>Exploratory analysis of 891 passengers — their demographics, socio-economic status, and survival outcomes from the 1912 disaster.</p>
+          <div class="section-hero-badge">📋 Section 1 · Tabular Data</div>
+          <h2>Tabular Data: Titanic Survival Classification</h2>
+          <p>EDA of 891 passengers (demographics, class, fare, survival) followed by a complete supervised pipeline: EDA-driven preprocessing, Random Forest vs. SVC training, evaluation and interpretation.</p>
+        </div>
+
+        <!-- 1.1 EDA Banner -->
+        <div class="sub-section">
+          <div class="ss-num">1.1</div>
+          <div class="ss-text">
+            <h3>Exploratory Data Analysis</h3>
+            <p>Structure inspection · missing-value audit · distributions · survival-by-group · key findings.</p>
+          </div>
         </div>
 
         <!-- 1. Overview -->
@@ -833,6 +1077,181 @@
             <li><strong>Distribution Shapes:</strong> Fare's extreme right-skew demands log-transformation before any distance or gradient-based algorithm is applied.</li>
           </ul>
         </div>
+
+        <!-- ════════════════════════════════════════════════════
+             ASSIGNMENT 2 — TABULAR ML PIPELINE
+        ════════════════════════════════════════════════════ -->
+        <div class="ml-divider"><span class="ml-divider-badge">Assignment 2 · Machine Learning</span></div>
+
+        <!-- 1.2 Preprocessing Banner -->
+        <div class="sub-section">
+          <div class="ss-num">1.2</div>
+          <div class="ss-text">
+            <h3>Preprocessing Pipeline</h3>
+            <p>Missing-value imputation · feature engineering (FamilySize, Title) · categorical encoding · drop leakage columns · stratified 80/20 split.</p>
+          </div>
+        </div>
+
+        <div class="ml-hero blue" id="tab-ml">
+          <span class="ml-hero-tag">📋 Tabular · Titanic Survival Classification</span>
+          <h3>From EDA Insights to a Trained Classifier</h3>
+          <p>A complete supervised-ML pipeline: preprocess the Titanic data based on EDA findings (Section 1.1), train Random Forest and SVM on the same features, then compare performance side-by-side.</p>
+        </div>
+
+        <!-- Preprocessing -->
+        <div class="sh blue">1. Preprocessing Pipeline (driven by EDA)</div>
+        <p style="color:#4B5563; font-size:.93rem; margin-bottom:18px;">Every preprocessing step directly addresses a finding from the EDA above — nothing is done arbitrarily.</p>
+
+        <div class="pipeline-steps">
+          <div class="pipe-step">
+            <div class="pipe-num">1</div>
+            <h5>Missing-value imputation</h5>
+            <p><code>Age</code> ← median(Pclass, Sex); <code>Embarked</code> ← mode ("S"). EDA showed Age distributions differ by Pclass/Sex (Fig TAB-7).</p>
+          </div>
+          <div class="pipe-step">
+            <div class="pipe-num">2</div>
+            <h5>Feature engineering</h5>
+            <p><code>FamilySize = SibSp + Parch + 1</code>; <code>Title</code> extracted via regex from <code>Name</code>; rare titles merged to <code>Rare</code>.</p>
+          </div>
+          <div class="pipe-step">
+            <div class="pipe-num">3</div>
+            <h5>Categorical encoding</h5>
+            <p>LabelEncoder on <code>Sex</code>, <code>Embarked</code>, <code>Title</code>. Tree-based models are split-invariant → no one-hot needed.</p>
+          </div>
+          <div class="pipe-step">
+            <div class="pipe-num">4</div>
+            <h5>Drop &amp; split</h5>
+            <p>Drop <code>PassengerId</code>, <code>Name</code>, <code>Ticket</code>, <code>Cabin</code>, <code>SibSp</code>, <code>Parch</code>. Stratified 80/20 split with <code>random_state=42</code>.</p>
+          </div>
+        </div>
+
+        <div class="code-block"><pre><span class="c-com"># Preprocessing — handles NaNs, engineers Title + FamilySize, encodes categoricals</span>
+<span class="c-kw">from</span> sklearn.preprocessing <span class="c-kw">import</span> LabelEncoder
+df_model = df.copy()
+
+<span class="c-com"># (1) Impute Age by group-median, Embarked by mode</span>
+df_model[<span class="c-str">'Age'</span>] = df_model.groupby([<span class="c-str">'Pclass'</span>,<span class="c-str">'Sex'</span>])[<span class="c-str">'Age'</span>]\
+    .transform(<span class="c-kw">lambda</span> x: x.fillna(x.median()))
+df_model[<span class="c-str">'Embarked'</span>] = df_model[<span class="c-str">'Embarked'</span>].fillna(df_model[<span class="c-str">'Embarked'</span>].mode()[<span class="c-num">0</span>])
+
+<span class="c-com"># (2) Feature engineering</span>
+df_model[<span class="c-str">'FamilySize'</span>] = df_model[<span class="c-str">'SibSp'</span>] + df_model[<span class="c-str">'Parch'</span>] + <span class="c-num">1</span>
+df_model[<span class="c-str">'Title'</span>] = df_model[<span class="c-str">'Name'</span>].str.extract(<span class="c-str">r' ([A-Za-z]+)\.'</span>, expand=<span class="c-kw">False</span>)
+rare = [<span class="c-str">'Lady'</span>,<span class="c-str">'Countess'</span>,<span class="c-str">'Col'</span>,<span class="c-str">'Capt'</span>,<span class="c-str">'Dr'</span>,<span class="c-str">'Rev'</span>,<span class="c-str">'Sir'</span>,<span class="c-str">'Major'</span>,<span class="c-str">'Don'</span>,<span class="c-str">'Jonkheer'</span>,<span class="c-str">'Dona'</span>]
+df_model[<span class="c-str">'Title'</span>] = df_model[<span class="c-str">'Title'</span>].replace(rare, <span class="c-str">'Rare'</span>)\
+    .replace({<span class="c-str">'Mlle'</span>:<span class="c-str">'Miss'</span>,<span class="c-str">'Ms'</span>:<span class="c-str">'Miss'</span>,<span class="c-str">'Mme'</span>:<span class="c-str">'Mrs'</span>})
+
+<span class="c-com"># (3) Encode categoricals</span>
+le = LabelEncoder()
+<span class="c-kw">for</span> c <span class="c-kw">in</span> [<span class="c-str">'Sex'</span>,<span class="c-str">'Embarked'</span>,<span class="c-str">'Title'</span>]:
+    df_model[c] = le.fit_transform(df_model[c])
+
+<span class="c-com"># (4) Drop leakage / unused columns</span>
+df_model = df_model.drop([<span class="c-str">'PassengerId'</span>,<span class="c-str">'Name'</span>,<span class="c-str">'Ticket'</span>,<span class="c-str">'Cabin'</span>,<span class="c-str">'SibSp'</span>,<span class="c-str">'Parch'</span>], axis=<span class="c-num">1</span>)</pre></div>
+
+        <!-- 1.3 Models Banner -->
+        <div class="sub-section">
+          <div class="ss-num">1.3</div>
+          <div class="ss-text">
+            <h3>Models &amp; Evaluation</h3>
+            <p>Two classical classifiers on the exact same preprocessed features: Random Forest (with <code>class_weight='balanced'</code>) vs. SVC at default settings — a deliberate comparison that exposes what happens when you skip scaling and re-weighting.</p>
+          </div>
+        </div>
+
+        <!-- Models -->
+        <div class="sh blue">1. Two Classical Models on the Same Features</div>
+
+        <div class="model-grid">
+          <!-- RF -->
+          <div class="model-card-ml best">
+            <h4>Random Forest</h4>
+            <div class="mc-type">Ensemble · Bagging of Decision Trees</div>
+            <p class="mc-desc">Bootstraps 100 trees with random feature subsets. Robust to unscaled features and outliers; exposes feature importances that directly validate EDA intuition (Sex, Fare, Title dominate).</p>
+            <div class="mc-params">
+              <div class="mc-param-title">Hyperparameters</div>
+              <table>
+                <tr><td>n_estimators</td><td>100 — sweet spot cost/variance</td></tr>
+                <tr><td>class_weight</td><td><strong>'balanced'</strong> — handles 38/62 imbalance</td></tr>
+                <tr><td>random_state</td><td>42 — reproducibility</td></tr>
+              </table>
+            </div>
+            <div class="mc-metrics">
+              <span class="metric-badge good">Acc <span class="mb-num">84.4%</span></span>
+              <span class="metric-badge good">F1 <span class="mb-num">0.84</span></span>
+              <span class="metric-badge">Recall(Surv) <span class="mb-num">0.84</span></span>
+            </div>
+          </div>
+
+          <!-- SVC -->
+          <div class="model-card-ml">
+            <h4>Support Vector Classifier</h4>
+            <div class="mc-type">Kernel Method · RBF default</div>
+            <p class="mc-desc">Deliberately used with default settings to demonstrate what can go wrong: RBF distance is dominated by unscaled <code>Fare</code> (0–512) and the model collapses to the majority class.</p>
+            <div class="mc-params">
+              <div class="mc-param-title">Hyperparameters</div>
+              <table>
+                <tr><td>kernel</td><td>'rbf' (default)</td></tr>
+                <tr><td>C / gamma</td><td>1.0 / 'scale' (default)</td></tr>
+                <tr><td>class_weight</td><td class="miss-high"><strong>None (no balancing)</strong></td></tr>
+                <tr><td>StandardScaler</td><td class="miss-high"><strong>Not applied</strong></td></tr>
+              </table>
+            </div>
+            <div class="mc-metrics">
+              <span class="metric-badge bad">Acc <span class="mb-num">66.5%</span></span>
+              <span class="metric-badge bad">F1(Surv) <span class="mb-num">0.40</span></span>
+              <span class="metric-badge warn">Recall(Surv) <span class="mb-num">0.27</span></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-block blue"><pre><span class="c-com"># Model 1 — Random Forest</span>
+<span class="c-kw">from</span> sklearn.ensemble <span class="c-kw">import</span> RandomForestClassifier
+clf = RandomForestClassifier(n_estimators=<span class="c-num">100</span>, class_weight=<span class="c-str">'balanced'</span>, random_state=<span class="c-num">42</span>)
+clf.fit(X_train, y_train)
+y_pred = clf.predict(X_test)   <span class="c-com"># Accuracy 84.36%</span>
+
+<span class="c-com"># Model 2 — SVC with DEFAULT settings (cautionary baseline)</span>
+<span class="c-kw">from</span> sklearn.svm <span class="c-kw">import</span> SVC
+svm_clf = SVC(random_state=<span class="c-num">42</span>)   <span class="c-com"># rbf, C=1, gamma='scale', no scaling</span>
+svm_clf.fit(X_train, y_train)
+svm_y_pred = svm_clf.predict(X_test)   <span class="c-com"># Accuracy 66.48%</span></pre></div>
+
+        <!-- Results -->
+        <div class="sh blue">2. Results &amp; Feature Importance</div>
+
+        <div class="img-grid-2">
+          <div class="img-card">
+            <img src="images/a2_rf_confmat.png" alt="Random Forest confusion matrix">
+            <div class="img-caption"><strong>Fig A2-TAB-1 – Random Forest Confusion Matrix.</strong> 89 TN + 62 TP on 179 test samples; FP = 16, FN = 12. Errors are roughly symmetric — the model is not over-predicting either class.</div>
+          </div>
+          <div class="img-card">
+            <img src="images/a2_rf_feature_importance.png" alt="Random Forest feature importance">
+            <div class="img-caption"><strong>Fig A2-TAB-2 – Feature Importance.</strong> <code>Sex</code>, <code>Fare</code>, <code>Title</code>, <code>Age</code> dominate — exactly the variables highlighted as most discriminative in the EDA. The learned model confirms the hand-crafted intuition.</div>
+          </div>
+        </div>
+
+        <div class="sh blue">3. Final Comparison</div>
+        <div class="table-wrap">
+          <table class="ml-results-table">
+            <thead>
+              <tr><th>Model</th><th>Accuracy</th><th>Precision (Perished)</th><th>Precision (Survived)</th><th>F1 (Perished)</th><th>F1 (Survived)</th><th>Macro F1</th></tr>
+            </thead>
+            <tbody>
+              <tr class="best-row"><td><strong>Random Forest</strong></td><td>0.8436</td><td>0.88</td><td>0.79</td><td>0.86</td><td>0.82</td><td>0.84</td></tr>
+              <tr><td>SVC (default)</td><td>0.6648</td><td>0.65</td><td>0.77</td><td>0.77</td><td>0.40</td><td>0.58</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="insight blue">
+          <h4>Takeaways — Tabular ML</h4>
+          <ul>
+            <li><strong>Random Forest wins decisively</strong> (F1 on minority = 0.82 vs. 0.40). Benefits from scale-invariance + <code>class_weight='balanced'</code>.</li>
+            <li><strong>Learned feature importance matches EDA:</strong> Sex → Fare → Title → Age. The ML model rediscovers the "women and 1st-class first" pattern.</li>
+            <li><strong>SVM lesson:</strong> Kernel methods are not forgiving — skipping <code>StandardScaler</code> and <code>class_weight</code> costs 20 accuracy points. Adding them typically recovers ~80%, still behind RF.</li>
+            <li><strong>Next steps:</strong> GridSearch over <code>max_depth</code>, <code>min_samples_leaf</code>; try XGBoost/LightGBM; 5-fold CV instead of a single split.</li>
+          </ul>
+        </div>
       </div>
 
       <!-- ══════════════════════════════════
@@ -841,9 +1260,18 @@
       <div id="tab-text" class="tab-content">
 
         <div class="section-hero purple" data-bg-text="SMS">
-          <div class="section-hero-badge">💬 Dataset 2 · Text</div>
-          <h2>SMS Spam Collection Dataset</h2>
-          <p>NLP-focused exploration of 5,572 SMS messages to distinguish genuine communication (Ham) from unsolicited bulk messaging (Spam).</p>
+          <div class="section-hero-badge">💬 Section 2 · Text Data</div>
+          <h2>Text Data: SMS Spam Classification</h2>
+          <p>NLP exploration of 5,572 SMS messages (Ham vs. Spam) plus a four-model ML benchmark: Multinomial Naive Bayes, Logistic Regression, Linear SVM and a fine-tuned DistilBERT transformer.</p>
+        </div>
+
+        <!-- 2.1 EDA Banner -->
+        <div class="sub-section p">
+          <div class="ss-num">2.1</div>
+          <div class="ss-text">
+            <h3>Exploratory Data Analysis</h3>
+            <p>Class imbalance (87/13) · message length · vocabulary &amp; word-clouds · TF-IDF / bigrams · structural features (URL, phone, uppercase) · vocabulary richness.</p>
+          </div>
         </div>
 
         <!-- 1. Overview -->
@@ -1115,6 +1543,216 @@
             <li><strong>Preprocessing Pipeline:</strong> Lowercase → remove punctuation → tokenize → remove stopwords → TF-IDF (1,2)-gram → dimensionality reduction (optional SVD). This standard pipeline is well-suited to this dataset.</li>
           </ul>
         </div>
+
+        <!-- ════════════════════════════════════════════════════
+             ASSIGNMENT 2 — TEXT ML PIPELINE
+        ════════════════════════════════════════════════════ -->
+        <div class="ml-divider"><span class="ml-divider-badge">Assignment 2 · Machine Learning</span></div>
+
+        <!-- 2.2 Preprocessing Banner -->
+        <div class="sub-section p">
+          <div class="ss-num">2.2</div>
+          <div class="ss-text">
+            <h3>Preprocessing Pipeline (7 steps)</h3>
+            <p>Deduplication · URL/phone/digit tokenization · stopword removal · Porter stemming · stratified split · TF-IDF (1,2)-gram · 6 engineered features from EDA.</p>
+          </div>
+        </div>
+
+        <div class="ml-hero purple" id="text-ml">
+          <span class="ml-hero-tag">💬 Text · SMS Spam Classification</span>
+          <h3>4 Models, One EDA-Driven Pipeline</h3>
+          <p>Benchmark Naive Bayes, Logistic Regression, Linear SVM, and a fine-tuned DistilBERT on the SMS Spam corpus. Every preprocessing step and every hyperparameter is justified by a specific EDA insight.</p>
+        </div>
+
+        <!-- Preprocessing -->
+        <div class="sh purple">1. 7-Step Preprocessing Pipeline (from EDA)</div>
+
+        <div class="pipeline-steps">
+          <div class="pipe-step p"><div class="pipe-num">1</div><h5>Deduplicate</h5><p>403 exact duplicates (short ham like "Ok") removed <em>before</em> split to avoid leakage.</p></div>
+          <div class="pipe-step p"><div class="pipe-num">2</div><h5>Token replacement</h5><p>URLs / phones / digits → <code>&lt;url&gt;</code>, <code>&lt;phone&gt;</code>, <code>&lt;num&gt;</code>. Keeps the EDA-proven signals without vocabulary explosion.</p></div>
+          <div class="pipe-step p"><div class="pipe-num">3</div><h5>Stopword removal</h5><p>NLTK list + SMS slang (<code>u, ur, im, dont, gt, lt, amp</code>). Figure T4/T5 showed raw tokens are stopword-dominated.</p></div>
+          <div class="pipe-step p"><div class="pipe-num">4</div><h5>Porter stemming</h5><p><code>call/calling/called/calls</code> → <code>call</code>. Sharpens TF-IDF, shrinks vocabulary.</p></div>
+          <div class="pipe-step p"><div class="pipe-num">5</div><h5>Stratified 80/20 split</h5><p><code>stratify=y</code> preserves 87/13 ratio; <code>random_state=42</code>.</p></div>
+          <div class="pipe-step p"><div class="pipe-num">6</div><h5>TF-IDF (1,2)-gram</h5><p>5000 max features, <code>min_df=2</code>, <code>max_df=0.95</code>, <code>sublinear_tf=True</code>. Fit on <em>train only</em>.</p></div>
+          <div class="pipe-step p"><div class="pipe-num">7</div><h5>Engineered features</h5><p>6 hand-crafted features from EDA: length, upper_ratio, !, has_url, has_phone, has_number — standard-scaled &amp; hstack'd with TF-IDF.</p></div>
+        </div>
+
+        <div class="code-block p"><pre><span class="c-com"># 7-step preprocessing = EDA-driven → (N, 5006) feature matrix</span>
+tfidf = TfidfVectorizer(
+    ngram_range=(<span class="c-num">1</span>, <span class="c-num">2</span>),           <span class="c-com"># unigram + bigram (captures "free entry", "call now")</span>
+    max_features=<span class="c-num">5000</span>,
+    min_df=<span class="c-num">2</span>, max_df=<span class="c-num">0.95</span>,
+    sublinear_tf=<span class="c-kw">True</span>,           <span class="c-com"># 1 + log(TF) — dampens spam repetition</span>
+    token_pattern=<span class="c-str">r'(?u)&lt;[a-z]+&gt;|\b\w+\b'</span>   <span class="c-com"># keep &lt;url&gt;, &lt;phone&gt;</span>
+)
+X_train_tfidf = tfidf.fit_transform(X_train_text)    <span class="c-com"># fit on TRAIN only</span>
+X_test_tfidf  = tfidf.transform(X_test_text)
+
+<span class="c-com"># Engineered features from EDA (has_phone alone: 75.6% spam vs 0.06% ham)</span>
+X_train_full = hstack([X_train_tfidf, scaler.fit_transform(eng_train)])
+X_test_full  = hstack([X_test_tfidf,  scaler.transform(eng_test)])</pre></div>
+
+        <!-- 2.3 Models Banner -->
+        <div class="sub-section p">
+          <div class="ss-num">2.3</div>
+          <div class="ss-text">
+            <h3>Four Models &amp; Comparison</h3>
+            <p>From a 7-ms Naive Bayes baseline to a 2.6-min fine-tuned DistilBERT — four models of increasing complexity on the same evaluation set, ranked by F1 on the spam class.</p>
+          </div>
+        </div>
+
+        <!-- Models -->
+        <div class="sh purple">1. Four Models of Increasing Complexity</div>
+
+        <div class="model-grid">
+          <!-- MNB -->
+          <div class="model-card-ml">
+            <h4>Multinomial Naive Bayes</h4>
+            <div class="mc-type">Probabilistic · Baseline</div>
+            <p class="mc-desc">Bayes' rule with conditional-independence assumption. Fit in 7 ms. Uses TF-IDF only (requires non-negative input).</p>
+            <div class="mc-params">
+              <div class="mc-param-title">Hyperparameters</div>
+              <table>
+                <tr><td>alpha</td><td><strong>0.1</strong> — lighter Laplace smoothing (default 1.0 too aggressive at 5k vocab)</td></tr>
+                <tr><td>fit_prior</td><td>True (learns class priors)</td></tr>
+              </table>
+            </div>
+            <div class="mc-metrics">
+              <span class="metric-badge">Acc <span class="mb-num">97.4%</span></span>
+              <span class="metric-badge">F1 <span class="mb-num">0.893</span></span>
+              <span class="metric-badge good">Train <span class="mb-num">7 ms</span></span>
+            </div>
+          </div>
+
+          <!-- LR -->
+          <div class="model-card-ml">
+            <h4>Logistic Regression</h4>
+            <div class="mc-type">Linear · Interpretable</div>
+            <p class="mc-desc">Coefficients directly show spam-pushing tokens: <code>repli +3.29</code>, <code>free +2.79</code>, <code>text +2.66</code>. Uses TF-IDF + engineered features.</p>
+            <div class="mc-params">
+              <div class="mc-param-title">Hyperparameters</div>
+              <table>
+                <tr><td>C</td><td>1.0 — default regularisation</td></tr>
+                <tr><td>class_weight</td><td><strong>'balanced'</strong> — mandatory for 87/13</td></tr>
+                <tr><td>max_iter</td><td>1000 — ensure convergence</td></tr>
+                <tr><td>solver</td><td>'liblinear' — fast for binary/sparse</td></tr>
+              </table>
+            </div>
+            <div class="mc-metrics">
+              <span class="metric-badge">Acc <span class="mb-num">98.5%</span></span>
+              <span class="metric-badge">F1 <span class="mb-num">0.939</span></span>
+              <span class="metric-badge good">Train <span class="mb-num">50 ms</span></span>
+            </div>
+          </div>
+
+          <!-- SVM -->
+          <div class="model-card-ml">
+            <h4>Linear SVM</h4>
+            <div class="mc-type">Max-Margin · Sparse Optimal</div>
+            <p class="mc-desc"><code>LinearSVC</code> wrapped in <code>CalibratedClassifierCV(cv=5, sigmoid)</code> to recover probabilities for ROC-AUC.</p>
+            <div class="mc-params">
+              <div class="mc-param-title">Hyperparameters</div>
+              <table>
+                <tr><td>C</td><td>1.0 — default margin trade-off</td></tr>
+                <tr><td>class_weight</td><td><strong>'balanced'</strong></td></tr>
+                <tr><td>loss</td><td>'squared_hinge' — smoother gradient</td></tr>
+                <tr><td>max_iter</td><td>2000 — doubled from default</td></tr>
+              </table>
+            </div>
+            <div class="mc-metrics">
+              <span class="metric-badge">Acc <span class="mb-num">98.7%</span></span>
+              <span class="metric-badge">F1 <span class="mb-num">0.945</span></span>
+              <span class="metric-badge">Prec <span class="mb-num">0.976</span></span>
+            </div>
+          </div>
+
+          <!-- DistilBERT -->
+          <div class="model-card-ml best">
+            <h4>DistilBERT (fine-tuned)</h4>
+            <div class="mc-type">Transformer · Contextual</div>
+            <p class="mc-desc">66M-parameter distilled BERT. Self-attention captures word order &amp; context (<em>"free time"</em> ≠ <em>"free prize"</em>) — the one thing TF-IDF loses.</p>
+            <div class="mc-params">
+              <div class="mc-param-title">Fine-tuning hyperparameters</div>
+              <table>
+                <tr><td>learning_rate</td><td><strong>2e-5</strong> — Devlin et al. safe default</td></tr>
+                <tr><td>num_train_epochs</td><td>3 — avoids overfit on 5k msgs</td></tr>
+                <tr><td>batch_size</td><td>16 train / 32 eval</td></tr>
+                <tr><td>weight_decay</td><td>0.01 — AdamW L2</td></tr>
+                <tr><td>max_length</td><td>128 — covers 99%+ messages</td></tr>
+              </table>
+            </div>
+            <div class="mc-metrics">
+              <span class="metric-badge good">Acc <span class="mb-num">99.2%</span></span>
+              <span class="metric-badge good">F1 <span class="mb-num">0.969</span></span>
+              <span class="metric-badge good">AUC <span class="mb-num">0.9985</span></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-block p"><pre><span class="c-com"># DistilBERT fine-tuning — the key arguments</span>
+<span class="c-kw">from</span> transformers <span class="c-kw">import</span> (DistilBertForSequenceClassification,
+                          TrainingArguments, Trainer)
+
+bert_model = DistilBertForSequenceClassification.from_pretrained(
+    <span class="c-str">'distilbert-base-uncased'</span>, num_labels=<span class="c-num">2</span>).to(device)
+
+training_args = TrainingArguments(
+    num_train_epochs=<span class="c-num">3</span>,
+    per_device_train_batch_size=<span class="c-num">16</span>,
+    per_device_eval_batch_size=<span class="c-num">32</span>,
+    learning_rate=<span class="c-num">2e-5</span>,              <span class="c-com"># ← lowest safe LR for small dataset</span>
+    weight_decay=<span class="c-num">0.01</span>,
+    warmup_steps=<span class="c-num">0</span>,
+    eval_strategy=<span class="c-str">'epoch'</span>,
+    save_strategy=<span class="c-str">'no'</span>, seed=<span class="c-num">42</span>,
+)
+trainer = Trainer(model=bert_model, args=training_args,
+                  train_dataset=train_ds_bert, eval_dataset=test_ds_bert,
+                  compute_metrics=compute_metrics)
+trainer.train()                                  <span class="c-com"># ~2.6 min on Colab T4</span></pre></div>
+
+        <!-- Final Comparison -->
+        <div class="sh purple">2. Final Model Comparison &amp; Charts</div>
+
+        <div class="table-wrap">
+          <table class="ml-results-table">
+            <thead>
+              <tr><th>Model</th><th>Accuracy</th><th>Precision (spam)</th><th>Recall (spam)</th><th>F1 (spam)</th><th>F1 macro</th><th>ROC-AUC</th><th>Train time</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Naive Bayes</td><td>0.9739</td><td>0.9262</td><td>0.8626</td><td>0.8933</td><td>0.9392</td><td>0.9906</td><td>0.01 s</td></tr>
+              <tr><td>Logistic Regression</td><td>0.9845</td><td>0.9389</td><td>0.9389</td><td>0.9389</td><td>0.9650</td><td>0.9935</td><td>0.05 s</td></tr>
+              <tr><td>Linear SVM</td><td>0.9865</td><td><strong>0.9756</strong></td><td>0.9160</td><td>0.9449</td><td>0.9686</td><td>0.9953</td><td>0.95 s</td></tr>
+              <tr class="best-row"><td><strong>DistilBERT</strong></td><td><strong>0.9923</strong></td><td><strong>0.9767</strong></td><td><strong>0.9618</strong></td><td><strong>0.9692</strong></td><td><strong>0.9824</strong></td><td><strong>0.9985</strong></td><td>154 s</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="img-card">
+          <img src="images/a2_text_confmats_4.png" alt="Confusion matrices for 4 text models">
+          <div class="img-caption"><strong>Fig A2-TXT-1 – Row-normalised Confusion Matrices.</strong> Each row is the per-class recall. DistilBERT is near-diagonal on both classes; Naive Bayes has the weakest spam recall (0.86).</div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="img-card">
+            <img src="images/a2_text_roc.png" alt="ROC curves 4 models">
+            <div class="img-caption"><strong>Fig A2-TXT-2 – ROC Curves.</strong> All 4 models push into the top-left corner (AUC ≥ 0.99). DistilBERT's curve is closest to the ideal (0, 1) point.</div>
+          </div>
+          <div class="img-card">
+            <img src="images/a2_text_comparison.png" alt="Model comparison bar chart">
+            <div class="img-caption"><strong>Fig A2-TXT-3 – Metric Bars.</strong> Side-by-side Precision / Recall / F1 / AUC for the four models. DistilBERT wins on Recall while Linear SVM ties on Precision at a fraction of the cost.</div>
+          </div>
+        </div>
+
+        <div class="insight purple">
+          <h4>Takeaways — Text ML</h4>
+          <ul>
+            <li><strong>Best model:</strong> DistilBERT F1 = 0.969, AUC = 0.9985 — transformer context helps ambiguous cases (<code>free</code> in ham vs spam).</li>
+            <li><strong>Classical models are astonishingly competitive:</strong> Linear SVM reaches F1 = 0.945 at 1/150 the training time of DistilBERT.</li>
+            <li><strong>Engineered features help:</strong> Adding <code>has_phone</code>, <code>has_url</code>, <code>length</code> lifts LR/SVM by ~2–4 F1 points vs TF-IDF alone.</li>
+            <li><strong>Deployment guide:</strong> On-device → Linear SVM (sub-ms, &lt; 1 MB). Server-side GPU → DistilBERT (50–100 ms, +2.4 F1 points).</li>
+          </ul>
+        </div>
       </div>
 
       <!-- ══════════════════════════════════
@@ -1123,9 +1761,18 @@
       <div id="tab-image" class="tab-content">
 
         <div class="section-hero amber" data-bg-text="CIFAR">
-          <div class="section-hero-badge">🖼️ Dataset 3 · Image</div>
-          <h2>CIFAR-10 Image Dataset</h2>
-          <p>Visual analysis of 60,000 low-resolution RGB images across 10 balanced object classes — a canonical computer vision benchmark.</p>
+          <div class="section-hero-badge">🖼️ Section 3 · Image Data</div>
+          <h2>Image Data: CIFAR-10 Classification</h2>
+          <p>Visual analysis of 60,000 low-resolution RGB images across 10 balanced classes, followed by a transfer-learning pipeline using ResNet50 (ImageNet pretrained) reaching 90.5% test accuracy in 3 epochs.</p>
+        </div>
+
+        <!-- 3.1 EDA Banner -->
+        <div class="sub-section a">
+          <div class="ss-num">3.1</div>
+          <div class="ss-text">
+            <h3>Exploratory Data Analysis</h3>
+            <p>Class balance (perfect 10×5000) · per-channel RGB statistics · per-class mean images · brightness distribution · data quality audit.</p>
+          </div>
         </div>
 
         <!-- 1. Overview -->
@@ -1244,6 +1891,140 @@
             <li><strong>Modeling Direction:</strong> CNNs (especially ResNet/VGG/EfficientNet variants) are the go-to architectures. State-of-the-art on CIFAR-10 exceeds 99% accuracy with ViT and WideResNet models, providing strong upper-bound context.</li>
           </ul>
         </div>
+
+        <!-- ════════════════════════════════════════════════════
+             ASSIGNMENT 2 — IMAGE ML PIPELINE
+        ════════════════════════════════════════════════════ -->
+        <div class="ml-divider"><span class="ml-divider-badge">Assignment 2 · Machine Learning</span></div>
+
+        <!-- 3.2 Preprocessing Banner -->
+        <div class="sub-section a">
+          <div class="ss-num">3.2</div>
+          <div class="ss-text">
+            <h3>Preprocessing Pipeline</h3>
+            <p>Resize 32×32 → 224×224 (bilinear) · ResNet50-specific channel preprocessing (BGR + ImageNet means) · tf.data batching + prefetch · integer-label <code>sparse_categorical_crossentropy</code>.</p>
+          </div>
+        </div>
+
+        <div class="ml-hero amber" id="img-ml">
+          <span class="ml-hero-tag">🖼️ Image · CIFAR-10 Transfer Learning</span>
+          <h3>ResNet50 (ImageNet) → CIFAR-10 in 3 Epochs</h3>
+          <p>Freeze a 50-layer ResNet50 pre-trained on 1.28M ImageNet images, attach a 524k-parameter classification head, and fine-tune. Reaches <strong>90.5% test accuracy</strong> — a strong result for ~3 minutes of GPU time.</p>
+        </div>
+
+        <!-- Preprocessing -->
+        <div class="sh amber">1. Preprocessing — Matching the Backbone</div>
+
+        <div class="pipeline-steps">
+          <div class="pipe-step a"><div class="pipe-num">1</div><h5>Resize 32 → 224</h5><p>ResNet50 expects 224×224 ImageNet-sized inputs. Use bilinear interpolation with <code>tf.image.resize</code>.</p></div>
+          <div class="pipe-step a"><div class="pipe-num">2</div><h5>Channel preprocessing</h5><p>Use official <code>resnet50.preprocess_input</code>: RGB→BGR and subtract ImageNet means [103.94, 116.78, 123.68]. Matches pre-training exactly.</p></div>
+          <div class="pipe-step a"><div class="pipe-num">3</div><h5>tf.data pipeline</h5><p>Batch 32 + <code>prefetch(AUTOTUNE)</code> for GPU-friendly streaming. No augmentation in epoch-budget 3.</p></div>
+          <div class="pipe-step a"><div class="pipe-num">4</div><h5>Labels</h5><p>Keep labels as integers (shape (N, 1)) → use <code>sparse_categorical_crossentropy</code> (no one-hot).</p></div>
+        </div>
+
+        <div class="code-block a"><pre><span class="c-kw">import</span> tensorflow <span class="c-kw">as</span> tf
+<span class="c-kw">from</span> tensorflow.keras.applications.resnet50 <span class="c-kw">import</span> preprocess_input
+
+(X_train, y_train), (X_test, y_test) = tf.keras.datasets.cifar10.load_data()
+IMG_HEIGHT, IMG_WIDTH = <span class="c-num">224</span>, <span class="c-num">224</span>
+
+<span class="c-kw">def</span> <span class="c-fn">preprocess_image</span>(image, label):
+    image = tf.image.resize(image, (IMG_HEIGHT, IMG_WIDTH))
+    image = preprocess_input(image)           <span class="c-com"># BGR + ImageNet means</span>
+    <span class="c-kw">return</span> image, label
+
+train_ds = (tf.data.Dataset.from_tensor_slices((X_train, y_train))
+            .map(preprocess_image).batch(<span class="c-num">32</span>).prefetch(tf.data.AUTOTUNE))</pre></div>
+
+        <!-- 3.3 Model Banner -->
+        <div class="sub-section a">
+          <div class="ss-num">3.3</div>
+          <div class="ss-text">
+            <h3>Model &amp; Evaluation — ResNet50 Transfer Learning</h3>
+            <p>Frozen ResNet50 backbone (23M params, untrained) + a 524k-parameter classification head. Only the head is fine-tuned. Training history, test-set evaluation and sample predictions below.</p>
+          </div>
+        </div>
+
+        <!-- Model -->
+        <div class="sh amber">1. Model — ResNet50 + Tiny Head</div>
+
+        <div class="model-grid">
+          <div class="model-card-ml best">
+            <h4>ResNet50 Transfer Learning</h4>
+            <div class="mc-type">CNN · 50 Layers · ImageNet Pretrained</div>
+            <p class="mc-desc">Freeze every convolutional layer, attach <code>GlobalAveragePooling2D → Dense(256, ReLU) → Dense(10, softmax)</code>. Only the 524k head parameters are trained — the 23M backbone stays frozen.</p>
+            <div class="mc-params">
+              <div class="mc-param-title">Key hyperparameters</div>
+              <table>
+                <tr><td>base_model.trainable</td><td><strong>False</strong> — freeze 50 conv layers</td></tr>
+                <tr><td>pooling</td><td>GlobalAvgPool2D — avoids 100M-param Flatten</td></tr>
+                <tr><td>head hidden</td><td>Dense(256, ReLU)</td></tr>
+                <tr><td>optimizer</td><td>Adam(lr=<strong>1e-3</strong>) — safe with frozen backbone</td></tr>
+                <tr><td>loss</td><td>sparse_categorical_crossentropy</td></tr>
+                <tr><td>epochs</td><td><strong>3</strong> — val-loss climbs at epoch 3 → early stop</td></tr>
+                <tr><td>batch_size</td><td>32</td></tr>
+              </table>
+            </div>
+            <div class="mc-metrics">
+              <span class="metric-badge good">Test Acc <span class="mb-num">90.45%</span></span>
+              <span class="metric-badge good">Test Loss <span class="mb-num">0.2975</span></span>
+              <span class="metric-badge">Trainable <span class="mb-num">524k / 24M</span></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-block a"><pre><span class="c-kw">from</span> tensorflow.keras.applications <span class="c-kw">import</span> ResNet50
+<span class="c-kw">from</span> tensorflow.keras.layers <span class="c-kw">import</span> Dense, GlobalAveragePooling2D
+<span class="c-kw">from</span> tensorflow.keras.models <span class="c-kw">import</span> Model
+
+base_model = ResNet50(weights=<span class="c-str">'imagenet'</span>, include_top=<span class="c-kw">False</span>,
+                      input_shape=(<span class="c-num">224</span>,<span class="c-num">224</span>,<span class="c-num">3</span>))
+base_model.trainable = <span class="c-kw">False</span>                <span class="c-com"># ← key line: freeze pretrained weights</span>
+
+x = base_model.output
+x = GlobalAveragePooling2D()(x)              <span class="c-com"># (7,7,2048) → (2048,)</span>
+x = Dense(<span class="c-num">256</span>, activation=<span class="c-str">'relu'</span>)(x)
+out = Dense(<span class="c-num">10</span>, activation=<span class="c-str">'softmax'</span>)(x)
+model = Model(inputs=base_model.input, outputs=out)
+
+model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=<span class="c-num">0.001</span>),
+              loss=<span class="c-str">'sparse_categorical_crossentropy'</span>, metrics=[<span class="c-str">'accuracy'</span>])
+
+history = model.fit(train_ds, epochs=<span class="c-num">3</span>, validation_data=test_ds)</pre></div>
+
+        <!-- Training & Eval -->
+        <div class="sh amber">2. Training History &amp; Evaluation</div>
+
+        <div class="table-wrap">
+          <table class="ml-results-table">
+            <thead><tr><th>Epoch</th><th>Train Acc</th><th>Train Loss</th><th>Val Acc</th><th>Val Loss</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>0.8724</td><td>0.3721</td><td>0.8947</td><td>0.3048</td><td>ImageNet features transfer immediately</td></tr>
+              <tr class="best-row"><td><strong>2</strong></td><td>0.9128</td><td>0.2535</td><td><strong>0.9060</strong></td><td><strong>0.2860</strong></td><td><strong>Optimum</strong> — lowest val loss</td></tr>
+              <tr><td>3</td><td>0.9300</td><td>0.2011</td><td>0.9045</td><td>0.2975</td><td>Overfit signal — val loss ↑</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="img-card">
+          <img src="images/a2_resnet_history.png" alt="ResNet50 training history">
+          <div class="img-caption"><strong>Fig A2-IMG-1 – Training History.</strong> Training accuracy keeps rising but validation accuracy plateaus at ~0.90 after epoch 2. Classic early-overfitting signal — 3 epochs is the correct budget.</div>
+        </div>
+
+        <div class="img-card">
+          <img src="images/a2_resnet_eval_text.png" alt="Sample predictions from ResNet50">
+          <div class="img-caption"><strong>Fig A2-IMG-2 – Sample Test Predictions.</strong> Green titles = correct, red titles = mistakes. Errors concentrate in animal classes (cat↔dog, bird↔deer) — exactly the classes whose mean-images were the blurriest in EDA (Fig IMG-4), confirming the hypothesis that low-resolution animal categories are the hardest.</div>
+        </div>
+
+        <div class="insight amber">
+          <h4>Takeaways — Image ML</h4>
+          <ul>
+            <li><strong>Test accuracy 90.45%</strong> with only 524k trainable parameters — massive compute savings vs training a CNN from scratch.</li>
+            <li><strong>Pre-processing must match the backbone:</strong> swapping <code>preprocess_input</code> for <code>image/255.0</code> costs ~10 accuracy points because the frozen filters no longer see ImageNet-style inputs.</li>
+            <li><strong>Error pattern matches EDA:</strong> mistakes cluster in visually ambiguous classes (cat/dog, bird/deer) — the blurry mean-images in Fig IMG-4 were prophetic.</li>
+            <li><strong>Next steps:</strong> two-stage fine-tuning (unfreeze last ~10 layers at lr=1e-5); add random flip + crop augmentation; try EfficientNet-B0 or ViT-Small for a parameter-efficient alternative.</li>
+          </ul>
+        </div>
       </div>
 
       <!-- ══════════════════════════════════
@@ -1251,10 +2032,28 @@
       ══════════════════════════════════ -->
       <div id="tab-multimodal" class="tab-content">
 
-        <div class="section-hero emerald" data-bg-text="VQA">
-          <div class="section-hero-badge">🔗 Dataset 4 · Multimodal</div>
-          <h2>Image–Caption Multimodal Dataset</h2>
-          <p>Joint analysis of paired image and text data — exploring how visual and linguistic modalities complement each other for image captioning and visual understanding tasks.</p>
+        <div class="section-hero emerald" data-bg-text="FLICKR">
+          <div class="section-hero-badge">🔗 Section 4 · Multimodal Data · EDA only</div>
+          <h2>Multimodal Data: Flickr8k (Image + Caption)</h2>
+          <p>Joint analysis of 8,092 real-world images paired with 40,460 human-written captions (5 per image). This section is <strong>EDA only</strong> — no downstream ML pipeline is applied; the goal is to characterise both modalities and their alignment.</p>
+        </div>
+
+        <div class="insight emerald" style="margin-bottom: 28px;">
+          <h4>⚠️ Scope note — Multimodal is EDA-only</h4>
+          <ul>
+            <li>Unlike Sections 1–3, this section does <strong>not</strong> train a downstream ML model.</li>
+            <li>Instead we thoroughly explore both modalities (image dimensions, RGB statistics, caption length, vocabulary, inter-annotator agreement) and document the preprocessing recommendations for future captioning or cross-modal retrieval work.</li>
+            <li>Recommended next-step models (for the reader, not trained here): <strong>CLIP</strong>, <strong>BLIP</strong>, or <strong>GIT</strong> — all benefit strongly from the dataset statistics documented below.</li>
+          </ul>
+        </div>
+
+        <!-- 4.1 EDA Banner -->
+        <div class="sub-section e">
+          <div class="ss-num">4.1</div>
+          <div class="ss-text">
+            <h3>Exploratory Data Analysis (EDA Only)</h3>
+            <p>Image modality (dimensions · RGB · brightness) + text modality (caption length · vocabulary · POS tags · inter-annotator agreement) on 8,092 images × 5 captions.</p>
+          </div>
         </div>
 
         <!-- 1. Overview -->
@@ -1300,7 +2099,7 @@
         </div>
 
         <!-- SAMPLES SECTION -->
-        <div class="sh emerald">2. Dataset Samples — Image + Caption Pairs</div>
+        <div class="sh emerald">3. Dataset Samples — Image + Caption Pairs</div>
         <div class="insight emerald" style="margin-bottom:20px;">
           <h4>📌 Về bộ dữ liệu Flickr8k</h4>
           <ul>
@@ -1407,8 +2206,8 @@
           </div>
         </div>
 
-        <!-- 3. Image dimensions -->
-        <div class="sh emerald">3. Image Dimension Analysis</div>
+        <!-- Image dimensions -->
+        <div class="sh emerald">4. Image Dimension Analysis</div>
 
         <div class="img-card">
           <img src="images/multi_dimensions.png" alt="Image Dimension Distribution">
@@ -1424,8 +2223,8 @@
           </ul>
         </div>
 
-        <!-- 4. RGB distribution -->
-        <div class="sh emerald">4. RGB Channel Distribution</div>
+        <!-- RGB distribution -->
+        <div class="sh emerald">5. RGB Channel Distribution</div>
         <div class="img-card">
           <img src="images/multi_rgb_dist.png" alt="Multimodal RGB Distribution">
           <div class="img-caption"><strong>Fig 4.1 – Pixel Intensity Distribution per RGB Channel (Multimodal Image Corpus).</strong> Broader and more variable than CIFAR-10 — reflecting the diversity of real-world photography including indoor, outdoor, close-up, and landscape scenes.</div>
@@ -1439,8 +2238,8 @@
           </ul>
         </div>
 
-        <!-- 5. Caption box plot -->
-        <div class="sh emerald">5. Caption Length — Box Plot Analysis</div>
+        <!-- Caption box plot -->
+        <div class="sh emerald">6. Caption Length — Box Plot Analysis</div>
         <div class="img-card">
           <img src="images/multi_caption_box.png" alt="Caption Box Plot">
           <div class="img-caption"><strong>Fig 5.1 – Box Plot of Caption Word Count.</strong> Compact IQR (8–13 words) with several high-length outliers (30+ words). Median ≈ 10 words. The tight central tendency indicates consistent annotation guidelines despite the outlier long captions.</div>
@@ -1454,8 +2253,8 @@
           </ul>
         </div>
 
-        <!-- 6. Caption length histogram -->
-        <div class="sh emerald">6. Caption Length — Histogram Distribution</div>
+        <!-- Caption length histogram -->
+        <div class="sh emerald">7. Caption Length — Histogram Distribution</div>
         <div class="img-card">
           <img src="images/multi_caption_len.png" alt="Caption Length Histogram">
           <div class="img-caption"><strong>Fig 6.1 – Histogram of Caption Word Counts.</strong> Right-skewed distribution peaking at 8–12 words. The long tail extends to 35+ words. This informs the choice of maximum sequence length for Transformer-based models.</div>
@@ -1469,8 +2268,8 @@
           </ul>
         </div>
 
-        <!-- 7. Top caption words -->
-        <div class="sh emerald">7. Caption Vocabulary — Top Words</div>
+        <!-- Top caption words -->
+        <div class="sh emerald">8. Caption Vocabulary — Top Words</div>
         <div class="img-card">
           <img src="images/multi_top_words.png" alt="Top Words in Captions">
           <div class="img-caption"><strong>Fig 7.1 – Most Frequent Words in Captions (After Stopword Removal).</strong> "man", "woman", "group", "standing", "holding", "street", "dog", "white", "playing" dominate — revealing a human-centric, action-focused dataset with outdoor settings.</div>
@@ -1484,8 +2283,8 @@
           </ul>
         </div>
 
-        <!-- 8. Word vs char scatter -->
-        <div class="sh emerald">8. Caption Word vs. Character Count</div>
+        <!-- Word vs char scatter -->
+        <div class="sh emerald">9. Caption Word vs. Character Count</div>
         <div class="img-card">
           <img src="images/multi_word_char.png" alt="Word vs Character Scatter — Captions">
           <div class="img-caption"><strong>Fig 8.1 – Scatter: Caption Word Count vs. Character Count.</strong> Tight linear relationship confirms lexical consistency (avg word length ≈ 4.5 chars/word). No tokenization anomalies — the caption text is clean, well-formed English prose.</div>
@@ -1500,7 +2299,7 @@
         </div>
 
         <!-- M2: Image brightness -->
-        <div class="sh emerald">9. Image Brightness Analysis</div>
+        <div class="sh emerald">10. Image Brightness Analysis</div>
         <div class="img-card">
           <img src="images/multi_brightness.png" alt="Image Brightness Distribution">
           <div class="img-caption"><strong>Fig 9.1 – Phân phối độ sáng ảnh (mean pixel value) trên 500 ảnh.</strong> Phần lớn ảnh thuộc vùng Neutral (85–170), với đuôi kéo về phía Bright — phản ánh ảnh ngoài trời ban ngày chiếm đa số trong Flickr8k.</div>
@@ -1515,7 +2314,7 @@
         </div>
 
         <!-- M3: Inter-annotator agreement -->
-        <div class="sh emerald">10. Inter-annotator Agreement (5 Captions / Image)</div>
+        <div class="sh emerald">11. Inter-annotator Agreement (5 Captions / Image)</div>
         <div class="img-card">
           <img src="images/multi_agreement.png" alt="Inter-annotator Agreement">
           <div class="img-caption"><strong>Fig 10.1 – Jaccard Similarity giữa các cặp captions cho cùng một ảnh (500 ảnh).</strong> Histogram bên trái: tất cả các cặp pairwise. Bên phải: trung bình mỗi ảnh. Mean Jaccard ≈ 0.15–0.20 cho thấy annotators chia sẻ ~15–20% vocabulary.</div>
@@ -1530,7 +2329,7 @@
         </div>
 
         <!-- M4: POS tagging -->
-        <div class="sh emerald">11. Part-of-Speech (POS) Distribution</div>
+        <div class="sh emerald">12. Part-of-Speech (POS) Distribution</div>
         <div class="img-card">
           <img src="images/multi_pos_dist.png" alt="POS Tag Distribution">
           <div class="img-caption"><strong>Fig 11.1 – Phân phối POS tags trong captions (300 captions đầu).</strong> Noun chiếm tỉ lệ cao nhất, tiếp theo là Preposition và Determiner — cấu trúc chuẩn của câu mô tả hình ảnh tiếng Anh.</div>
@@ -1546,7 +2345,7 @@
         </div>
 
         <!-- M5: Vocabulary richness TTR -->
-        <div class="sh emerald">12. Vocabulary Richness (Type-Token Ratio)</div>
+        <div class="sh emerald">13. Vocabulary Richness (Type-Token Ratio)</div>
         <div class="img-card">
           <img src="images/multi_vocab_richness.png" alt="Vocabulary Richness TTR">
           <div class="img-caption"><strong>Fig 12.1 – Số unique words per image và top 20 từ phổ biến nhất trong captions.</strong> TTR của Flickr8k captions thường cao hơn SMS spam, phản ánh sự phong phú của ngôn ngữ mô tả thực tế.</div>
@@ -1599,52 +2398,60 @@
   /* ── Tab navigation ── */
   const tabQuickLinks = {
     tabular: [
-      { label: '1. Dataset Overview', anchor: '' },
-      { label: '2. Feature List', anchor: '' },
-      { label: '3. Missing Values', anchor: '' },
-      { label: '4. Distributions', anchor: '' },
-      { label: '5. Categorical', anchor: '' },
-      { label: '6. Correlation', anchor: '' },
-      { label: '7. Survival Rate', anchor: '' },
-      { label: '8. Outliers', anchor: '' },
+      { label: '1.1 Exploratory Data Analysis' },
+      { label: '    · Dataset Overview' },
+      { label: '    · Feature List & Types' },
+      { label: '    · Distributions & Outliers' },
+      { label: '    · Survival by Group' },
+      { label: '    · EDA Key Findings' },
+      { label: '1.2 Preprocessing Pipeline' },
+      { label: '1.3 Model 1 — Random Forest' },
+      { label: '1.4 Model 2 — SVC (default)' },
+      { label: '1.5 Comparison & Takeaways' },
     ],
     text: [
-      { label: '1. Overview', anchor: '' },
-      { label: '2. Feature Types', anchor: '' },
-      { label: '3. Derived Features', anchor: '' },
-      { label: '4. Samples', anchor: '' },
-      { label: '5. Class Distribution', anchor: '' },
-      { label: '6. Stopwords', anchor: '' },
-      { label: '7. Message Length', anchor: '' },
-      { label: '10. TF-IDF Unigrams', anchor: '' },
-      { label: '12. Word Clouds', anchor: '' },
+      { label: '2.1 Exploratory Data Analysis' },
+      { label: '    · Dataset Overview' },
+      { label: '    · Class Imbalance (87/13)' },
+      { label: '    · Message Length Analysis' },
+      { label: '    · TF-IDF + Bigrams' },
+      { label: '    · EDA Key Findings' },
+      { label: '2.2 7-Step Preprocessing' },
+      { label: '2.3 Naive Bayes · LR · SVM' },
+      { label: '2.4 DistilBERT (fine-tuned)' },
+      { label: '2.5 Model Comparison' },
     ],
     image: [
-      { label: '1. Overview', anchor: '' },
-      { label: '2. Data Structure', anchor: '' },
-      { label: '3. Class Labels', anchor: '' },
-      { label: '4. Sample Images', anchor: '' },
-      { label: '5. Class Balance', anchor: '' },
-      { label: '6. RGB Channels', anchor: '' },
+      { label: '3.1 Exploratory Data Analysis' },
+      { label: '    · Dataset Overview' },
+      { label: '    · Class Balance' },
+      { label: '    · RGB / Pixel Stats' },
+      { label: '    · EDA Key Findings' },
+      { label: '3.2 Preprocessing Pipeline' },
+      { label: '3.3 ResNet50 Transfer' },
+      { label: '3.4 Training & Evaluation' },
     ],
     multimodal: [
-      { label: '1. Overview', anchor: '' },
-      { label: '2. Data Structure', anchor: '' },
-      { label: '3. Image Dimensions', anchor: '' },
-      { label: '4. RGB Distribution', anchor: '' },
-      { label: '5. Caption Box Plot', anchor: '' },
-      { label: '6. Caption Histogram', anchor: '' },
-      { label: '7. Caption Vocabulary', anchor: '' },
-      { label: '8. Word vs Char', anchor: '' },
+      { label: '4.1 Dataset Overview (EDA only)' },
+      { label: '4.2 Image Dimensions' },
+      { label: '4.3 RGB Distribution' },
+      { label: '4.4 Caption Length & Vocab' },
+      { label: '4.5 Inter-annotator Agreement' },
+      { label: '4.6 POS & Vocabulary Richness' },
+      { label: '4.7 Summary of Findings' },
     ],
   };
 
   function updateQuickLinks(tab) {
     const ql = document.getElementById('sidebar-quick-links');
     const links = tabQuickLinks[tab] || [];
-    ql.innerHTML = links.map(l =>
-      `<a href="#" onclick="return false;" style="cursor:default">${l.label}</a>`
-    ).join('');
+    ql.innerHTML = links.map(l => {
+      const isSub = l.label.startsWith('    ');
+      const style = isSub
+        ? 'cursor:default; padding-left:64px; font-size:.78rem; color:#334155;'
+        : 'cursor:default; font-weight:600;';
+      return `<a href="#" onclick="return false;" style="${style}">${l.label.trim()}</a>`;
+    }).join('');
   }
 
   function switchTab(tab) {
