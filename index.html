@@ -588,6 +588,127 @@
       font-size: .88rem; color: var(--muted); margin: 0;
     }
 
+    /* ─── HOME · DATASET PREVIEWS ──────────────────────────── */
+    .dp-section {
+      background: var(--body-bg);
+      padding: 80px 24px 100px;
+      position: relative;
+    }
+    .dp-container {
+      max-width: 1180px; margin: 0 auto;
+    }
+    .dp-section-head {
+      text-align: center; margin-bottom: 56px;
+    }
+    .dp-eyebrow {
+      display: inline-block; background: rgba(59,130,246,.12); color: var(--blue);
+      font-size: .75rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
+      padding: 6px 14px; border-radius: 100px; margin-bottom: 14px;
+    }
+    .dp-section-head h2 {
+      font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+      font-weight: 700; color: var(--navy); margin-bottom: 12px; line-height: 1.2;
+    }
+    .dp-section-head p {
+      max-width: 720px; margin: 0 auto; color: var(--muted); font-size: 1rem; line-height: 1.7;
+    }
+
+    .dp-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 16px; box-shadow: var(--shadow);
+      padding: 32px 28px 28px; margin-bottom: 32px;
+      position: relative; overflow: hidden;
+    }
+    .dp-card::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 5px;
+    }
+    .dp-card.blue::before    { background: linear-gradient(180deg, var(--blue), #1D4ED8); }
+    .dp-card.purple::before  { background: linear-gradient(180deg, var(--purple), #6D28D9); }
+    .dp-card.amber::before   { background: linear-gradient(180deg, var(--amber), #B45309); }
+    .dp-card.emerald::before { background: linear-gradient(180deg, var(--emerald), #065F46); }
+
+    .dp-card-head {
+      display: flex; align-items: flex-start; gap: 18px; margin-bottom: 24px;
+      padding-bottom: 20px; border-bottom: 1px dashed var(--border);
+    }
+    .dp-card-icon {
+      width: 56px; height: 56px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.7rem;
+      flex-shrink: 0;
+    }
+    .dp-card.blue    .dp-card-icon { background: #DBEAFE; }
+    .dp-card.purple  .dp-card-icon { background: #EDE9FE; }
+    .dp-card.amber   .dp-card-icon { background: #FEF3C7; }
+    .dp-card.emerald .dp-card-icon { background: #D1FAE5; }
+    .dp-card-head h3 {
+      font-family: 'Space Grotesk', sans-serif; font-size: 1.35rem;
+      font-weight: 700; color: var(--navy); margin: 0 0 4px;
+    }
+    .dp-card-head .dp-card-sub {
+      color: var(--muted); font-size: .9rem; line-height: 1.55; margin: 0;
+    }
+    .dp-card-tag {
+      display: inline-block; font-size: .7rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; padding: 4px 10px; border-radius: 100px; margin-top: 8px;
+    }
+    .dp-card.blue    .dp-card-tag { background: #DBEAFE; color: #1D4ED8; }
+    .dp-card.purple  .dp-card-tag { background: #EDE9FE; color: #6D28D9; }
+    .dp-card.amber   .dp-card-tag { background: #FEF3C7; color: #92400E; }
+    .dp-card.emerald .dp-card-tag { background: #D1FAE5; color: #065F46; }
+
+    .dp-block-title {
+      font-family: 'Space Grotesk', sans-serif; font-size: 1rem;
+      font-weight: 700; color: var(--text); margin: 18px 0 12px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .dp-block-title .dp-bt-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+    }
+    .dp-card.blue    .dp-bt-dot { background: var(--blue); }
+    .dp-card.purple  .dp-bt-dot { background: var(--purple); }
+    .dp-card.amber   .dp-bt-dot { background: var(--amber); }
+    .dp-card.emerald .dp-bt-dot { background: var(--emerald); }
+    .dp-block-title small {
+      font-family: 'Inter', sans-serif; font-size: .78rem; font-weight: 500;
+      color: var(--muted); margin-left: 6px; letter-spacing: 0; text-transform: none;
+    }
+
+    .dp-table-wrap {
+      overflow-x: auto; border-radius: 10px; border: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+    .dp-table { width: 100%; border-collapse: collapse; font-size: .85rem; background: #FFF; }
+    .dp-table thead th {
+      background: #F8FAFC; color: #475569; text-align: left;
+      padding: 10px 12px; font-weight: 700; font-size: .75rem;
+      letter-spacing: .04em; text-transform: uppercase;
+      border-bottom: 1px solid var(--border); white-space: nowrap;
+    }
+    .dp-table tbody td {
+      padding: 9px 12px; border-bottom: 1px solid #F1F5F9; color: #334155;
+      vertical-align: middle;
+    }
+    .dp-table tbody tr:last-child td { border-bottom: none; }
+    .dp-table tbody tr:hover td { background: #F8FAFC; }
+    .dp-table tbody td code {
+      background: #F1F5F9; color: #475569; padding: 1px 6px;
+      border-radius: 4px; font-size: .8rem;
+    }
+    .dp-nan { color: #94A3B8; font-style: italic; }
+    .dp-num { font-variant-numeric: tabular-nums; }
+    .dp-truncate {
+      max-width: 320px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+      display: inline-block; vertical-align: middle;
+    }
+
+    @media (max-width: 760px) {
+      .dp-section { padding: 60px 16px 80px; }
+      .dp-card { padding: 24px 18px 22px; }
+      .dp-card-head { gap: 14px; }
+      .dp-card-icon { width: 46px; height: 46px; font-size: 1.4rem; border-radius: 12px; }
+      .dp-truncate { max-width: 200px; }
+    }
+
     /* ─── RESPONSIVE ───────────────────────────────────────── */
     @media (max-width: 900px) {
       .project-layout { flex-direction: column; }
@@ -718,6 +839,217 @@
         <small>Team</small>
         <p>Beng 10</p>
       </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       HOME · DATASET PREVIEWS — Schema + Sample Rows
+  ════════════════════════════════════════════════════════ -->
+  <section class="dp-section">
+    <div class="dp-container">
+      <div class="dp-section-head">
+        <span class="dp-eyebrow">🗂️ Dataset Previews</span>
+        <h2>What does each dataset actually look like?</h2>
+        <p>A quick at-a-glance schema (column · type · values) and 6 raw sample rows for each of the four datasets — so you can grasp the shape of the data before diving into the full EDA report.</p>
+      </div>
+
+      <!-- ─────────────────────────────────────────────────────
+           1) TITANIC — TABULAR
+      ───────────────────────────────────────────────────── -->
+      <div class="dp-card blue">
+        <div class="dp-card-head">
+          <div class="dp-card-icon">📋</div>
+          <div>
+            <h3>Titanic — Tabular Data</h3>
+            <p class="dp-card-sub">891 passengers · 12 columns (7 numerical + 5 categorical) · binary target <code>Survived</code> · 3 columns contain missing values (Age 19.9%, Cabin 77.1%, Embarked 0.2%).</p>
+            <span class="dp-card-tag">📑 train.csv · 891 × 12 · supervised classification</span>
+          </div>
+        </div>
+
+        <div class="dp-block-title"><span class="dp-bt-dot"></span>Column schema <small>name · type · role · values</small></div>
+        <div class="dp-table-wrap">
+          <table class="dp-table">
+            <thead>
+              <tr><th>#</th><th>Column</th><th>Data type</th><th>Role / Kind</th><th>Values · Range</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>0</td><td><strong>PassengerId</strong></td><td><span class="badge badge-int">int64</span></td><td>ID</td><td>1 – 891 (unique)</td></tr>
+              <tr><td>1</td><td><strong>Survived</strong></td><td><span class="badge badge-target">int64 · Target</span></td><td>categorical · binary</td><td>{0 = No → 549, 1 = Yes → 342}</td></tr>
+              <tr><td>2</td><td><strong>Pclass</strong></td><td><span class="badge badge-int">int64</span></td><td>categorical · ordinal</td><td>{1 → 216 · 2 → 184 · 3 → 491}</td></tr>
+              <tr><td>3</td><td><strong>Name</strong></td><td><span class="badge badge-object">object</span></td><td>text · high-cardinality</td><td>891 unique full names (titles: Mr/Mrs/Miss…)</td></tr>
+              <tr><td>4</td><td><strong>Sex</strong></td><td><span class="badge badge-cat">category</span></td><td>categorical · nominal</td><td>{male → 577 · female → 314}</td></tr>
+              <tr><td>5</td><td><strong>Age</strong></td><td><span class="badge badge-float">float64</span></td><td>numerical · continuous</td><td>0.42 – 80.0 years (177 NaN ≈ 19.9%)</td></tr>
+              <tr><td>6</td><td><strong>SibSp</strong></td><td><span class="badge badge-int">int64</span></td><td>numerical · discrete</td><td>{0,1,2,3,4,5,8} — 0 → 608</td></tr>
+              <tr><td>7</td><td><strong>Parch</strong></td><td><span class="badge badge-int">int64</span></td><td>numerical · discrete</td><td>{0,1,2,3,4,5,6} — 0 → 678</td></tr>
+              <tr><td>8</td><td><strong>Ticket</strong></td><td><span class="badge badge-object">object</span></td><td>text · high-cardinality</td><td>681 unique alphanumeric codes</td></tr>
+              <tr><td>9</td><td><strong>Fare</strong></td><td><span class="badge badge-float">float64</span></td><td>numerical · continuous</td><td>£0 – £512.33 (skew ≈ 4.79)</td></tr>
+              <tr><td>10</td><td><strong>Cabin</strong></td><td><span class="badge badge-cat">category</span></td><td>categorical · sparse</td><td>147 unique decks (687 NaN ≈ 77.1%)</td></tr>
+              <tr><td>11</td><td><strong>Embarked</strong></td><td><span class="badge badge-cat">category</span></td><td>categorical · nominal</td><td>{C → 168 · Q → 77 · S → 644}</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="dp-block-title"><span class="dp-bt-dot"></span>Sample rows <small>df.head(6) — first 6 records of train.csv</small></div>
+        <div class="dp-table-wrap">
+          <table class="dp-table">
+            <thead>
+              <tr><th>PId</th><th>Survived</th><th>Pclass</th><th>Name</th><th>Sex</th><th>Age</th><th>SibSp</th><th>Parch</th><th>Ticket</th><th>Fare</th><th>Cabin</th><th>Embarked</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td><span class="miss-high">0</span></td><td>3</td><td>Braund, Mr. Owen Harris</td><td>male</td><td class="dp-num">22.0</td><td>1</td><td>0</td><td>A/5 21171</td><td class="dp-num">7.2500</td><td><span class="dp-nan">NaN</span></td><td>S</td></tr>
+              <tr><td>2</td><td><span class="miss-none">1</span></td><td>1</td><td>Cumings, Mrs. John Bradley (Florence Briggs Th…)</td><td>female</td><td class="dp-num">38.0</td><td>1</td><td>0</td><td>PC 17599</td><td class="dp-num">71.2833</td><td>C85</td><td>C</td></tr>
+              <tr><td>3</td><td><span class="miss-none">1</span></td><td>3</td><td>Heikkinen, Miss. Laina</td><td>female</td><td class="dp-num">26.0</td><td>0</td><td>0</td><td>STON/O2. 3101282</td><td class="dp-num">7.9250</td><td><span class="dp-nan">NaN</span></td><td>S</td></tr>
+              <tr><td>4</td><td><span class="miss-none">1</span></td><td>1</td><td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td><td>female</td><td class="dp-num">35.0</td><td>1</td><td>0</td><td>113803</td><td class="dp-num">53.1000</td><td>C123</td><td>S</td></tr>
+              <tr><td>5</td><td><span class="miss-high">0</span></td><td>3</td><td>Allen, Mr. William Henry</td><td>male</td><td class="dp-num">35.0</td><td>0</td><td>0</td><td>373450</td><td class="dp-num">8.0500</td><td><span class="dp-nan">NaN</span></td><td>S</td></tr>
+              <tr><td>6</td><td><span class="miss-high">0</span></td><td>3</td><td>Moran, Mr. James</td><td>male</td><td class="dp-num"><span class="dp-nan">NaN</span></td><td>0</td><td>0</td><td>330877</td><td class="dp-num">8.4583</td><td><span class="dp-nan">NaN</span></td><td>Q</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ─────────────────────────────────────────────────────
+           2) SMS SPAM — TEXT
+      ───────────────────────────────────────────────────── -->
+      <div class="dp-card purple">
+        <div class="dp-card-head">
+          <div class="dp-card-icon">💬</div>
+          <div>
+            <h3>SMS Spam Collection — Text Data</h3>
+            <p class="dp-card-sub">5,572 raw SMS messages · 2 columns (label + raw text) · 0 missing values · severe class imbalance (Ham 86.6% / Spam 13.4%) · ~9,000 unique vocabulary tokens.</p>
+            <span class="dp-card-tag">📑 spam.csv · 5572 × 2 · binary text classification</span>
+          </div>
+        </div>
+
+        <div class="dp-block-title"><span class="dp-bt-dot"></span>Column schema <small>name · type · role · values</small></div>
+        <div class="dp-table-wrap">
+          <table class="dp-table">
+            <thead>
+              <tr><th>#</th><th>Column</th><th>Data type</th><th>Role / Kind</th><th>Values · Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>0</td><td><strong>label</strong></td><td><span class="badge badge-target">object · Target</span></td><td>categorical · binary</td><td>{ham → 4,825 (86.6%) · spam → 747 (13.4%)}</td></tr>
+              <tr><td>1</td><td><strong>message</strong></td><td><span class="badge badge-object">object · text</span></td><td>raw SMS string</td><td>5,572 messages · 5,169 unique · avg ≈ 80 chars / 17 words</td></tr>
+              <tr><td colspan="5" style="background:#FAFAFA;color:#6B7280;font-style:italic;font-size:.82rem;">↳ Engineered features (added during EDA): <code>word_count</code> (int), <code>char_count</code> (int), <code>stopword_count</code> (int), <code>has_phone</code> (bool), <code>tfidf_vector</code> (sparse float, ~9k dims), <code>bigram_tfidf</code> (sparse float).</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="dp-block-title"><span class="dp-bt-dot"></span>Sample rows <small>df.head(6) — first 6 records of spam.csv</small></div>
+        <div class="dp-table-wrap">
+          <table class="dp-table">
+            <thead>
+              <tr><th>#</th><th>label</th><th>message</th><th>words</th><th>chars</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>0</td><td><span class="badge badge-cat">ham</span></td><td>Go until jurong point, crazy.. Available only in bugis n great world la e buffet… Cine there got amore wat…</td><td>20</td><td>111</td></tr>
+              <tr><td>1</td><td><span class="badge badge-cat">ham</span></td><td>Ok lar... Joking wif u oni...</td><td>6</td><td>29</td></tr>
+              <tr><td>2</td><td><span class="badge badge-target">spam</span></td><td>Free entry in 2 a wkly comp to win FA Cup final tkts 21st May 2005. Text FA to 87121 to receive entry question(std txt rate)T&amp;C's apply 08452810075over18's</td><td>28</td><td>155</td></tr>
+              <tr><td>3</td><td><span class="badge badge-cat">ham</span></td><td>U dun say so early hor... U c already then say...</td><td>11</td><td>49</td></tr>
+              <tr><td>4</td><td><span class="badge badge-cat">ham</span></td><td>Nah I don't think he goes to usf, he lives around here though</td><td>13</td><td>61</td></tr>
+              <tr><td>5</td><td><span class="badge badge-target">spam</span></td><td>FreeMsg Hey there darling it's been 3 week's now and no word back! I'd like some fun you up for it still? Tb ok! XxX std chgs to send, £1.50 to rcv</td><td>35</td><td>147</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ─────────────────────────────────────────────────────
+           3) CIFAR-10 — IMAGE
+      ───────────────────────────────────────────────────── -->
+      <div class="dp-card amber">
+        <div class="dp-card-head">
+          <div class="dp-card-icon">🖼️</div>
+          <div>
+            <h3>CIFAR-10 — Image Data</h3>
+            <p class="dp-card-sub">60,000 RGB images of fixed 32×32 resolution · 10 perfectly balanced classes (6,000 / class) · 50k train + 10k test split · pixel values are <code>uint8</code> in <code>[0, 255]</code> with 3 channels (R, G, B).</p>
+            <span class="dp-card-tag">📑 cifar-10-batches-py · 60000 × (32,32,3) · multi-class classification</span>
+          </div>
+        </div>
+
+        <div class="dp-block-title"><span class="dp-bt-dot"></span>Column / Attribute schema <small>image arrays + label index</small></div>
+        <div class="dp-table-wrap">
+          <table class="dp-table">
+            <thead>
+              <tr><th>#</th><th>Attribute</th><th>Data type</th><th>Role / Kind</th><th>Values · Range</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>0</td><td><strong>image</strong></td><td><span class="badge badge-int">ndarray (uint8)</span></td><td>feature · 3D tensor</td><td>shape (32, 32, 3) — 3,072 pixels per image · [0, 255]</td></tr>
+              <tr><td>1</td><td><strong>label</strong></td><td><span class="badge badge-target">int · Target</span></td><td>categorical · 10-class</td><td>{0 = airplane, 1 = automobile, 2 = bird, 3 = cat, 4 = deer, 5 = dog, 6 = frog, 7 = horse, 8 = ship, 9 = truck}</td></tr>
+              <tr><td>2</td><td><strong>channels</strong></td><td><span class="badge badge-int">int</span></td><td>derived</td><td>3 — Red, Green, Blue (mean ≈ R 125, G 123, B 114)</td></tr>
+              <tr><td>3</td><td><strong>split</strong></td><td><span class="badge badge-cat">category</span></td><td>partition</td><td>{train → 50,000 · test → 10,000} · 6,000 per class total</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="dp-block-title"><span class="dp-bt-dot"></span>Sample rows <small>X_train[0:6] from <code>tf.keras.datasets.cifar10.load_data()</code></small></div>
+        <div class="dp-table-wrap">
+          <table class="dp-table">
+            <thead>
+              <tr><th>idx</th><th>shape</th><th>dtype</th><th>label</th><th>class name</th><th>min · max</th><th>mean pixel (R,G,B)</th><th>split</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>0</td><td>(32, 32, 3)</td><td><code>uint8</code></td><td>6</td><td>🐸 frog</td><td>0 · 255</td><td>(123, 138, 96)</td><td>train</td></tr>
+              <tr><td>1</td><td>(32, 32, 3)</td><td><code>uint8</code></td><td>9</td><td>🚛 truck</td><td>0 · 255</td><td>(140, 132, 119)</td><td>train</td></tr>
+              <tr><td>2</td><td>(32, 32, 3)</td><td><code>uint8</code></td><td>9</td><td>🚛 truck</td><td>0 · 255</td><td>(115, 118, 124)</td><td>train</td></tr>
+              <tr><td>3</td><td>(32, 32, 3)</td><td><code>uint8</code></td><td>4</td><td>🦌 deer</td><td>0 · 255</td><td>(95, 104, 71)</td><td>train</td></tr>
+              <tr><td>4</td><td>(32, 32, 3)</td><td><code>uint8</code></td><td>1</td><td>🚗 automobile</td><td>0 · 255</td><td>(146, 150, 153)</td><td>train</td></tr>
+              <tr><td>5</td><td>(32, 32, 3)</td><td><code>uint8</code></td><td>1</td><td>🚗 automobile</td><td>0 · 255</td><td>(132, 130, 128)</td><td>train</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ─────────────────────────────────────────────────────
+           4) FLICKR8K — MULTIMODAL
+      ───────────────────────────────────────────────────── -->
+      <div class="dp-card emerald">
+        <div class="dp-card-head">
+          <div class="dp-card-icon">🔗</div>
+          <div>
+            <h3>Flickr8k — Multimodal (Image + Caption)</h3>
+            <p class="dp-card-sub">8,092 real-world images paired with 40,460 human-written captions (exactly 5 captions / image, written independently by 5 different annotators). Variable image resolution; caption length averages ≈ 10–13 words.</p>
+            <span class="dp-card-tag">📑 Flickr8k_Dataset + captions.txt · 8092 × 5 · image captioning benchmark</span>
+          </div>
+        </div>
+
+        <div class="dp-block-title"><span class="dp-bt-dot"></span>Column / Attribute schema <small>two paired modalities</small></div>
+        <div class="dp-table-wrap">
+          <table class="dp-table">
+            <thead>
+              <tr><th>Modality</th><th>Attribute</th><th>Data type</th><th>Role / Kind</th><th>Values · Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td rowspan="4" style="font-weight:700;color:#065F46;vertical-align:middle;background:#ECFDF5;">📷 Image</td>
+                  <td><strong>image_id</strong></td><td><span class="badge badge-object">str</span></td><td>identifier · primary key</td><td>e.g. <code>1000268201_693b08cb0e.jpg</code> — 8,092 unique files</td></tr>
+              <tr><td><strong>width × height</strong></td><td><span class="badge badge-int">int × int</span></td><td>numerical · variable</td><td>landscape-dominant · range ≈ 100×80 to 1200×900</td></tr>
+              <tr><td><strong>channels</strong></td><td><span class="badge badge-int">int</span></td><td>fixed</td><td>3 (RGB); grayscale images promoted to 3-channel</td></tr>
+              <tr><td><strong>pixel values</strong></td><td><span class="badge badge-int">uint8</span></td><td>tensor</td><td>[0, 255] per channel — normalize to [0, 1] for NNs</td></tr>
+              <tr><td rowspan="4" style="font-weight:700;color:#065F46;vertical-align:middle;background:#ECFDF5;">💬 Caption</td>
+                  <td><strong>caption_idx</strong></td><td><span class="badge badge-int">int</span></td><td>categorical · ordinal</td><td>{0, 1, 2, 3, 4} — 5 captions per image</td></tr>
+              <tr><td><strong>caption</strong></td><td><span class="badge badge-object">str (text)</span></td><td>natural language · target</td><td>40,460 sentences total · ≈ 8,918 unique tokens</td></tr>
+              <tr><td><strong>word_count</strong></td><td><span class="badge badge-int">int</span></td><td>derived feature</td><td>avg ≈ 10.5 words · range 2 – 38</td></tr>
+              <tr><td><strong>char_count</strong></td><td><span class="badge badge-int">int</span></td><td>derived feature</td><td>avg ≈ 56 characters · range 12 – 200</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="dp-block-title"><span class="dp-bt-dot"></span>Sample rows <small>first 6 records of captions.txt</small></div>
+        <div class="dp-table-wrap">
+          <table class="dp-table">
+            <thead>
+              <tr><th>#</th><th>image_id</th><th>cap_idx</th><th>caption</th><th>words</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>0</td><td><code>1000268201_693b08cb0e.jpg</code></td><td>0</td><td>A child in a pink dress is climbing up a set of stairs in an entry way.</td><td>16</td></tr>
+              <tr><td>1</td><td><code>1000268201_693b08cb0e.jpg</code></td><td>1</td><td>A girl going into a wooden building.</td><td>7</td></tr>
+              <tr><td>2</td><td><code>1000268201_693b08cb0e.jpg</code></td><td>2</td><td>A little girl climbing into a wooden playhouse.</td><td>8</td></tr>
+              <tr><td>3</td><td><code>1001773457_577c3a7d70.jpg</code></td><td>0</td><td>A black dog and a spotted dog are fighting.</td><td>9</td></tr>
+              <tr><td>4</td><td><code>1002674143_1b742ab4b8.jpg</code></td><td>0</td><td>A little girl covered in paint sits in front of a painted rainbow with her hands in a bowl.</td><td>19</td></tr>
+              <tr><td>5</td><td><code>1003163366_44323f5815.jpg</code></td><td>0</td><td>A man lays on a bench while his dog sits by him.</td><td>12</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
     </div>
   </section>
 </div>
@@ -945,8 +1277,216 @@
           </ul>
         </div>
 
-        <!-- 3. Missing Values -->
-        <div class="sh blue">3. Missing & Duplicate Values</div>
+        <!-- Feature value breakdown -->
+        <div class="sh blue">3. Feature Value Breakdown — Chi tiết giá trị từng biến</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Feature</th><th>Role</th><th>Kind</th><th>Values / Range</th><th>Distribution (count)</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Survived</strong></td>
+                <td><span class="badge badge-target">Target</span></td>
+                <td><span class="badge badge-cat">categorical · binary</span></td>
+                <td>{0 = No, 1 = Yes}</td>
+                <td>0 → 549 (61.6%) &nbsp;·&nbsp; 1 → 342 (38.4%)</td>
+              </tr>
+              <tr>
+                <td><strong>Pclass</strong></td>
+                <td>Feature</td>
+                <td><span class="badge badge-cat">categorical · ordinal</span></td>
+                <td>{1, 2, 3} — 1 = upper, 3 = lower</td>
+                <td>1 → 216 · 2 → 184 · 3 → 491</td>
+              </tr>
+              <tr>
+                <td><strong>Sex</strong></td>
+                <td>Feature</td>
+                <td><span class="badge badge-cat">categorical · nominal</span></td>
+                <td>{male, female}</td>
+                <td>male → 577 · female → 314</td>
+              </tr>
+              <tr>
+                <td><strong>Age</strong></td>
+                <td>Feature</td>
+                <td><span class="badge badge-float">numerical · continuous</span></td>
+                <td>0.42 – 80.0 years</td>
+                <td>mean ≈ 29.7 · std ≈ 14.5 · median ≈ 28</td>
+              </tr>
+              <tr>
+                <td><strong>SibSp</strong></td>
+                <td>Feature</td>
+                <td><span class="badge badge-int">numerical · discrete</span></td>
+                <td>{0, 1, 2, 3, 4, 5, 8}</td>
+                <td>0 → 608 · 1 → 209 · 2 → 28 · others &lt; 20</td>
+              </tr>
+              <tr>
+                <td><strong>Parch</strong></td>
+                <td>Feature</td>
+                <td><span class="badge badge-int">numerical · discrete</span></td>
+                <td>{0, 1, 2, 3, 4, 5, 6}</td>
+                <td>0 → 678 · 1 → 118 · 2 → 80 · others &lt; 10</td>
+              </tr>
+              <tr>
+                <td><strong>Fare</strong></td>
+                <td>Feature</td>
+                <td><span class="badge badge-float">numerical · continuous</span></td>
+                <td>£0 – £512.33</td>
+                <td>mean ≈ £32.20 · median ≈ £14.45 · skew ≈ 4.79</td>
+              </tr>
+              <tr>
+                <td><strong>Embarked</strong></td>
+                <td>Feature</td>
+                <td><span class="badge badge-cat">categorical · nominal</span></td>
+                <td>{C = Cherbourg, Q = Queenstown, S = Southampton}</td>
+                <td>S → 644 · C → 168 · Q → 77</td>
+              </tr>
+              <tr>
+                <td><strong>Cabin</strong></td>
+                <td>Feature</td>
+                <td><span class="badge badge-cat">categorical · sparse</span></td>
+                <td>147 unique codes (A, B, C, D, E, F, G decks)</td>
+                <td>only 204 non-null (~77% missing)</td>
+              </tr>
+              <tr>
+                <td><strong>Name</strong></td>
+                <td>Feature</td>
+                <td><span class="badge badge-object">text · high-cardinality</span></td>
+                <td>891 unique full names</td>
+                <td>Title extracted: Mr 517 · Miss 182 · Mrs 125 · Master 40 · Rare 27</td>
+              </tr>
+              <tr>
+                <td><strong>Ticket</strong></td>
+                <td>Feature</td>
+                <td><span class="badge badge-object">text · high-cardinality</span></td>
+                <td>681 unique ticket codes (alphanumeric)</td>
+                <td>~210 shared tickets (group bookings)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Sample rows from raw dataset -->
+        <div class="sh blue">4. Sample Rows — 6 dòng dữ liệu mẫu (df.head(6))</div>
+        <p style="color:#4B5563; font-size:.93rem; margin-bottom:14px;">Sáu hàng đầu tiên trong file <code>train.csv</code> minh họa cụ thể giá trị của từng biến đã liệt kê ở Bảng 3.</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>PId</th>
+                <th>Survived</th>
+                <th>Pclass</th>
+                <th>Name</th>
+                <th>Sex</th>
+                <th>Age</th>
+                <th>SibSp</th>
+                <th>Parch</th>
+                <th>Ticket</th>
+                <th>Fare</th>
+                <th>Cabin</th>
+                <th>Embarked</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td><span class="miss-high">0</span></td>
+                <td>3</td>
+                <td>Braund, Mr. Owen Harris</td>
+                <td>male</td>
+                <td>22.0</td>
+                <td>1</td>
+                <td>0</td>
+                <td>A/5 21171</td>
+                <td>7.2500</td>
+                <td><em style="color:#9CA3AF;">NaN</em></td>
+                <td>S</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td><span class="miss-none">1</span></td>
+                <td>1</td>
+                <td>Cumings, Mrs. John Bradley (Florence Briggs Th…)</td>
+                <td>female</td>
+                <td>38.0</td>
+                <td>1</td>
+                <td>0</td>
+                <td>PC 17599</td>
+                <td>71.2833</td>
+                <td>C85</td>
+                <td>C</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td><span class="miss-none">1</span></td>
+                <td>3</td>
+                <td>Heikkinen, Miss. Laina</td>
+                <td>female</td>
+                <td>26.0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>STON/O2. 3101282</td>
+                <td>7.9250</td>
+                <td><em style="color:#9CA3AF;">NaN</em></td>
+                <td>S</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td><span class="miss-none">1</span></td>
+                <td>1</td>
+                <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
+                <td>female</td>
+                <td>35.0</td>
+                <td>1</td>
+                <td>0</td>
+                <td>113803</td>
+                <td>53.1000</td>
+                <td>C123</td>
+                <td>S</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td><span class="miss-high">0</span></td>
+                <td>3</td>
+                <td>Allen, Mr. William Henry</td>
+                <td>male</td>
+                <td>35.0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>373450</td>
+                <td>8.0500</td>
+                <td><em style="color:#9CA3AF;">NaN</em></td>
+                <td>S</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td><span class="miss-high">0</span></td>
+                <td>3</td>
+                <td>Moran, Mr. James</td>
+                <td>male</td>
+                <td><em style="color:#9CA3AF;">NaN</em></td>
+                <td>0</td>
+                <td>0</td>
+                <td>330877</td>
+                <td>8.4583</td>
+                <td><em style="color:#9CA3AF;">NaN</em></td>
+                <td>Q</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="insight blue">
+          <h4>Quan sát từ 6 dòng mẫu</h4>
+          <ul>
+            <li><strong>Phân hóa giới tính rất rõ:</strong> trong 6 dòng mẫu, cả 3 phụ nữ (rows 2, 3, 4) đều sống sót — phù hợp với "women and children first".</li>
+            <li><strong>Cabin sparse:</strong> 4/6 dòng có <em>NaN</em> ở cột <code>Cabin</code> — minh chứng cho mức missing 77% được phân tích ở Bảng 5.</li>
+            <li><strong>Fare lệch mạnh:</strong> hành khách hạng 1 (rows 2, 4) trả £53–71 trong khi hạng 3 chỉ £7–8 — đúng skew ≈ 4.79.</li>
+            <li><strong>Age missing:</strong> row 6 (Mr. Moran) thiếu tuổi → là 1 trong 177 giá trị NaN của <code>Age</code>.</li>
+          </ul>
+        </div>
+
+        <!-- 5. Missing Values -->
+        <div class="sh blue">5. Missing & Duplicate Values</div>
         <div class="table-wrap">
           <table>
             <thead>
@@ -975,8 +1515,8 @@
           </table>
         </div>
 
-        <!-- 4. Numerical distributions -->
-        <div class="sh blue">4. Numerical Feature Distributions</div>
+        <!-- 6. Numerical distributions -->
+        <div class="sh blue">6. Numerical Feature Distributions</div>
         <div class="img-card">
           <img src="images/age_fare_dist.png" alt="Age and Fare Distribution">
           <div class="img-caption"><strong>Fig 4.1 – Age & Fare Distribution.</strong> Age approximates a normal distribution centered around 30. Fare is extremely right-skewed (most paid under £50, but some paid over £500), indicating heavy-tailed wealth disparity on board.</div>
@@ -1002,8 +1542,8 @@
           </ul>
         </div>
 
-        <!-- 5. Categorical -->
-        <div class="sh blue">5. Categorical Feature Distributions</div>
+        <!-- 7. Categorical -->
+        <div class="sh blue">7. Categorical Feature Distributions</div>
         <div class="img-card">
           <img src="images/categorical_dist.png" alt="Categorical Distribution">
           <div class="img-caption"><strong>Fig 5.1 – Categorical Breakdown.</strong> Passenger class, gender, embarkation port, and cabin availability split. Third class dominated (~55%), males outnumbered females ~2:1, and Southampton was the primary embarkation point (~72%).</div>
@@ -1022,8 +1562,8 @@
           </ul>
         </div>
 
-        <!-- 6. Correlation -->
-        <div class="sh blue">6. Correlation Analysis</div>
+        <!-- 8. Correlation -->
+        <div class="sh blue">8. Correlation Analysis</div>
         <div class="img-card">
           <img src="images/heatmap.png" alt="Correlation Heatmap">
           <div class="img-caption"><strong>Fig 6.1 – Pearson Correlation Heatmap.</strong> Numerical features correlation matrix. Pclass and Fare show strong negative correlation (r ≈ −0.55) — higher class means lower fare index. Survived correlates moderately with Fare (r ≈ +0.26) and negatively with Pclass (r ≈ −0.34).</div>
@@ -1038,8 +1578,8 @@
           </ul>
         </div>
 
-        <!-- 7. Target Analysis -->
-        <div class="sh blue">7. Survival Rate by Feature</div>
+        <!-- 9. Target Analysis -->
+        <div class="sh blue">9. Survival Rate by Feature</div>
         <div class="img-card">
           <img src="images/cat_vs_target.png" alt="Survival by Categorical Features">
           <div class="img-caption"><strong>Fig 7.1 – Survival Rates by Gender & Class.</strong> Female survival rate ~74%, male ~19%. 1st class survival ~63%, 2nd class ~47%, 3rd class ~24%. Gender is the single strongest individual predictor.</div>
@@ -1053,8 +1593,8 @@
           </ul>
         </div>
 
-        <!-- 8. Outliers -->
-        <div class="sh blue">8. Outlier Detection</div>
+        <!-- 10. Outliers -->
+        <div class="sh blue">10. Outlier Detection</div>
         <div class="img-card">
           <img src="images/outliers_boxplots.png" alt="Outlier Boxplots">
           <div class="img-caption"><strong>Fig 8.1 – Box Plots for Outlier Detection.</strong> Fare shows extreme positive outliers (IQR method identifies values > £65 as outliers). Age has mild outliers in the 60–80 range. SibSp and Parch show several outlier family-size records.</div>
